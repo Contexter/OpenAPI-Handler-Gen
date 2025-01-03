@@ -85,7 +85,7 @@ This document outlines the specific use case of the tool, its integration with *
 ---
 
 ## 4. Documentation Links and References
-- [Apple Swift OpenAPI Generator Documentation](https://swift.org/documentation/openapi-generator)
+- [Apple Swift OpenAPI Generator Documentation](https://swiftpackageindex.com/apple/swift-openapi-generator/1.6.0/documentation/swift-openapi-generator)
 - [Vapor Documentation](https://docs.vapor.codes)
 - [Fluent ORM Documentation](https://docs.vapor.codes/fluent/overview/)
 
