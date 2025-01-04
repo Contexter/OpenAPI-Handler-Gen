@@ -7,16 +7,16 @@ Integrate XCTest into the project and create an initial test structure, includin
 
 ## Execution
 
-### **Step 1: Create Test Directory**
+### Step 1: Create Test Directory
 - Directory Path: `OpenAPIHandlerGen/Tests`
 - Purpose: Organize all test cases under the central `Tests` folder, aligned with the project tree.
 
-### **Step 2: Add Test File**
+### Step 2: Add Test File
 - File Name: `YAMLParsingTests.swift`
 - Location: `OpenAPIHandlerGen/Tests/YAMLParsingTests.swift`
 - Purpose: Implement YAML parsing tests directly under the unified `Tests` directory.
 
-### **Step 3: Implement YAML Parsing Tests**
+### Step 3: Implement YAML Parsing Tests
 
 ```swift
 import XCTest
@@ -48,13 +48,52 @@ final class YAMLParsingTests: XCTestCase {
 }
 ```
 
-### **Step 4: Verify XCTest Execution**
+### Step 4: Verify XCTest Execution
 - Navigate to the root directory of the project (`OpenAPIHandlerGen`).
 - Run tests using the following command:
 ```
 swift test
 ```
 
+---
+
+## Configure Package.swift
+Ensure that the `Package.swift` file is updated to include dependencies and recognize test targets.
+
+```swift
+// swift-tools-version:5.7
+import PackageDescription
+
+let package = Package(
+    name: "OpenAPIHandlerGen",
+    platforms: [
+        .macOS(.v12), // For local development
+        .linux // Add support for Linux-based CI/CD runners
+    ],
+    dependencies: [
+        // Add the Yams dependency for parsing YAML
+        .package(url: "https://github.com/jpsim/Yams.git", from: "4.0.0")
+    ],
+    targets: [
+        .executableTarget(
+            // Target name matches the executable name
+            name: "OpenAPIHandlerGen",
+            dependencies: [
+                .product(name: "Yams", package: "Yams")
+            ],
+            // Point to the root "Sources" folder as it directly contains "main.swift"
+            path: "Sources"
+        ),
+        .testTarget(
+            name: "OpenAPIHandlerGenTests",
+            dependencies: [
+                "OpenAPIHandlerGen"
+            ],
+            path: "Tests"
+        )
+    ]
+)
+```
 ---
 
 ## Next Steps
@@ -67,9 +106,9 @@ swift test
 This implementation addresses **Prompt 1** and prepares the foundation for further testing enhancements as outlined in **Issue #13**.
 
 ```bash
-git add Docs/prompt_1_xctest_setup.md
+git add Docs/Prompts/Prompt\ 1\ Setup\ XCTest\ Framework.md
 
-git commit -m "docs: Add Prompt 1 – XCTest setup with YAML parsing validation tests. References #13."
+git commit -m "docs(prompts): Add Prompt 1 XCTest setup with YAML parsing validation tests and updated Package.swift for CI/CD compatibility. References #13."
 
 git push
 ```
