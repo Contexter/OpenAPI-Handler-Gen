@@ -36,8 +36,13 @@ jobs:
       with:
         swift-version: '5.7'
 
+    - name: Prepare Test Logs Directory
+      run: |
+        mkdir -p OpenAPIHandlerGen/TestLogs
+
     - name: Build and Test
       run: |
+        cd OpenAPIHandlerGen
         swift build
         swift test > TestLogs/test-results.log
 
@@ -45,12 +50,7 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: test-results
-        path: TestLogs/
-
-    - name: Save Test Logs to Repository
-      run: |
-        mkdir -p TestLogs
-        cp .build/debug/*.log TestLogs/
+        path: OpenAPIHandlerGen/TestLogs/
 ```
 
 ### Step 3: Create Test Logs Directory
@@ -73,6 +73,7 @@ jobs:
    │   ├── Use Case and Necessity of OpenAPIHandlerGen.md
    │   └── Prompts
    │       ├── Prompt 1 Setup XCTest Framework.md
+   │       ├── Prompt 2 CI_CD Pipeline Setup.md
    ├── LICENSE
    ├── OpenAPIHandlerGen
    │   ├── Package.resolved
@@ -83,6 +84,7 @@ jobs:
    │   │   ├── File.swift
    │   │   └── YAMLParsingTests.swift
    ├── README.md
+   └── TestLogs
    ```
 3. Create the `TestLogs` directory manually at the **root level**:
    ```bash
@@ -122,7 +124,7 @@ This implementation addresses **Prompt 2** and prepares the foundation for autom
 ```bash
 git add .github/workflows/ci.yml TestLogs/
 
-git commit -m "ci: Add GitHub Actions workflow for CI/CD pipeline with test logs directory. References #13."
+git commit -m "ci: Update CI/CD pipeline for correct working directory and test logs directory. References #13."
 
 git push
 ```
