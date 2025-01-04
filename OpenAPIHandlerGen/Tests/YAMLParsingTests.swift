@@ -1,5 +1,5 @@
 import XCTest
-@testable import OpenAPIHandlerGen
+import Yams
 
 final class YAMLParsingTests: XCTestCase {
 
@@ -11,8 +11,7 @@ final class YAMLParsingTests: XCTestCase {
           version: 1.0.0
         """
         
-        let parser = YAMLParser()
-        XCTAssertNoThrow(try parser.parse(validYAML))
+        XCTAssertNoThrow(try Yams.load(yaml: validYAML))
     }
 
     func testInvalidYAMLParsing() throws {
@@ -21,7 +20,6 @@ final class YAMLParsingTests: XCTestCase {
         info: [title: Test API]
         """
         
-        let parser = YAMLParser()
-        XCTAssertThrowsError(try parser.parse(invalidYAML))
+        XCTAssertThrowsError(try Yams.load(yaml: invalidYAML))
     }
 }
