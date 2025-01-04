@@ -42,8 +42,9 @@ jobs:
 
     - name: Build and Test
       run: |
+        cd OpenAPIHandlerGen
         swift build
-        swift test > TestLogs/test-results.log
+        swift test > ../TestLogs/test-results.log
 
     - name: Debug Directory Structure
       run: |
@@ -126,7 +127,7 @@ This implementation addresses **Prompt 2** and prepares the foundation for autom
 ```bash
 git add .github/workflows/ci.yml TestLogs/
 
-git commit -m "ci: Update CI/CD pipeline for correct working directory and test logs directory with debug steps. References #13."
+git commit -m "ci: Fix working directory for CI/CD pipeline and test logs output. References #13."
 
 git push
 ```
