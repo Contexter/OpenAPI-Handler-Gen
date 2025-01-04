@@ -21,8 +21,13 @@ jobs:
       with:
         swift-version: '5.7'
 
+    - name: Prepare Test Logs Directory
+      run: |
+        mkdir -p OpenAPIHandlerGen/TestLogs
+
     - name: Build and Test
       run: |
+        cd OpenAPIHandlerGen
         swift build
         swift test > TestLogs/test-results.log
 
@@ -30,9 +35,4 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: test-results
-        path: TestLogs/
-
-    - name: Save Test Logs to Repository
-      run: |
-        mkdir -p TestLogs
-        cp .build/debug/*.log TestLogs/
+        path: OpenAPIHandlerGen/TestLogs/

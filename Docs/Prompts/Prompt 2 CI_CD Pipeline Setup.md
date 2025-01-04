@@ -38,11 +38,10 @@ jobs:
 
     - name: Prepare Test Logs Directory
       run: |
-        mkdir -p OpenAPIHandlerGen/TestLogs
+        mkdir -p TestLogs
 
     - name: Build and Test
       run: |
-        cd OpenAPIHandlerGen
         swift build
         swift test > TestLogs/test-results.log
 
@@ -50,30 +49,28 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: test-results
-        path: OpenAPIHandlerGen/TestLogs/
+        path: TestLogs/
 ```
 
 ### Step 3: Create Test Logs Directory
 #### Manual Setup
-1. Navigate to the project directory:
+1. Navigate to the repository root directory:
    ```bash
-   cd OpenAPIHandlerGen
+   cd OpenAPI-Handler-Gen
    ```
-2. Verify the project structure using:
+2. Verify the repository structure using:
    ```bash
    tree -L 2
    ```
    Expected structure:
    ```
-   OpenAPIHandlerGen
+   .
    ├── Docs
    │   ├── A Pragmatic Shift Executing with Prompts.md
    │   ├── Comprehensive Test Suite for OpenAPIHandlerGen.md
    │   ├── Development and Testing Plan for OpenAPIHandlerGen.md
-   │   ├── Use Case and Necessity of OpenAPIHandlerGen.md
-   │   └── Prompts
-   │       ├── Prompt 1 Setup XCTest Framework.md
-   │       ├── Prompt 2 CI_CD Pipeline Setup.md
+   │   ├── Prompts
+   │   └── Use Case and Necessity of OpenAPIHandlerGen.md
    ├── LICENSE
    ├── OpenAPIHandlerGen
    │   ├── Package.resolved
@@ -86,7 +83,7 @@ jobs:
    ├── README.md
    └── TestLogs
    ```
-3. Create the `TestLogs` directory manually at the **root level**:
+3. Create the `TestLogs` directory manually at the **repository root level**:
    ```bash
    mkdir TestLogs
    ```
