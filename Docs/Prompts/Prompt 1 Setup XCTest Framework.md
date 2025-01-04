@@ -20,7 +20,7 @@ Integrate XCTest into the project and create an initial test structure, includin
 
 ```swift
 import XCTest
-@testable import OpenAPIHandlerGen
+import Yams
 
 final class YAMLParsingTests: XCTestCase {
 
@@ -32,8 +32,7 @@ final class YAMLParsingTests: XCTestCase {
           version: 1.0.0
         """
         
-        let parser = YAMLParser()
-        XCTAssertNoThrow(try parser.parse(validYAML))
+        XCTAssertNoThrow(try Yams.load(yaml: validYAML))
     }
 
     func testInvalidYAMLParsing() throws {
@@ -42,8 +41,7 @@ final class YAMLParsingTests: XCTestCase {
         info: [title: Test API]
         """
         
-        let parser = YAMLParser()
-        XCTAssertThrowsError(try parser.parse(invalidYAML))
+        XCTAssertThrowsError(try Yams.load(yaml: invalidYAML))
     }
 }
 ```
@@ -107,7 +105,7 @@ This implementation addresses **Prompt 1** and prepares the foundation for furth
 ```bash
 git add Docs/Prompts/Prompt\ 1\ Setup\ XCTest\ Framework.md
 
-git commit -m "docs(prompts): Fix Package.swift to remove invalid Linux platform declaration and add CI/CD compatible test target. References #13."
+git commit -m "docs(prompts): Fix YAMLParsingTests to use Yams API for validation. References #13."
 
 git push
 ```

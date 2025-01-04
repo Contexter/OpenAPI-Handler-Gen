@@ -4,8 +4,7 @@ import PackageDescription
 let package = Package(
     name: "OpenAPIHandlerGen",
     platforms: [
-        .macOS(.v12), // For local development
-        .linux // Add support for Linux-based CI/CD runners
+        .macOS(.v12) // Specify macOS version for local development
     ],
     dependencies: [
         // Add the Yams dependency for parsing YAML
