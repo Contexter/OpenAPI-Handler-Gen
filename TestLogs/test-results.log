@@ -1,0 +1,13 @@
+Test Suite 'All tests' started at 2025-01-04 11:35:32.679
+Test Suite 'debug.xctest' started at 2025-01-04 11:35:32.680
+Test Suite 'YAMLParsingTests' started at 2025-01-04 11:35:32.680
+Test Case 'YAMLParsingTests.testInvalidYAMLParsing' started at 2025-01-04 11:35:32.680
+Test Case 'YAMLParsingTests.testInvalidYAMLParsing' passed (0.003 seconds)
+Test Case 'YAMLParsingTests.testValidYAMLParsing' started at 2025-01-04 11:35:32.683
+Test Case 'YAMLParsingTests.testValidYAMLParsing' passed (0.0 seconds)
+Test Suite 'YAMLParsingTests' passed at 2025-01-04 11:35:32.683
+Executed 2 tests, with 0 failures (0 unexpected) in 0.003 (0.003) seconds
+Test Suite 'debug.xctest' passed at 2025-01-04 11:35:32.683
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.003 (0.003) seconds
+Test Suite 'All tests' passed at 2025-01-04 11:35:32.683
+Executed 2 tests, with 0 failures (0 unexpected) in 0.003 (0.003) seconds
