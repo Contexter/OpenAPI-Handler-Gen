@@ -121,72 +121,57 @@ final class EndpointExtractionTests: XCTestCase {
 }
 ```
 
-### Step 4: CI/CD Pipeline Validation
-The pipeline automatically detects new test cases added under the `Tests` directory and processes all files, including those in `Tests/Resources/`. Artifacts are uploaded for logs and debugging purposes.
+### Step 4: Local Testing Configuration
 
-#### Full CI/CD Pipeline
-```yaml
-name: CI/CD Pipeline
+#### 1. Setting Up Local Testing Environment
+Ensure your system has:
+- Swift 5.7+ installed.
+- Git access to your repository.
 
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+#### 2. Create Local Logs Directory
+```bash
+mkdir -p TestLogs
+```
 
-permissions:
-  contents: write
+#### 3. Run Tests Locally
+```bash
+cd OpenAPIHandlerGen
+swift build
+swift test > ../TestLogs/test-results.log
+```
 
-jobs:
-  build-and-test:
-    runs-on: ubuntu-latest
+#### 4. Validate Logs Output
+```bash
+ls TestLogs/
+cat TestLogs/test-results.log
+```
 
-    steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v3
+#### 5. Script for Repeatable Testing
+Save this as `run-tests.sh` in the root directory:
+```bash
+#!/bin/bash
+set -e
 
-    - name: Set up Swift
-      uses: swift-actions/setup-swift@v1
-      with:
-        swift-version: '5.7'
+# Create Logs Directory
+mkdir -p TestLogs
 
-    - name: Prepare Test Logs Directory
-      run: |
-        mkdir -p TestLogs
+# Build and Test
+cd OpenAPIHandlerGen
+swift build
+swift test > ../TestLogs/test-results.log
 
-    - name: Resolve Dependencies
-      run: swift package resolve
+# Display Logs
+echo "Test results:"
+cat ../TestLogs/test-results.log
+```
 
-    - name: Build and Test
-      run: |
-        cd OpenAPIHandlerGen
-        swift build
-        swift test > ../TestLogs/test-results.log
-
-    - name: Upload Test Logs
-      uses: actions/upload-artifact@v3
-      with:
-        name: test-results
-        path: Tests/Resources/*
-
-    - name: Debug Directory Structure
-      run: |
-        pwd
-        ls -R
-
-    - name: Commit Test Logs to Repo
-      run: |
-        git config --global user.name 'github-actions[bot]'
-        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-        git add TestLogs/test-results.log
-        git commit -m "ci: Add test results log [skip ci]" || echo "No changes to commit"
-        git push
+Make it executable:
+```bash
+chmod +x run-tests.sh
 ```
 
 ---
 
 ## Conclusion
-This prompt resolves prior issues with the `Package.swift` file and integrates automated tests for endpoint extraction while ensuring compatibility with the CI/CD pipeline.
+This document resolves prior issues with the `Package.swift` file and integrates automated tests for endpoint extraction. It also supports switching to local testing with a script for managing logs effectively.
 
