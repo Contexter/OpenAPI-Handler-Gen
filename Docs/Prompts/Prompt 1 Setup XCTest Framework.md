@@ -67,8 +67,7 @@ import PackageDescription
 let package = Package(
     name: "OpenAPIHandlerGen",
     platforms: [
-        .macOS(.v12), // For local development
-        .linux // Add support for Linux-based CI/CD runners
+        .macOS(.v12) // Specify macOS version for local development
     ],
     dependencies: [
         // Add the Yams dependency for parsing YAML
@@ -108,7 +107,7 @@ This implementation addresses **Prompt 1** and prepares the foundation for furth
 ```bash
 git add Docs/Prompts/Prompt\ 1\ Setup\ XCTest\ Framework.md
 
-git commit -m "docs(prompts): Add Prompt 1 XCTest setup with YAML parsing validation tests and updated Package.swift for CI/CD compatibility. References #13."
+git commit -m "docs(prompts): Fix Package.swift to remove invalid Linux platform declaration and add CI/CD compatible test target. References #13."
 
 git push
 ```

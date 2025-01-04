@@ -4,7 +4,8 @@ import PackageDescription
 let package = Package(
     name: "OpenAPIHandlerGen",
     platforms: [
-        .macOS(.v12) // Specify macOS 12 or later
+        .macOS(.v12), // For local development
+        .linux // Add support for Linux-based CI/CD runners
     ],
     dependencies: [
         // Add the Yams dependency for parsing YAML
@@ -19,6 +20,13 @@ let package = Package(
             ],
             // Point to the root "Sources" folder as it directly contains "main.swift"
             path: "Sources"
+        ),
+        .testTarget(
+            name: "OpenAPIHandlerGenTests",
+            dependencies: [
+                "OpenAPIHandlerGen"
+            ],
+            path: "Tests"
         )
     ]
 )
