@@ -51,11 +51,13 @@ jobs:
         pwd
         ls -R
 
-    - name: Upload Test Results
-      uses: actions/upload-artifact@v3
-      with:
-        name: test-results
-        path: TestLogs/
+    - name: Commit Test Logs to Repo
+      run: |
+        git config --global user.name 'github-actions[bot]'
+        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+        git add TestLogs/test-results.log
+        git commit -m "ci: Add test results log [skip ci]" || echo "No changes to commit"
+        git push
 ```
 
 ### Step 3: Create Test Logs Directory
@@ -110,7 +112,7 @@ jobs:
 ### Step 4: Verify Workflow Execution
 - Commit and push this file to the repository.
 - Open the **Actions tab** in GitHub and check the workflow status.
-- Confirm tests pass and outputs are logged.
+- Confirm tests pass and outputs are logged in the repository.
 
 ---
 
