@@ -45,6 +45,11 @@ jobs:
         swift build
         swift test > TestLogs/test-results.log
 
+    - name: Debug Directory Structure
+      run: |
+        pwd
+        ls -R
+
     - name: Upload Test Results
       uses: actions/upload-artifact@v3
       with:
@@ -121,7 +126,7 @@ This implementation addresses **Prompt 2** and prepares the foundation for autom
 ```bash
 git add .github/workflows/ci.yml TestLogs/
 
-git commit -m "ci: Update CI/CD pipeline for correct working directory and test logs directory. References #13."
+git commit -m "ci: Update CI/CD pipeline for correct working directory and test logs directory with debug steps. References #13."
 
 git push
 ```
