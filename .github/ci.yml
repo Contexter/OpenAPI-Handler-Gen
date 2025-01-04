@@ -1,0 +1,38 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+
+    - name: Set up Swift
+      uses: swift-actions/setup-swift@v1
+      with:
+        swift-version: '5.7'
+
+    - name: Build and Test
+      run: |
+        swift build
+        swift test > TestLogs/test-results.log
+
+    - name: Upload Test Results
+      uses: actions/upload-artifact@v3
+      with:
+        name: test-results
+        path: TestLogs/
+
+    - name: Save Test Logs to Repository
+      run: |
+        mkdir -p TestLogs
+        cp .build/debug/*.log TestLogs/
