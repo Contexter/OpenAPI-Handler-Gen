@@ -23,7 +23,50 @@ OpenAPIHandlerGen/
 git add Tests/Resources/Server.swift Tests/Resources/Types.swift Tests/Resources/openapi.yaml
 ```
 
-### Step 2: Write Test Cases
+### Step 2: Update `Package.swift`
+Add dependencies and resources:
+```swift
+// swift-tools-version:5.7
+import PackageDescription
+
+let package = Package(
+    name: "OpenAPIHandlerGen",
+    platforms: [
+        .macOS(.v12) // Specify macOS version for local development
+    ],
+    dependencies: [
+        // Add the Yams dependency for parsing YAML
+        .package(url: "https://github.com/jpsim/Yams.git", from: "4.0.0"),
+        // Add OpenAPIRuntime dependency
+        .package(url: "https://github.com/Apodini/OpenAPIRuntime.git", from: "0.1.0")
+    ],
+    targets: [
+        .executableTarget(
+            name: "OpenAPIHandlerGen",
+            dependencies: [
+                .product(name: "Yams", package: "Yams"),
+                .product(name: "OpenAPIRuntime", package: "OpenAPIRuntime")
+            ],
+            path: "Sources"
+        ),
+        .testTarget(
+            name: "OpenAPIHandlerGenTests",
+            dependencies: [
+                "OpenAPIHandlerGen",
+                .product(name: "OpenAPIRuntime", package: "OpenAPIRuntime")
+            ],
+            path: "Tests",
+            resources: [
+                .copy("Resources/Server.swift"),
+                .copy("Resources/Types.swift"),
+                .copy("Resources/openapi.yaml")
+            ]
+        )
+    ]
+)
+```
+
+### Step 3: Write Test Cases
 Create `EndpointExtractionTests.swift` under `Tests` directory:
 ```swift
 import XCTest
@@ -78,10 +121,10 @@ final class EndpointExtractionTests: XCTestCase {
 }
 ```
 
-### Step 3: Update CI/CD Pipeline for Tests
-Modify the GitHub Actions pipeline to include new tests:
+### Step 4: CI/CD Pipeline Validation
+The pipeline automatically detects new test cases added under the `Tests` directory and processes all files, including those in `Tests/Resources/`. Artifacts are uploaded for logs and debugging purposes.
 
-#### Workflow File Update
+#### Full CI/CD Pipeline
 ```yaml
 name: CI/CD Pipeline
 
@@ -93,53 +136,57 @@ on:
     branches:
       - main
 
+permissions:
+  contents: write
+
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v3
+    - name: Checkout Repository
+      uses: actions/checkout@v3
 
-      - name: Set up Swift
-        uses: swift-actions/setup-swift@v1
-        with:
-          swift-version: "5.7"
+    - name: Set up Swift
+      uses: swift-actions/setup-swift@v1
+      with:
+        swift-version: '5.7'
 
-      - name: Run Tests
-        run: |
-          cd OpenAPIHandlerGen
-          swift test
+    - name: Prepare Test Logs Directory
+      run: |
+        mkdir -p TestLogs
 
-      - name: Upload Test Logs
-        uses: actions/upload-artifact@v3
-        with:
-          name: test-results
-          path: Tests/Resources/*
-```
+    - name: Resolve Dependencies
+      run: swift package resolve
 
----
+    - name: Build and Test
+      run: |
+        cd OpenAPIHandlerGen
+        swift build
+        swift test > ../TestLogs/test-results.log
 
-## Next Steps
-- Validate CI/CD pipeline executes tests successfully.
-- Monitor failures and add additional test cases as needed.
-- Integrate logs and debugging tools to trace test failures.
+    - name: Upload Test Logs
+      uses: actions/upload-artifact@v3
+      with:
+        name: test-results
+        path: Tests/Resources/*
 
----
+    - name: Debug Directory Structure
+      run: |
+        pwd
+        ls -R
 
-## Commit Reference
-This implementation updates **Prompt 3** with endpoint extraction tests based on the example files provided.
-
-```bash
-git add Tests/EndpointExtractionTests.swift
-
-git commit -m "test: Add endpoint extraction tests using provided examples. References #13."
-
-git push
+    - name: Commit Test Logs to Repo
+      run: |
+        git config --global user.name 'github-actions[bot]'
+        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+        git add TestLogs/test-results.log
+        git commit -m "ci: Add test results log [skip ci]" || echo "No changes to commit"
+        git push
 ```
 
 ---
 
 ## Conclusion
-This prompt focuses on adding automated tests for validating endpoint extraction, integrating the provided example files into the project structure, and ensuring compatibility with the CI/CD pipeline.
+This prompt resolves prior issues with the `Package.swift` file and integrates automated tests for endpoint extraction while ensuring compatibility with the CI/CD pipeline.
 
