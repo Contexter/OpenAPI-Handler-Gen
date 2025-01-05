@@ -200,9 +200,12 @@ OpenAPI-Handler-Gen/
 ├── Scripts/
 │   ├── build_and_test.sh
 ├── TestLogs/
-│   ├── build-YYYYMMDD-HHMMSS.log
-│   ├── test-results-YYYYMMDD-HHMMSS.log
-│   ├── error-YYYYMMDD-HHMMSS.log
+│   ├── .gitkeep
+│   ├── build-20250105-084636.log
+│   ├── build-20250105-085037.log
+│   ├── test-results-20250105-084641.log
+│   ├── test-results-20250105-085043.log
+│   ├── test-results.log
 ├── README.md
 ```
 
