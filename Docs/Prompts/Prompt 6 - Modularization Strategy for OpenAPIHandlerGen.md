@@ -6,7 +6,7 @@
 ---
 
 ## Decision:
-Adopt **Group by Functional Modules** to provide a scalable and readable structure while avoiding excessive fragmentation.
+Adopt **Option 2 - Group by Functional Modules** to provide a scalable and readable structure while avoiding excessive fragmentation.
 
 ---
 
@@ -38,6 +38,45 @@ Sources/
 ---
 
 ## Modularization Tutorial
+
+### **Dependencies and Setup**
+
+1. **Swift Tools Version Declaration**
+   - Ensure the Swift tools version is set in `Package.swift`.
+   ```swift
+   // swift-tools-version: 6.0.3
+   ```
+
+2. **Add Dependencies**
+   - Include Vapor and Yams dependencies in `Package.swift`:
+   ```swift
+   dependencies: [
+       .package(url: "https://github.com/jpsim/Yams.git", from: "4.0.6"),
+       .package(url: "https://github.com/vapor/vapor.git", from: "4.0.0")
+   ]
+   ```
+
+3. **Explicit Vapor Dependency**
+   ```swift
+   dependencies: [
+       "Yams",
+       .product(name: "Vapor", package: "vapor")
+   ]
+   ```
+
+4. **Resolve Dependencies**
+   ```bash
+   swift package update
+   swift package resolve
+   ```
+
+5. **Build and Test**
+   ```bash
+   swift build
+   swift test
+   ```
+
+---
 
 ### 1. **Parsing Module**
 - **File:** `Sources/Parsers/YAMLParser.swift`
@@ -141,28 +180,6 @@ struct HandlerGenerator {
 }
 ```
 
-**Service Generator Example:**
-```swift
-// File: Sources/Generators/ServiceGenerator.swift
-import Vapor
-
-struct ServiceGenerator {
-    static func generate(endpoint: EndpointExtractor.Endpoint, method: String, outputPath: String) {
-        let template = """
-        import Vapor
-
-        struct \(method)Service {
-            func execute(input: Operations.\(method).Input) async throws -> Operations.\(method).Output {
-                return .init()
-            }
-        }
-        """
-        let filePath = "\(outputPath)/Services/\(method)Service.swift"
-        try? template.write(to: URL(fileURLWithPath: filePath), atomically: true, encoding: .utf8)
-    }
-}
-```
-
 ---
 
 ### 4. **Core Logic Module**
@@ -192,12 +209,4 @@ struct OpenAPIHandlerGen {
     }
 }
 ```
-
----
-
-## Next Steps
-1. Split existing code into the proposed modular files.
-2. Update imports and function calls to align with this structure.
-3. Validate tests against the new modules and refactor as needed.
-4. Commit changes with a clear message documenting the modularization process.
 

@@ -1,3 +1,4 @@
+// File: Sources/Extractors/EndpointExtractor.swift
 import Foundation
 
 public struct EndpointExtractor {
