@@ -1,0 +1,36 @@
+warning: 'openapihandlergen': 'OpenAPIHandlerGen' was identified as an executable target given the presence of a 'main.swift' file. Starting with tools version 5.4.0 executable targets should be declared as 'executableTarget()'
+[0/1] Planning build
+Building for debugging...
+[1/7] Compiling OpenAPIHandlerGenTests EndpointExtractionTests.swift
+[2/7] Compiling OpenAPIHandlerGenTests InlineCodeTests.swift
+[3/7] Emitting module OpenAPIHandlerGenTests
+[5/9] /home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/.build/x86_64-unknown-linux-gnu/debug/OpenAPIHandlerGenPackageTests.derived/runner.swift
+[6/9] Wrapping AST for OpenAPIHandlerGenTests for debugging
+[8/12] Emitting module OpenAPIHandlerGenPackageTests
+[9/12] Compiling OpenAPIHandlerGenPackageTests OpenAPIHandlerGenTests.swift
+[10/12] Compiling OpenAPIHandlerGenPackageTests runner.swift
+[12/14] Wrapping AST for OpenAPIHandlerGenPackageTests for debugging
+[13/14] Linking OpenAPIHandlerGenPackageTests.xctest
+Build complete! (0.78s)
+Test Suite 'All tests' started at 2025-01-05 15:09:26.487
+Test Suite 'debug.xctest' started at 2025-01-05 15:09:26.488
+Test Suite 'EndpointExtractionTests' started at 2025-01-05 15:09:26.488
+Test Case 'EndpointExtractionTests.testValidEndpointExtraction' started at 2025-01-05 15:09:26.488
+Test Case 'EndpointExtractionTests.testValidEndpointExtraction' passed (0.001 seconds)
+Test Suite 'EndpointExtractionTests' passed at 2025-01-05 15:09:26.489
+Executed 1 test, with 0 failures (0 unexpected) in 0.001 (0.001) seconds
+Test Suite 'InlineCodeTests' started at 2025-01-05 15:09:26.489
+Test Case 'InlineCodeTests.testDownloadWorkflowLogs' started at 2025-01-05 15:09:26.489
+Test Case 'InlineCodeTests.testDownloadWorkflowLogs' passed (0.0 seconds)
+Test Case 'InlineCodeTests.testGetWorkflow' started at 2025-01-05 15:09:26.490
+Test Case 'InlineCodeTests.testGetWorkflow' passed (0.0 seconds)
+Test Case 'InlineCodeTests.testListWorkflowRuns' started at 2025-01-05 15:09:26.490
+Test Case 'InlineCodeTests.testListWorkflowRuns' passed (0.0 seconds)
+Test Case 'InlineCodeTests.testListWorkflows' started at 2025-01-05 15:09:26.490
+Test Case 'InlineCodeTests.testListWorkflows' passed (0.0 seconds)
+Test Suite 'InlineCodeTests' passed at 2025-01-05 15:09:26.490
+Executed 4 tests, with 0 failures (0 unexpected) in 0.0 (0.0) seconds
+Test Suite 'debug.xctest' passed at 2025-01-05 15:09:26.490
+Executed 5 tests, with 0 failures (0 unexpected) in 0.001 (0.001) seconds
+Test Suite 'All tests' passed at 2025-01-05 15:09:26.490
+Executed 5 tests, with 0 failures (0 unexpected) in 0.001 (0.001) seconds
