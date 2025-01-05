@@ -23,15 +23,16 @@ jobs:
 
       - name: Build and Test
         run: |
+          mkdir -p TestLogs
           if [ ! -f Package.swift ]; then
-            echo "Package.swift not found! Exiting..."
+            echo "Package.swift not found! Exiting..." > TestLogs/error-$(date +'%Y%m%d-%H%M%S').log
             exit 1
           fi
-          mkdir -p TestLogs
           swift build &> TestLogs/build-$(date +'%Y%m%d-%H%M%S').log
           swift test &> TestLogs/test-results-$(date +'%Y%m%d-%H%M%S').log
 
       - name: Commit and Push Logs with Git
+        if: always()
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
