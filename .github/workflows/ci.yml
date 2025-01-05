@@ -24,18 +24,11 @@ jobs:
         with:
           swift-version: 5.7
 
-      - name: Resolve Dependencies
-        run: swift package resolve
+      - name: Make Build Script Executable
+        run: chmod +x Scripts/build_and_test.sh
 
-      - name: Build and Test
-        run: |
-          mkdir -p TestLogs
-          if [ ! -f Package.swift ]; then
-            echo "Package.swift not found! Exiting..." > TestLogs/error-$(date +'%Y%m%d-%H%M%S').log
-            exit 1
-          fi
-          swift build 2>&1 | tee TestLogs/build-$(date +'%Y%m%d-%H%M%S').log
-          swift test 2>&1 | tee TestLogs/test-results-$(date +'%Y%m%d-%H%M%S').log
+      - name: Run Build and Test
+        run: Scripts/build_and_test.sh
 
       - name: Upload Test Logs
         uses: actions/upload-artifact@v3
