@@ -9,6 +9,10 @@ mkdir -p Scripts
 # Create Logs Directory
 mkdir -p TestLogs
 
+# Configure Git User Identity for CI Environment
+git config --global user.email "ci-bot@example.com"
+git config --global user.name "CI Bot"
+
 # Build and Test Function
 function build_and_test() {
   echo "Starting Build and Test..."
