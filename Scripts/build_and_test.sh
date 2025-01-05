@@ -37,5 +37,11 @@ function build_and_test() {
 # Execute the Build and Test Workflow
 build_and_test
 
+# Commit logs to GitHub repository
+cd ..
+git add TestLogs/*.log
+git commit -m "Add logs from build and test run on $(date +'%Y-%m-%d %H:%M:%S')"
+git push origin main
+
 # Final Message
 echo "Build and Test Completed Successfully!"
