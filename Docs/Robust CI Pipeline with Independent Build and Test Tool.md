@@ -24,6 +24,10 @@ mkdir -p Scripts
 # Create Logs Directory
 mkdir -p TestLogs
 
+# Configure Git User Identity for CI Environment
+git config --global user.email "ci-bot@example.com"
+git config --global user.name "CI Bot"
+
 # Build and Test Function
 function build_and_test() {
   echo "Starting Build and Test..."
@@ -51,6 +55,12 @@ function build_and_test() {
 
 # Execute the Build and Test Workflow
 build_and_test
+
+# Commit logs to GitHub repository
+cd ..
+git add TestLogs/*.log
+git commit -m "Add logs from build and test run on $(date +'%Y-%m-%d %H:%M:%S')"
+git push origin main
 
 # Final Message
 echo "Build and Test Completed Successfully!"
@@ -88,6 +98,11 @@ jobs:
         uses: swift-actions/setup-swift@v1
         with:
           swift-version: 5.7
+
+      - name: Configure Git Identity
+        run: |
+          git config --global user.email "ci-bot@example.com"
+          git config --global user.name "CI Bot"
 
       - name: Make Build Script Executable
         run: chmod +x Scripts/build_and_test.sh
@@ -223,6 +238,7 @@ This new setup provides:
 1. **Cross-platform compatibility and robustness** through shell scripting.
 2. **Robust CI integration** that leverages the standalone tool.
 3. **Inline mocks** to ensure isolated, flexible testing.
+4. **Git integration** to ensure logs are tracked and available in the repository.
 
 This approach is future-proof and minimizes dependencies, ensuring stability and maintainability.
 
