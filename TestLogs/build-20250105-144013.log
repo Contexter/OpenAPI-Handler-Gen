@@ -1,0 +1,43 @@
+Fetching https://github.com/jpsim/Yams.git
+[1/9984] Fetching yams
+Fetched https://github.com/jpsim/Yams.git (0.84s)
+Computing version for https://github.com/jpsim/Yams.git
+Computed https://github.com/jpsim/Yams.git at 4.0.6 (0.20s)
+Creating working copy for https://github.com/jpsim/Yams.git
+Working copy of https://github.com/jpsim/Yams.git resolved at 4.0.6
+warning: 'openapihandlergen': 'OpenAPIHandlerGen' was identified as an executable target given the presence of a 'main.swift' file. Starting with tools version 5.4.0 executable targets should be declared as 'executableTarget()'
+Building for debugging...
+[0/9] Compiling writer.c
+[1/9] Compiling reader.c
+[2/9] Compiling parser.c
+[3/9] Compiling api.c
+[4/9] Compiling scanner.c
+[5/9] Compiling emitter.c
+[7/22] Emitting module Yams
+[8/25] Compiling Yams String+Yams.swift
+[9/25] Compiling Yams Tag.swift
+[10/25] Compiling Yams YamlError.swift
+[11/25] Compiling Yams Constructor.swift
+[12/25] Compiling Yams Decoder.swift
+[13/25] Compiling Yams Emitter.swift
+[14/25] Compiling Yams Encoder.swift
+[15/25] Compiling Yams Mark.swift
+[16/25] Compiling Yams Node.Mapping.swift
+[17/25] Compiling Yams Node.Scalar.swift
+[18/25] Compiling Yams Node.Sequence.swift
+[19/25] Compiling Yams Node.swift
+[20/25] Compiling Yams Parser.swift
+[21/25] Compiling Yams Representer.swift
+[22/25] Compiling Yams Resolver.swift
+[24/27] Wrapping AST for Yams for debugging
+[26/31] Emitting module OpenAPIHandlerGen
+[27/31] Compiling OpenAPIHandlerGen EndpointExtractor.swift
+[28/31] Compiling OpenAPIHandlerGen main.swift
+[29/31] Compiling OpenAPIHandlerGen OpenAPIHandlerGen.swift
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Sources/OpenAPIHandlerGen.swift:24:13: warning: initialization of immutable value 'typeMappings' was never used; consider replacing with assignment to '_' or removing it
+        let typeMappings = extractTypeMappings(from: typesCode)
+        ~~~~^~~~~~~~~~~~
+        _
+[31/33] Wrapping AST for OpenAPIHandlerGen for debugging
+[32/33] Linking OpenAPIHandlerGen
+Build complete! (9.03s)
