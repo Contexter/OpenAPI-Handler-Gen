@@ -21,23 +21,18 @@ jobs:
         with:
           swift-version: 5.7
 
-      - name: Move to Project Directory
-        run: cd OpenAPIHandlerGen
-
       - name: Build and Test
         run: |
-          cd OpenAPIHandlerGen
           if [ ! -f Package.swift ]; then
             echo "Package.swift not found! Exiting..."
             exit 1
           fi
           mkdir -p TestLogs
-          swift build
-          swift test > TestLogs/test-results-$(date +'%Y%m%d-%H%M%S').log
+          swift build &> TestLogs/build-$(date +'%Y%m%d-%H%M%S').log
+          swift test &> TestLogs/test-results-$(date +'%Y%m%d-%H%M%S').log
 
       - name: Commit and Push Logs with Git
         run: |
-          cd OpenAPIHandlerGen
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add TestLogs/
