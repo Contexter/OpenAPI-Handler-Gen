@@ -1,4 +1,4 @@
-name: CI/CD Pipeline
+name: CI Pipeline
 
 on:
   push:
@@ -8,41 +8,32 @@ on:
     branches:
       - main
 
-permissions:
-  contents: write
-
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-    - name: Set up Swift
-      uses: swift-actions/setup-swift@v1
-      with:
-        swift-version: '5.7'
+      - name: Set up Swift
+        uses: swift-actions/setup-swift@v1
+        with:
+          swift-version: 5.7
 
-    - name: Prepare Test Logs Directory
-      run: |
-        mkdir -p TestLogs
+      - name: Build and Test
+        run: |
+          mkdir -p TestLogs
+          swift build
+          swift test > TestLogs/test-results-$(date +'%Y%m%d-%H%M%S').log
 
-    - name: Build and Test
-      run: |
-        cd OpenAPIHandlerGen
-        swift build
-        swift test > ../TestLogs/test-results.log
-
-    - name: Debug Directory Structure
-      run: |
-        pwd
-        ls -R
-
-    - name: Commit Test Logs to Repo
-      run: |
-        git config --global user.name 'github-actions[bot]'
-        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-        git add TestLogs/test-results.log
-        git commit -m "ci: Add test results log [skip ci]" || echo "No changes to commit"
-        git push
+      - name: Commit and Push Logs
+        run: |
+          if ! gh auth status; then
+            echo "GitHub CLI not authenticated. Please authenticate using 'gh auth login'." && exit 1
+          fi
+          mkdir -p TestLogs
+          gh repo sync
+          git add TestLogs/
+          git commit -m "Add test logs from CI run"
+          gh repo sync
