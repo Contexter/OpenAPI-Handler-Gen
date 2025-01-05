@@ -15,19 +15,18 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-
-      - name: Debug Directory Structure
-        run: ls -R
 
       - name: Set up Swift
         uses: swift-actions/setup-swift@v1
         with:
           swift-version: 5.7
 
+      - name: Move to Project Directory
+        run: cd OpenAPIHandlerGen
+
       - name: Build and Test
         run: |
+          cd OpenAPIHandlerGen
           if [ ! -f Package.swift ]; then
             echo "Package.swift not found! Exiting..."
             exit 1
@@ -38,6 +37,7 @@ jobs:
 
       - name: Commit and Push Logs with Git
         run: |
+          cd OpenAPIHandlerGen
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add TestLogs/
