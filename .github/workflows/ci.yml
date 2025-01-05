@@ -23,21 +23,14 @@ jobs:
 
       - name: Build and Test
         run: |
-          cd OpenAPIHandlerGen # Adjust path to locate Package.swift
           mkdir -p TestLogs
           swift build
           swift test > TestLogs/test-results-$(date +'%Y%m%d-%H%M%S').log
 
-      - name: Authenticate GH CLI
+      - name: Commit and Push Logs with Git
         run: |
-          if ! gh auth status; then
-            echo "GitHub CLI not authenticated. Please authenticate using 'gh auth login'." && exit 1
-          fi
-
-      - name: Commit and Push Logs with GH CLI
-        run: |
-          cd OpenAPIHandlerGen # Ensure correct directory context
-          gh repo sync
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
           git add TestLogs/
-          git commit -m "Add test logs from CI run [CI Commit]"
-          gh repo sync
+          git commit -m "Add test logs from CI run [CI Commit]" || echo "No changes to commit"
+          git push origin || echo "No changes to push"
