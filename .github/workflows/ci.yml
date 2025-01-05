@@ -24,6 +24,9 @@ jobs:
         with:
           swift-version: 5.7
 
+      - name: Resolve Dependencies
+        run: swift package resolve
+
       - name: Build and Test
         run: |
           mkdir -p TestLogs
@@ -31,8 +34,8 @@ jobs:
             echo "Package.swift not found! Exiting..." > TestLogs/error-$(date +'%Y%m%d-%H%M%S').log
             exit 1
           fi
-          swift build &> TestLogs/build-$(date +'%Y%m%d-%H%M%S').log
-          swift test &> TestLogs/test-results-$(date +'%Y%m%d-%H%M%S').log
+          swift build 2>&1 | tee TestLogs/build-$(date +'%Y%m%d-%H%M%S').log
+          swift test 2>&1 | tee TestLogs/test-results-$(date +'%Y%m%d-%H%M%S').log
 
       - name: Upload Test Logs
         uses: actions/upload-artifact@v3
