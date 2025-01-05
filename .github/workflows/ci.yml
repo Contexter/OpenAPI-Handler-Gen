@@ -23,6 +23,10 @@ jobs:
 
       - name: Build and Test
         run: |
+          if [ ! -f Package.swift ]; then
+            echo "Package.swift not found! Exiting..."
+            exit 1
+          fi
           mkdir -p TestLogs
           swift build
           swift test > TestLogs/test-results-$(date +'%Y%m%d-%H%M%S').log
