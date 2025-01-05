@@ -1,0 +1,29 @@
+[0/1] Planning build
+Building for debugging...
+[1/6] Emitting module OpenAPIHandlerGenTests
+[2/6] Compiling OpenAPIHandlerGenTests InlineCodeTests.swift
+[4/8] /home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/.build/x86_64-unknown-linux-gnu/debug/OpenAPIHandlerGenPackageTests.derived/runner.swift
+[5/8] Wrapping AST for OpenAPIHandlerGenTests for debugging
+[7/11] Emitting module OpenAPIHandlerGenPackageTests
+[8/11] Compiling OpenAPIHandlerGenPackageTests OpenAPIHandlerGenTests.swift
+[9/11] Compiling OpenAPIHandlerGenPackageTests runner.swift
+[11/13] Wrapping AST for OpenAPIHandlerGenPackageTests for debugging
+[12/13] Linking OpenAPIHandlerGenPackageTests.xctest
+Build complete! (0.80s)
+Test Suite 'All tests' started at 2025-01-05 08:55:12.583
+Test Suite 'debug.xctest' started at 2025-01-05 08:55:12.584
+Test Suite 'InlineCodeTests' started at 2025-01-05 08:55:12.584
+Test Case 'InlineCodeTests.testDownloadWorkflowLogs' started at 2025-01-05 08:55:12.584
+Test Case 'InlineCodeTests.testDownloadWorkflowLogs' passed (0.001 seconds)
+Test Case 'InlineCodeTests.testGetWorkflow' started at 2025-01-05 08:55:12.585
+Test Case 'InlineCodeTests.testGetWorkflow' passed (0.0 seconds)
+Test Case 'InlineCodeTests.testListWorkflowRuns' started at 2025-01-05 08:55:12.585
+Test Case 'InlineCodeTests.testListWorkflowRuns' passed (0.0 seconds)
+Test Case 'InlineCodeTests.testListWorkflows' started at 2025-01-05 08:55:12.585
+Test Case 'InlineCodeTests.testListWorkflows' passed (0.0 seconds)
+Test Suite 'InlineCodeTests' passed at 2025-01-05 08:55:12.585
+Executed 4 tests, with 0 failures (0 unexpected) in 0.001 (0.001) seconds
+Test Suite 'debug.xctest' passed at 2025-01-05 08:55:12.585
+Executed 4 tests, with 0 failures (0 unexpected) in 0.001 (0.001) seconds
+Test Suite 'All tests' passed at 2025-01-05 08:55:12.585
+	 Executed 4 tests, with 0 failures (0 unexpected) in 0.001 (0.001) seconds
