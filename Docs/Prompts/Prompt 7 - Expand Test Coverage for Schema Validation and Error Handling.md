@@ -122,6 +122,18 @@ final class TemplateVerificationTests: XCTestCase {
 
 ---
 
+## **Environment Compatibility Update**
+- Ensure CI/CD pipeline specifies **Swift version 6.0.3** to match the local development environment.
+- Update `.github/workflows/ci.yml` as follows:
+```yaml
+- name: Set up Swift
+  uses: swift-actions/setup-swift@v1
+  with:
+    swift-version: 6.0.3  # Updated to required Swift version
+```
+
+---
+
 ## **Next Steps**  
 - Extend tests for deeply nested schemas and relationships.  
 - Add more edge-case tests for schema compliance and parsing failures.  
