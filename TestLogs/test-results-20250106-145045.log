@@ -1,0 +1,22 @@
+warning: 'swift-algorithms': found 1 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/.build/checkouts/swift-algorithms/Sources/Algorithms/Documentation.docc
+[0/1] Planning build
+Building for debugging...
+[0/13] Write sources
+[1/65] Write swift-version--1BFCD5C06E9F820A.txt
+[3/17] Emitting module OpenAPIHandlerGen
+[4/17] Compiling OpenAPIHandlerGen EndpointExtractor.swift
+[5/17] Compiling OpenAPIHandlerGen OpenAPIHandlerGen.swift
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Sources/Core/OpenAPIHandlerGen.swift:15:13: error: call can throw but is not marked with 'try'
+13 | 
+14 |         for endpoint in endpoints {
+15 |             HandlerGenerator.generate(endpoint: endpoint, method: endpoint.operationId, outputPath: outputPath)
+   |             |- error: call can throw but is not marked with 'try'
+   |             |- note: did you mean to use 'try'?
+   |             |- note: did you mean to handle error as optional value?
+   |             `- note: did you mean to disable error propagation?
+16 |             ServiceGenerator.generate(endpoint: endpoint, method: endpoint.operationId, outputPath: outputPath)
+17 |         }
+[6/19] Compiling OpenAPIHandlerGen HandlerGenerator.swift
+[7/19] Compiling OpenAPIHandlerGen ServiceGenerator.swift
+error: fatalError
