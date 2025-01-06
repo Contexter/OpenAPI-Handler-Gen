@@ -2,7 +2,7 @@
 import Vapor
 
 struct HandlerGenerator {
-    static func generate(endpoint: EndpointExtractor.Endpoint, method: String, outputPath: String) {
+    static func generate(endpoint: EndpointExtractor.Endpoint, method: String, outputPath: String) throws {
         let template = """
         import Vapor
 
@@ -16,6 +16,6 @@ struct HandlerGenerator {
         }
         """
         let filePath = "\(outputPath)/Handlers/\(method)Handler.swift"
-        try? template.write(to: URL(fileURLWithPath: filePath), atomically: true, encoding: .utf8)
+        try template.write(to: URL(fileURLWithPath: filePath), atomically: true, encoding: .utf8)
     }
 }
