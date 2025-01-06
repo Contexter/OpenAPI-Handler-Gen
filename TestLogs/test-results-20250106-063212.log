@@ -1,0 +1,65 @@
+warning: 'swift-algorithms': found 1 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/.build/checkouts/swift-algorithms/Sources/Algorithms/Documentation.docc
+[0/1] Planning build
+Building for debugging...
+[0/12] Write sources
+[1/64] Write swift-version--1BFCD5C06E9F820A.txt
+[3/16] Emitting module OpenAPIHandlerGenTests
+[4/16] Compiling OpenAPIHandlerGenTests InlineCodeTests.swift
+[5/16] Compiling OpenAPIHandlerGenTests SchemaValidationTests.swift
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/SchemaValidationTests.swift:18:43: error: missing argument label 'at:' in call
+16 |                   type: integer
+17 |         """
+18 |         let schema = try YAMLParser.parse(yaml)
+   |                                           `- error: missing argument label 'at:' in call
+19 |         XCTAssertNotNil(schema["components"])
+20 |     }
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/SchemaValidationTests.swift:32:51: error: missing argument label 'at:' in call
+30 |                   type: unsupportedType
+31 |         """
+32 |         XCTAssertThrowsError(try YAMLParser.parse(yaml))
+   |                                                   `- error: missing argument label 'at:' in call
+33 |     }
+34 | }
+[6/16] Compiling OpenAPIHandlerGenTests EndpointExtractionTests.swift
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ErrorHandlingTests.swift:11:51: error: missing argument label 'at:' in call
+ 9 |         info: [title: Test API]
+10 |         """
+11 |         XCTAssertThrowsError(try YAMLParser.parse(invalidYAML))
+   |                                                   `- error: missing argument label 'at:' in call
+12 |     }
+13 | 
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ErrorHandlingTests.swift:20:43: error: missing argument label 'at:' in call
+18 |             get: {}
+19 |         """
+20 |         let result = try YAMLParser.parse(yaml)
+   |                                           `- error: missing argument label 'at:' in call
+21 |         XCTAssertNil(result["paths"]?["/users"]?["get"]?["operationId"])
+22 |     }
+[7/16] Compiling OpenAPIHandlerGenTests ErrorHandlingTests.swift
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ErrorHandlingTests.swift:11:51: error: missing argument label 'at:' in call
+ 9 |         info: [title: Test API]
+10 |         """
+11 |         XCTAssertThrowsError(try YAMLParser.parse(invalidYAML))
+   |                                                   `- error: missing argument label 'at:' in call
+12 |     }
+13 | 
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ErrorHandlingTests.swift:20:43: error: missing argument label 'at:' in call
+18 |             get: {}
+19 |         """
+20 |         let result = try YAMLParser.parse(yaml)
+   |                                           `- error: missing argument label 'at:' in call
+21 |         XCTAssertNil(result["paths"]?["/users"]?["get"]?["operationId"])
+22 |     }
+[8/17] Compiling OpenAPIHandlerGenTests TemplateVerificationTests.swift
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/TemplateVerificationTests.swift:22:35: warning: 'init(contentsOfFile:)' is deprecated: Use `init(contentsOfFile:encoding:)` instead
+20 |         }
+21 |         """
+22 |         let generatedOutput = try String(contentsOfFile: "/tmp/Handlers/GetUserHandler.swift")
+   |                                   `- warning: 'init(contentsOfFile:)' is deprecated: Use `init(contentsOfFile:encoding:)` instead
+23 |         XCTAssertEqual(generatedOutput.trimmingCharacters(in: .whitespacesAndNewlines),
+24 |                        expectedOutput.trimmingCharacters(in: .whitespacesAndNewlines))
+error: fatalError
