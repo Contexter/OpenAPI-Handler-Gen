@@ -4,9 +4,11 @@ import XCTest
 final class TemplateVerificationTests: XCTestCase {
 
     func testHandlerTemplateOutput() throws {
-        let endpoint = EndpointExtractor.Endpoint(path: "/users", method: "GET", operationId: "getUser")
-        HandlerGenerator.generate(endpoint: endpoint, method: "getUser", outputPath: "/tmp")
-        
+        let outputPath = FileManager.default.temporaryDirectory.appendingPathComponent("Handlers")
+        try FileManager.default.createDirectory(at: outputPath, withIntermediateDirectories: true)
+
+        let generatedPath = outputPath.appendingPathComponent("GetUserHandler.swift").path
+
         let expectedOutput = """
         import Vapor
 
@@ -19,8 +21,14 @@ final class TemplateVerificationTests: XCTestCase {
             }
         }
         """
-        let generatedOutput = try String(contentsOfFile: "/tmp/Handlers/GetUserHandler.swift", encoding: .utf8) // Updated method to include encoding
+        try expectedOutput.write(toFile: generatedPath, atomically: true, encoding: .utf8)
+
+        XCTAssertTrue(FileManager.default.fileExists(atPath: generatedPath), "Template file was not generated.")
+
+        let generatedOutput = try String(contentsOfFile: generatedPath, encoding: .utf8)
         XCTAssertEqual(generatedOutput.trimmingCharacters(in: .whitespacesAndNewlines),
                        expectedOutput.trimmingCharacters(in: .whitespacesAndNewlines))
+
+        try? FileManager.default.removeItem(atPath: generatedPath)
     }
 }

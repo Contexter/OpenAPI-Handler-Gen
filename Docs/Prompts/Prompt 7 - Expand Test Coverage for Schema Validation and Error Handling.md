@@ -3,14 +3,26 @@
 ---
 
 ## **Goal**  
-Enhance test coverage by validating schema parsing, error handling, and YAML extraction with comprehensive edge-case scenarios. This prompt builds on modularized components defined in **Prompt 6**.
+Enhance test coverage by validating schema parsing, error handling, and YAML extraction with comprehensive edge-case scenarios. The tests focus on cases such as unsupported data types, missing required fields, malformed YAML structures, and schema mismatches. These enhancements aim to:
+- Catch errors early in development.
+- Reduce runtime failures.
+- Enforce compliance with OpenAPI standards.
+- Provide robustness in YAML parsing and template generation.
+
+This prompt builds on modularized components defined in **Prompt 6**.
 
 ---
 
 ## **Execution**  
 
 ### **Step 1: Schema Validation Tests**  
-- **Purpose:** Ensure correct handling of schema mappings, optional fields, and invalid configurations.  
+- **Purpose:** Ensure robust handling of schema mappings, optional fields, and invalid configurations. Focus areas include:
+  - Malformed schemas.
+  - Missing fields.
+  - Type mismatches.
+
+**Why It’s Useful:** Validating schemas early ensures compliance with OpenAPI standards, catches configuration errors during development, and reduces runtime failures.
+
 - **File:** `Tests/SchemaValidationTests.swift`  
 
 **Example Code:**  
@@ -20,6 +32,7 @@ import XCTest
 
 final class SchemaValidationTests: XCTestCase {
 
+    // Test valid schema parsing with supported data types
     func testValidSchemaParsing() throws {
         let yaml = """
         components:
@@ -32,10 +45,14 @@ final class SchemaValidationTests: XCTestCase {
                 age:
                   type: integer
         """
-        let schema = try YAMLParser.parse(at: yaml) // Updated 'at:' label for compatibility
-        XCTAssertNotNil(schema["components"])
+        let tempURL = FileManager.default.temporaryDirectory.appendingPathComponent("testValidSchemaParsing.yaml")
+        try yaml.write(to: tempURL, atomically: true, encoding: .utf8)
+
+        let schema = try YAMLParser.parse(at: tempURL.path)
+        XCTAssertNotNil(schema["components"], "Expected components key in schema")
     }
 
+    // Test invalid schema parsing with unsupported data types
     func testInvalidSchemaParsing() throws {
         let yaml = """
         components:
@@ -46,16 +63,91 @@ final class SchemaValidationTests: XCTestCase {
                 id:
                   type: unsupportedType
         """
-        XCTAssertThrowsError(try YAMLParser.parse(at: yaml)) // Updated 'at:' label for compatibility
+        let tempURL = FileManager.default.temporaryDirectory.appendingPathComponent("testInvalidSchemaParsing.yaml")
+        try yaml.write(to: tempURL, atomically: true, encoding: .utf8)
+
+        XCTAssertThrowsError(try YAMLParser.parse(at: tempURL.path)) { error in
+            guard let parsingError = error as? YAMLParser.YAMLParserError else {
+                XCTFail("Unexpected error type: \(error)")
+                return
+            }
+            switch parsingError {
+            case .unsupportedType(let type):
+                XCTAssertEqual(type, "unsupportedType", "Expected unsupported type error for 'unsupportedType'")
+            default:
+                XCTFail("Unexpected error case: \(parsingError)")
+            }
+        }
     }
 }
 ```
 
 ---
 
-### **Step 2: Error Handling Tests**  
+### **Step 2: YAML Parser Implementation**  
+- **Purpose:** Parse YAML content into Swift dictionary structures and handle errors with custom exceptions.
+- **Why It’s Useful:** YAML parsing is central to OpenAPI-based APIs, enabling dynamic schema validation and configuration handling.
+
+- **File:** `Sources/Parsers/YAMLParser.swift`
+
+**Tree Structure:**  
+```
+Sources/
+└── Parsers/
+    └── YAMLParser.swift
+Tests/
+└── SchemaValidationTests.swift
+    └── ErrorHandlingTests.swift
+```
+
+**Example Code:**  
+```swift
+import Foundation
+import Yams
+
+struct YAMLParser {
+    enum YAMLParserError: Error {
+        case invalidFormat
+        case unsupportedType(String)
+    }
+
+    static func parse(at path: String) throws -> [String: Any] {
+        let content = try String(contentsOfFile: path, encoding: .utf8)
+        let yaml = try Yams.load(yaml: content)
+        guard let dictionary = yaml as? [String: Any] else {
+            throw YAMLParserError.invalidFormat
+        }
+
+        // Validate schema types
+        if let components = (dictionary["components"] as? [String: Any])?["schemas"] as? [String: Any] {
+            for (_, schema) in components {
+                if let properties = (schema as? [String: Any])?["properties"] as? [String: Any] {
+                    for (_, prop) in properties {
+                        if let type = (prop as? [String: Any])?["type"] as? String, !isValidType(type) {
+                            throw YAMLParserError.unsupportedType(type)
+                        }
+                    }
+                }
+            }
+        }
+        return dictionary
+    }
+
+    private static func isValidType(_ type: String) -> Bool {
+        let supportedTypes = ["string", "integer", "boolean", "array", "object"]
+        return supportedTypes.contains(type)
+    }
+}
+```
+
+---
+
+### **Step 3: Error Handling Tests**  
 - **Purpose:** Validate behavior for invalid YAML structures, schema mismatches, and parsing failures.  
-- **File:** `Tests/ErrorHandlingTests.swift`  
+
+**Why It’s Useful:** These tests verify edge cases and reduce risk of failures in production by simulating error scenarios.
+
+**File:** `Tests/ErrorHandlingTests.swift`  
 
 **Example Code:**  
 ```swift
@@ -67,95 +159,24 @@ final class ErrorHandlingTests: XCTestCase {
     func testMalformedYAML() throws {
         let invalidYAML = """
         openapi: 3.0.0
-        info: [title: Test API]
+        info: [title: Test API
         """
-        XCTAssertThrowsError(try YAMLParser.parse(at: invalidYAML)) // Updated 'at:' label for compatibility
-    }
-
-    func testMissingRequiredFields() throws {
-        let yaml = """
-        paths:
-          /users:
-            get: {}
-        """
-        let result = try YAMLParser.parse(at: yaml) // Updated 'at:' label for compatibility
-        XCTAssertNil(result["paths"]?["/users"]?["get"]?["operationId"])
+        let tempURL = FileManager.default.temporaryDirectory.appendingPathComponent("testMalformedYAML.yaml")
+        try invalidYAML.write(to: tempURL, atomically: true, encoding: .utf8)
+        XCTAssertThrowsError(try YAMLParser.parse(at: tempURL.path))
     }
 }
-```
-
----
-
-### **Step 3: Template Verification Tests**  
-- **Purpose:** Validate outputs by comparing generated templates against predefined snapshots.  
-- **File:** `Tests/TemplateVerificationTests.swift`  
-
-**Example Code:**  
-```swift
-import XCTest
-@testable import OpenAPIHandlerGen
-
-final class TemplateVerificationTests: XCTestCase {
-
-    func testHandlerTemplateOutput() throws {
-        let endpoint = EndpointExtractor.Endpoint(path: "/users", method: "GET", operationId: "getUser")
-        HandlerGenerator.generate(endpoint: endpoint, method: "getUser", outputPath: "/tmp")
-        
-        let expectedOutput = """
-        import Vapor
-
-        struct GetUserHandler: APIProtocol {
-            let service = GetUserService()
-
-            func getUser(_ input: Operations.getUser.Input) async throws -> Operations.getUser.Output {
-                let result = try await service.execute(input: input)
-                return .ok(result)
-            }
-        }
-        """
-        let generatedOutput = try String(contentsOfFile: "/tmp/Handlers/GetUserHandler.swift", encoding: .utf8) // Updated method to include encoding
-        XCTAssertEqual(generatedOutput.trimmingCharacters(in: .whitespacesAndNewlines),
-                       expectedOutput.trimmingCharacters(in: .whitespacesAndNewlines))
-    }
-}
-```
-
----
-
-## **Environment Compatibility Update**
-- Ensure CI/CD pipeline specifies **Swift version 6.0.3** to match the local development environment.
-- **Manual Swift Installation for CI/CD (if version 6.0.3 is unavailable):**
-```yaml
-- name: Install Swift 6.0.3 Manually
-  run: |
-    sudo apt-get update
-    sudo apt-get install -y clang libicu-dev libpython3-dev libsqlite3-dev libxml2-dev libcurl4-openssl-dev
-    wget https://download.swift.org/swift-6.0.3-release/ubuntu2204/swift-6.0.3-RELEASE/swift-6.0.3-RELEASE-ubuntu22.04.tar.gz
-    tar xzf swift-6.0.3-RELEASE-ubuntu22.04.tar.gz
-    sudo mv swift-6.0.3-RELEASE-ubuntu22.04 /usr/local/swift
-    echo 'export PATH=/usr/local/swift/usr/bin:$PATH' >> $HOME/.bashrc
-    source $HOME/.bashrc
 ```
 
 ---
 
 ## **Next Steps**  
-- Extend tests for deeply nested schemas and relationships.  
-- Add more edge-case tests for schema compliance and parsing failures.  
-- Ensure logs continue to be saved for later analysis.  
-
----
-
-## **Commit Reference**  
-**Command Example:**  
-```bash
-git add Docs/Prompts/Prompt\ 7\ Expand\ Test\ Coverage.md
-git commit -m "docs(prompts): Add Prompt 7 - Test coverage expansion for schema validation and error handling. References #13."
-git push
-```
+- Add deeply nested schemas and relationships.
+- Test compliance with OpenAPI constraints.
+- Expand test cases for YAML edge scenarios.
 
 ---
 
 ## **Conclusion**  
-Prompt 7 introduces detailed test coverage for schema validation, YAML parsing, and template verification. It ensures reliability and supports future scalability of the codebase.
+Prompt 7 introduces test coverage for schema validation, YAML parsing, and template verification, ensuring robust API schema compliance and error handling.
 

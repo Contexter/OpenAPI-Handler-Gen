@@ -15,8 +15,11 @@ final class SchemaValidationTests: XCTestCase {
                 age:
                   type: integer
         """
-        let schema = try YAMLParser.parse(at: yaml) // Updated 'at:' label for compatibility
-        XCTAssertNotNil(schema["components"])
+        let tempURL = FileManager.default.temporaryDirectory.appendingPathComponent("testValidSchemaParsing.yaml")
+        try yaml.write(to: tempURL, atomically: true, encoding: .utf8)
+
+        let schema = try YAMLParser.parse(at: tempURL.path)
+        XCTAssertNotNil(schema["components"], "Expected components key in schema")
     }
 
     func testInvalidSchemaParsing() throws {
@@ -29,6 +32,21 @@ final class SchemaValidationTests: XCTestCase {
                 id:
                   type: unsupportedType
         """
-        XCTAssertThrowsError(try YAMLParser.parse(at: yaml)) // Updated 'at:' label for compatibility
+        let tempURL = FileManager.default.temporaryDirectory.appendingPathComponent("testInvalidSchemaParsing.yaml")
+        try yaml.write(to: tempURL, atomically: true, encoding: .utf8)
+
+        XCTAssertThrowsError(try YAMLParser.parse(at: tempURL.path)) { error in
+            guard let parsingError = error as? YAMLParser.YAMLParserError else {
+                XCTFail("Unexpected error type: \(error)")
+                return
+            }
+
+            switch parsingError {
+            case .unsupportedType(let type):
+                XCTAssertEqual(type, "unsupportedType", "Expected unsupported type error for 'unsupportedType'")
+            default:
+                XCTFail("Unexpected error case: \(parsingError)")
+            }
+        }
     }
 }
