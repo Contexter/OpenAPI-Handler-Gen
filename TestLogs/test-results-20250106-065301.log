@@ -1,0 +1,27 @@
+warning: 'swift-algorithms': found 1 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/.build/checkouts/swift-algorithms/Sources/Algorithms/Documentation.docc
+[0/1] Planning build
+Building for debugging...
+[0/11] Write sources
+[1/64] Write swift-version--1BFCD5C06E9F820A.txt
+[3/16] Compiling OpenAPIHandlerGenTests InlineCodeTests.swift
+[4/16] Compiling OpenAPIHandlerGenTests SchemaValidationTests.swift
+[5/16] Compiling OpenAPIHandlerGenTests EndpointExtractionTests.swift
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ErrorHandlingTests.swift:21:38: error: value of type 'Any' has no subscripts
+19 |         """
+20 |         let result = try YAMLParser.parse(at: yaml) // Updated 'at:' label for compatibility
+21 |         XCTAssertNil(result["paths"]?["/users"]?["get"]?["operationId"])
+   |                                      `- error: value of type 'Any' has no subscripts
+22 |     }
+23 | }
+[6/16] Compiling OpenAPIHandlerGenTests ErrorHandlingTests.swift
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ErrorHandlingTests.swift:21:38: error: value of type 'Any' has no subscripts
+19 |         """
+20 |         let result = try YAMLParser.parse(at: yaml) // Updated 'at:' label for compatibility
+21 |         XCTAssertNil(result["paths"]?["/users"]?["get"]?["operationId"])
+   |                                      `- error: value of type 'Any' has no subscripts
+22 |     }
+23 | }
+[7/16] Emitting module OpenAPIHandlerGenTests
+[8/17] Compiling OpenAPIHandlerGenTests TemplateVerificationTests.swift
+error: fatalError
