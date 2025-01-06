@@ -124,12 +124,17 @@ final class TemplateVerificationTests: XCTestCase {
 
 ## **Environment Compatibility Update**
 - Ensure CI/CD pipeline specifies **Swift version 6.0.3** to match the local development environment.
-- Update `.github/workflows/ci.yml` as follows:
+- **Manual Swift Installation for CI/CD (if version 6.0.3 is unavailable):**
 ```yaml
-- name: Set up Swift
-  uses: swift-actions/setup-swift@v1
-  with:
-    swift-version: 6.0.3  # Updated to required Swift version
+- name: Install Swift 6.0.3 Manually
+  run: |
+    sudo apt-get update
+    sudo apt-get install -y clang libicu-dev libpython3-dev libsqlite3-dev libxml2-dev libcurl4-openssl-dev
+    wget https://download.swift.org/swift-6.0.3-release/ubuntu2204/swift-6.0.3-RELEASE/swift-6.0.3-RELEASE-ubuntu22.04.tar.gz
+    tar xzf swift-6.0.3-RELEASE-ubuntu22.04.tar.gz
+    sudo mv swift-6.0.3-RELEASE-ubuntu22.04 /usr/local/swift
+    echo 'export PATH=/usr/local/swift/usr/bin:$PATH' >> $HOME/.bashrc
+    source $HOME/.bashrc
 ```
 
 ---
