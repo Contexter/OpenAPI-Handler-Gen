@@ -1,0 +1,71 @@
+warning: 'swift-algorithms': found 1 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/.build/checkouts/swift-algorithms/Sources/Algorithms/Documentation.docc
+[0/1] Planning build
+Building for debugging...
+[0/12] Write sources
+[1/64] Write swift-version--1BFCD5C06E9F820A.txt
+[3/16] Emitting module OpenAPIHandlerGenTests
+[4/16] Compiling OpenAPIHandlerGenTests SchemaValidationTests.swift
+[5/16] Compiling OpenAPIHandlerGenTests EndpointExtractionTests.swift
+[6/16] Compiling OpenAPIHandlerGenTests ErrorHandlingTests.swift
+[7/16] Compiling OpenAPIHandlerGenTests InlineCodeTests.swift
+[8/17] Compiling OpenAPIHandlerGenTests TemplateVerificationTests.swift
+[9/18] Wrapping AST for OpenAPIHandlerGenTests for debugging
+[10/18] /home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/.build/x86_64-unknown-linux-gnu/debug/OpenAPIHandlerGenPackageDiscoveredTests.derived/all-discovered-tests.swift
+[11/18] Write sources
+[13/21] Compiling OpenAPIHandlerGenPackageDiscoveredTests OpenAPIHandlerGenTests.swift
+[14/21] Emitting module OpenAPIHandlerGenPackageDiscoveredTests
+[15/21] Compiling OpenAPIHandlerGenPackageDiscoveredTests all-discovered-tests.swift
+[16/22] /home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/.build/x86_64-unknown-linux-gnu/debug/OpenAPIHandlerGenPackageTests.derived/runner.swift
+[17/22] Write sources
+[18/22] Wrapping AST for OpenAPIHandlerGenPackageDiscoveredTests for debugging
+[20/24] Emitting module OpenAPIHandlerGenPackageTests
+[21/24] Compiling OpenAPIHandlerGenPackageTests runner.swift
+[22/25] Wrapping AST for OpenAPIHandlerGenPackageTests for debugging
+[23/25] Write Objects.LinkFileList
+[24/25] Linking OpenAPIHandlerGenPackageTests.xctest
+Build complete! (7.90s)
+Test Suite 'All tests' started at 2025-01-06 09:29:24.795
+Test Suite 'debug.xctest' started at 2025-01-06 09:29:25.182
+Test Suite 'EndpointExtractionTests' started at 2025-01-06 09:29:25.182
+Test Case 'EndpointExtractionTests.testValidEndpointExtraction' started at 2025-01-06 09:29:25.182
+Test Case 'EndpointExtractionTests.testValidEndpointExtraction' passed (0.001 seconds)
+Test Suite 'EndpointExtractionTests' passed at 2025-01-06 09:29:25.183
+	 Executed 1 test, with 0 failures (0 unexpected) in 0.001 (0.001) seconds
+Test Suite 'ErrorHandlingTests' started at 2025-01-06 09:29:25.183
+Test Case 'ErrorHandlingTests.testMalformedYAML' started at 2025-01-06 09:29:25.184
+Test Case 'ErrorHandlingTests.testMalformedYAML' passed (0.003 seconds)
+Test Case 'ErrorHandlingTests.testMissingRequiredFields' started at 2025-01-06 09:29:25.187
+Test Case 'ErrorHandlingTests.testMissingRequiredFields' passed (0.001 seconds)
+Test Suite 'ErrorHandlingTests' passed at 2025-01-06 09:29:25.188
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.004 (0.004) seconds
+Test Suite 'InlineCodeTests' started at 2025-01-06 09:29:25.188
+Test Case 'InlineCodeTests.testDownloadWorkflowLogs' started at 2025-01-06 09:29:25.188
+Test Case 'InlineCodeTests.testDownloadWorkflowLogs' passed (0.0 seconds)
+Test Case 'InlineCodeTests.testGetWorkflow' started at 2025-01-06 09:29:25.188
+Test Case 'InlineCodeTests.testGetWorkflow' passed (0.0 seconds)
+Test Case 'InlineCodeTests.testListWorkflowRuns' started at 2025-01-06 09:29:25.188
+Test Case 'InlineCodeTests.testListWorkflowRuns' passed (0.0 seconds)
+Test Case 'InlineCodeTests.testListWorkflows' started at 2025-01-06 09:29:25.188
+Test Case 'InlineCodeTests.testListWorkflows' passed (0.0 seconds)
+Test Suite 'InlineCodeTests' passed at 2025-01-06 09:29:25.188
+	 Executed 4 tests, with 0 failures (0 unexpected) in 0.0 (0.0) seconds
+Test Suite 'SchemaValidationTests' started at 2025-01-06 09:29:25.188
+Test Case 'SchemaValidationTests.testInvalidSchemaParsing' started at 2025-01-06 09:29:25.188
+Test Case 'SchemaValidationTests.testInvalidSchemaParsing' passed (0.001 seconds)
+Test Case 'SchemaValidationTests.testValidSchemaParsing' started at 2025-01-06 09:29:25.189
+Test Case 'SchemaValidationTests.testValidSchemaParsing' passed (0.001 seconds)
+Test Suite 'SchemaValidationTests' passed at 2025-01-06 09:29:25.190
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.002 (0.002) seconds
+Test Suite 'TemplateVerificationTests' started at 2025-01-06 09:29:25.190
+Test Case 'TemplateVerificationTests.testHandlerTemplateOutput' started at 2025-01-06 09:29:25.191
+Test Case 'TemplateVerificationTests.testHandlerTemplateOutput' passed (0.001 seconds)
+Test Suite 'TemplateVerificationTests' passed at 2025-01-06 09:29:25.192
+	 Executed 1 test, with 0 failures (0 unexpected) in 0.001 (0.001) seconds
+Test Suite 'debug.xctest' passed at 2025-01-06 09:29:25.192
+	 Executed 10 tests, with 0 failures (0 unexpected) in 0.009 (0.009) seconds
+Test Suite 'All tests' passed at 2025-01-06 09:29:25.192
+	 Executed 10 tests, with 0 failures (0 unexpected) in 0.009 (0.009) seconds
+◇ Test run started.
+↳ Testing Library Version: 6.0.3 (18c42c19cac3faf)
+✔ Test run with 0 tests passed after 0.001 seconds.
