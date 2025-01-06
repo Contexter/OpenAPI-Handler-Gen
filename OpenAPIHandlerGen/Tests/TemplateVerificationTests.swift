@@ -19,7 +19,7 @@ final class TemplateVerificationTests: XCTestCase {
             }
         }
         """
-        let generatedOutput = try String(contentsOfFile: "/tmp/Handlers/GetUserHandler.swift")
+        let generatedOutput = try String(contentsOfFile: "/tmp/Handlers/GetUserHandler.swift", encoding: .utf8) // Updated method to include encoding
         XCTAssertEqual(generatedOutput.trimmingCharacters(in: .whitespacesAndNewlines),
                        expectedOutput.trimmingCharacters(in: .whitespacesAndNewlines))
     }

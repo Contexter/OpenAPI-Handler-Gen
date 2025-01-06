@@ -15,7 +15,7 @@ final class SchemaValidationTests: XCTestCase {
                 age:
                   type: integer
         """
-        let schema = try YAMLParser.parse(yaml)
+        let schema = try YAMLParser.parse(at: yaml) // Updated 'at:' label for compatibility
         XCTAssertNotNil(schema["components"])
     }
 
@@ -29,6 +29,6 @@ final class SchemaValidationTests: XCTestCase {
                 id:
                   type: unsupportedType
         """
-        XCTAssertThrowsError(try YAMLParser.parse(yaml))
+        XCTAssertThrowsError(try YAMLParser.parse(at: yaml)) // Updated 'at:' label for compatibility
     }
 }

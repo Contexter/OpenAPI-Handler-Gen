@@ -8,7 +8,7 @@ final class ErrorHandlingTests: XCTestCase {
         openapi: 3.0.0
         info: [title: Test API]
         """
-        XCTAssertThrowsError(try YAMLParser.parse(invalidYAML))
+        XCTAssertThrowsError(try YAMLParser.parse(at: invalidYAML)) // Updated 'at:' label for compatibility
     }
 
     func testMissingRequiredFields() throws {
@@ -17,7 +17,7 @@ final class ErrorHandlingTests: XCTestCase {
           /users:
             get: {}
         """
-        let result = try YAMLParser.parse(yaml)
+        let result = try YAMLParser.parse(at: yaml) // Updated 'at:' label for compatibility
         XCTAssertNil(result["paths"]?["/users"]?["get"]?["operationId"])
     }
 }
