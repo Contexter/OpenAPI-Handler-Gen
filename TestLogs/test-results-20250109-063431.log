@@ -1,0 +1,43 @@
+warning: 'swift-algorithms': found 1 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/.build/checkouts/swift-algorithms/Sources/Algorithms/Documentation.docc
+[0/1] Planning build
+Building for debugging...
+[0/13] Write sources
+[1/65] Write swift-version--1BFCD5C06E9F820A.txt
+error: emit-module command failed with exit code 1 (use -v to see invocation)
+[3/18] Compiling OpenAPIHandlerGen EndpointExtractor.swift
+[4/18] Emitting module OpenAPIHandlerGen
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Sources/main.swift:5:38: error: argument passed to call that takes no arguments
+ 3 | let arguments = CommandLine.arguments
+ 4 | if arguments.count == 5 {
+ 5 |     let generator = OpenAPIHandlerGen(
+   |                                      `- error: argument passed to call that takes no arguments
+ 6 |         openAPIPath: arguments[1],
+ 7 |         serverPath: arguments[2],
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Sources/Core/OpenAPIHandlerGen.swift:6:51: error: cannot find type 'Endpoint' in scope
+ 4 | 
+ 5 | struct OpenAPIHandlerGen {
+ 6 |     static func generateHandlers(from endpoints: [Endpoint], outputPath: String) throws {
+   |                                                   `- error: cannot find type 'Endpoint' in scope
+ 7 |         for endpoint in endpoints {
+ 8 |             do {
+[5/18] Compiling OpenAPIHandlerGen OpenAPIHandlerGen.swift
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Sources/Core/OpenAPIHandlerGen.swift:6:51: error: cannot find type 'Endpoint' in scope
+ 4 | 
+ 5 | struct OpenAPIHandlerGen {
+ 6 |     static func generateHandlers(from endpoints: [Endpoint], outputPath: String) throws {
+   |                                                   `- error: cannot find type 'Endpoint' in scope
+ 7 |         for endpoint in endpoints {
+ 8 |             do {
+[6/18] Compiling OpenAPIHandlerGen main.swift
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Sources/main.swift:5:38: error: argument passed to call that takes no arguments
+ 3 | let arguments = CommandLine.arguments
+ 4 | if arguments.count == 5 {
+ 5 |     let generator = OpenAPIHandlerGen(
+   |                                      `- error: argument passed to call that takes no arguments
+ 6 |         openAPIPath: arguments[1],
+ 7 |         serverPath: arguments[2],
+[7/20] Compiling OpenAPIHandlerGen ServiceGenerator.swift
+[8/20] Compiling OpenAPIHandlerGen HandlerGenerator.swift
+error: fatalError
