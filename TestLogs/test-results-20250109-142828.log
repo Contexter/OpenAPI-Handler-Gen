@@ -1,0 +1,58 @@
+warning: 'swift-algorithms': found 1 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/.build/checkouts/swift-algorithms/Sources/Algorithms/Documentation.docc
+[0/1] Planning build
+Building for debugging...
+[0/13] Write sources
+[1/65] Write swift-version--1BFCD5C06E9F820A.txt
+error: emit-module command failed with exit code 1 (use -v to see invocation)
+[3/17] Compiling OpenAPIHandlerGen HandlerGenerator.swift
+[4/17] Emitting module OpenAPIHandlerGen
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Sources/Generators/ModelAndMigrationGenerator.swift:8:41: error: cannot find type 'TypeDefinition' in scope
+ 6 | 
+ 7 |     // Main entry point for generating models and migrations
+ 8 |     public static func generate(types: [TypeDefinition], outputPath: String) throws {
+   |                                         `- error: cannot find type 'TypeDefinition' in scope
+ 9 |         guard !outputPath.isEmpty else {
+10 |             throw NSError(domain: "ModelAndMigrationGenerator", code: 1, userInfo: [NSLocalizedDescriptionKey: "The outputPath cannot be empty."])
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Sources/Generators/ModelAndMigrationGenerator.swift:39:49: error: cannot find type 'TypeDefinition' in scope
+37 |     }
+38 | 
+39 |     private static func generateModel(for type: TypeDefinition) -> String {
+   |                                                 `- error: cannot find type 'TypeDefinition' in scope
+40 |         let fields = type.fields.map { "    let \($0.name): \($0.type)" }.joined(separator: "\n")
+41 |         return """
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Sources/Generators/ModelAndMigrationGenerator.swift:50:53: error: cannot find type 'TypeDefinition' in scope
+48 |     }
+49 | 
+50 |     private static func generateMigration(for type: TypeDefinition) -> String {
+   |                                                     `- error: cannot find type 'TypeDefinition' in scope
+51 |         let fields = type.fields.map {
+52 |             if let constraints = $0.constraints, constraints.contains("unique") {
+[5/17] Compiling OpenAPIHandlerGen ModelAndMigrationGenerator.swift
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Sources/Generators/ModelAndMigrationGenerator.swift:8:41: error: cannot find type 'TypeDefinition' in scope
+ 6 | 
+ 7 |     // Main entry point for generating models and migrations
+ 8 |     public static func generate(types: [TypeDefinition], outputPath: String) throws {
+   |                                         `- error: cannot find type 'TypeDefinition' in scope
+ 9 |         guard !outputPath.isEmpty else {
+10 |             throw NSError(domain: "ModelAndMigrationGenerator", code: 1, userInfo: [NSLocalizedDescriptionKey: "The outputPath cannot be empty."])
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Sources/Generators/ModelAndMigrationGenerator.swift:39:49: error: cannot find type 'TypeDefinition' in scope
+37 |     }
+38 | 
+39 |     private static func generateModel(for type: TypeDefinition) -> String {
+   |                                                 `- error: cannot find type 'TypeDefinition' in scope
+40 |         let fields = type.fields.map { "    let \($0.name): \($0.type)" }.joined(separator: "\n")
+41 |         return """
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Sources/Generators/ModelAndMigrationGenerator.swift:50:53: error: cannot find type 'TypeDefinition' in scope
+48 |     }
+49 | 
+50 |     private static func generateMigration(for type: TypeDefinition) -> String {
+   |                                                     `- error: cannot find type 'TypeDefinition' in scope
+51 |         let fields = type.fields.map {
+52 |             if let constraints = $0.constraints, constraints.contains("unique") {
+[6/18] Compiling OpenAPIHandlerGen OpenAPIHandlerGen.swift
+error: fatalError
