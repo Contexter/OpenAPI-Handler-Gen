@@ -1,20 +1,17 @@
-// File: Sources/Core/OpenAPIHandlerGen.swift
+// File: OpenAPIHandlerGen/Sources/Core/OpenAPIHandlerGen.swift
+
 import Foundation
 
 struct OpenAPIHandlerGen {
-    let openAPIPath: String
-    let serverPath: String
-    let typesPath: String
-    let outputPath: String
-
-    func run() throws {
-        let openAPI = try YAMLParser.parse(at: openAPIPath)
-        let endpoints = EndpointExtractor.extractEndpoints(from: openAPI)
-
+    static func generateHandlers(from endpoints: [Endpoint], outputPath: String) throws {
         for endpoint in endpoints {
-            HandlerGenerator.generate(endpoint: endpoint, method: endpoint.operationId, outputPath: outputPath)
-            ServiceGenerator.generate(endpoint: endpoint, method: endpoint.operationId, outputPath: outputPath)
+            do {
+                try HandlerGenerator.generate(endpoint: endpoint, method: endpoint.operationId, outputPath: outputPath)
+                try ServiceGenerator.generate(endpoint: endpoint, method: endpoint.operationId, outputPath: outputPath)
+            } catch {
+                print("Error generating handler or service for endpoint \(endpoint.operationId): \(error)")
+                throw error
+            }
         }
-        print("Generation complete!")
     }
 }
