@@ -1,0 +1,105 @@
+warning: 'swift-algorithms': found 1 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/.build/checkouts/swift-algorithms/Sources/Algorithms/Documentation.docc
+[0/1] Planning build
+Building for debugging...
+[0/12] Write sources
+[1/64] Write swift-version--1BFCD5C06E9F820A.txt
+[3/17] Compiling OpenAPIHandlerGenTests SchemaValidationTests.swift
+[4/17] Compiling OpenAPIHandlerGenTests HandlerGeneratorTests.swift
+[5/17] Compiling OpenAPIHandlerGenTests InlineCodeTests.swift
+[6/18] Emitting module OpenAPIHandlerGenTests
+[7/18] Compiling OpenAPIHandlerGenTests EndpointExtractionTests.swift
+[8/18] Compiling OpenAPIHandlerGenTests ErrorHandlingTests.swift
+[9/18] Compiling OpenAPIHandlerGenTests TemplateVerificationTests.swift
+[10/19] Wrapping AST for OpenAPIHandlerGenTests for debugging
+[11/19] /home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/.build/x86_64-unknown-linux-gnu/debug/OpenAPIHandlerGenPackageDiscoveredTests.derived/all-discovered-tests.swift
+[12/19] Write sources
+[14/22] Compiling OpenAPIHandlerGenPackageDiscoveredTests OpenAPIHandlerGenTests.swift
+[15/22] Compiling OpenAPIHandlerGenPackageDiscoveredTests all-discovered-tests.swift
+[16/22] Emitting module OpenAPIHandlerGenPackageDiscoveredTests
+[17/23] /home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/.build/x86_64-unknown-linux-gnu/debug/OpenAPIHandlerGenPackageTests.derived/runner.swift
+[18/23] Write sources
+[19/23] Wrapping AST for OpenAPIHandlerGenPackageDiscoveredTests for debugging
+[21/25] Emitting module OpenAPIHandlerGenPackageTests
+[22/25] Compiling OpenAPIHandlerGenPackageTests runner.swift
+[23/26] Wrapping AST for OpenAPIHandlerGenPackageTests for debugging
+[24/26] Write Objects.LinkFileList
+[25/26] Linking OpenAPIHandlerGenPackageTests.xctest
+Build complete! (7.79s)
+Test Suite 'All tests' started at 2025-01-09 07:32:05.761
+Test Suite 'debug.xctest' started at 2025-01-09 07:32:06.132
+Test Suite 'EndpointExtractionTests' started at 2025-01-09 07:32:06.132
+Test Case 'EndpointExtractionTests.testCircularReferences' started at 2025-01-09 07:32:06.132
+Test Case 'EndpointExtractionTests.testCircularReferences' passed (0.002 seconds)
+Test Case 'EndpointExtractionTests.testConflictingMethods' started at 2025-01-09 07:32:06.134
+Test Case 'EndpointExtractionTests.testConflictingMethods' passed (0.0 seconds)
+Test Case 'EndpointExtractionTests.testInvalidHTTPMethod' started at 2025-01-09 07:32:06.134
+Test Case 'EndpointExtractionTests.testInvalidHTTPMethod' passed (0.0 seconds)
+Test Case 'EndpointExtractionTests.testMissingOperationId' started at 2025-01-09 07:32:06.134
+Test Case 'EndpointExtractionTests.testMissingOperationId' passed (0.0 seconds)
+Test Case 'EndpointExtractionTests.testParameterizedPaths' started at 2025-01-09 07:32:06.134
+Test Case 'EndpointExtractionTests.testParameterizedPaths' passed (0.0 seconds)
+Test Case 'EndpointExtractionTests.testSnapshotConsistency' started at 2025-01-09 07:32:06.135
+Test Case 'EndpointExtractionTests.testSnapshotConsistency' passed (0.0 seconds)
+Test Case 'EndpointExtractionTests.testValidMultipleEndpoints' started at 2025-01-09 07:32:06.135
+Test Case 'EndpointExtractionTests.testValidMultipleEndpoints' passed (0.0 seconds)
+Test Suite 'EndpointExtractionTests' passed at 2025-01-09 07:32:06.135
+	 Executed 7 tests, with 0 failures (0 unexpected) in 0.003 (0.003) seconds
+Test Suite 'ErrorHandlingTests' started at 2025-01-09 07:32:06.135
+Test Case 'ErrorHandlingTests.testMalformedYAML' started at 2025-01-09 07:32:06.135
+Test Case 'ErrorHandlingTests.testMalformedYAML' passed (0.006 seconds)
+Test Case 'ErrorHandlingTests.testMissingRequiredFields' started at 2025-01-09 07:32:06.141
+Test Case 'ErrorHandlingTests.testMissingRequiredFields' passed (0.001 seconds)
+Test Suite 'ErrorHandlingTests' passed at 2025-01-09 07:32:06.142
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.007 (0.007) seconds
+Test Suite 'HandlerGeneratorTests' started at 2025-01-09 07:32:06.142
+Test Case 'HandlerGeneratorTests.testCircularReferences' started at 2025-01-09 07:32:06.142
+Test Case 'HandlerGeneratorTests.testCircularReferences' passed (0.0 seconds)
+Test Case 'HandlerGeneratorTests.testEmptyInput' started at 2025-01-09 07:32:06.142
+<EXPR>:0: error: HandlerGeneratorTests.testEmptyInput : threw error "Error Domain=NSCocoaErrorDomain Code=4 "The file doesn’t exist.""
+Test Case 'HandlerGeneratorTests.testEmptyInput' failed (0.001 seconds)
+Test Case 'HandlerGeneratorTests.testMissingRequiredFields' started at 2025-01-09 07:32:06.143
+Test Case 'HandlerGeneratorTests.testMissingRequiredFields' passed (0.0 seconds)
+Test Case 'HandlerGeneratorTests.testMultipleEndpointGeneration' started at 2025-01-09 07:32:06.143
+<EXPR>:0: error: HandlerGeneratorTests.testMultipleEndpointGeneration : threw error "Error Domain=NSCocoaErrorDomain Code=4 "The file doesn’t exist.""
+Test Case 'HandlerGeneratorTests.testMultipleEndpointGeneration' failed (0.0 seconds)
+Test Case 'HandlerGeneratorTests.testSingleEndpointGeneration' started at 2025-01-09 07:32:06.143
+<EXPR>:0: error: HandlerGeneratorTests.testSingleEndpointGeneration : threw error "Error Domain=NSCocoaErrorDomain Code=4 "The file doesn’t exist.""
+Test Case 'HandlerGeneratorTests.testSingleEndpointGeneration' failed (0.0 seconds)
+Test Case 'HandlerGeneratorTests.testSnapshotConsistency' started at 2025-01-09 07:32:06.143
+<EXPR>:0: error: HandlerGeneratorTests.testSnapshotConsistency : threw error "Error Domain=NSCocoaErrorDomain Code=4 "The file doesn’t exist.""
+Test Case 'HandlerGeneratorTests.testSnapshotConsistency' failed (0.0 seconds)
+Test Case 'HandlerGeneratorTests.testUnsupportedInputType' started at 2025-01-09 07:32:06.143
+Test Case 'HandlerGeneratorTests.testUnsupportedInputType' passed (0.0 seconds)
+Test Suite 'HandlerGeneratorTests' failed at 2025-01-09 07:32:06.144
+	 Executed 7 tests, with 4 failures (4 unexpected) in 0.002 (0.002) seconds
+Test Suite 'InlineCodeTests' started at 2025-01-09 07:32:06.144
+Test Case 'InlineCodeTests.testDownloadWorkflowLogs' started at 2025-01-09 07:32:06.144
+Test Case 'InlineCodeTests.testDownloadWorkflowLogs' passed (0.0 seconds)
+Test Case 'InlineCodeTests.testGetWorkflow' started at 2025-01-09 07:32:06.144
+Test Case 'InlineCodeTests.testGetWorkflow' passed (0.0 seconds)
+Test Case 'InlineCodeTests.testListWorkflowRuns' started at 2025-01-09 07:32:06.144
+Test Case 'InlineCodeTests.testListWorkflowRuns' passed (0.0 seconds)
+Test Case 'InlineCodeTests.testListWorkflows' started at 2025-01-09 07:32:06.144
+Test Case 'InlineCodeTests.testListWorkflows' passed (0.0 seconds)
+Test Suite 'InlineCodeTests' passed at 2025-01-09 07:32:06.144
+	 Executed 4 tests, with 0 failures (0 unexpected) in 0.001 (0.001) seconds
+Test Suite 'SchemaValidationTests' started at 2025-01-09 07:32:06.144
+Test Case 'SchemaValidationTests.testInvalidSchemaParsing' started at 2025-01-09 07:32:06.144
+Test Case 'SchemaValidationTests.testInvalidSchemaParsing' passed (0.001 seconds)
+Test Case 'SchemaValidationTests.testValidSchemaParsing' started at 2025-01-09 07:32:06.145
+Test Case 'SchemaValidationTests.testValidSchemaParsing' passed (0.001 seconds)
+Test Suite 'SchemaValidationTests' passed at 2025-01-09 07:32:06.146
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.002 (0.002) seconds
+Test Suite 'TemplateVerificationTests' started at 2025-01-09 07:32:06.146
+Test Case 'TemplateVerificationTests.testHandlerTemplateOutput' started at 2025-01-09 07:32:06.146
+Test Case 'TemplateVerificationTests.testHandlerTemplateOutput' passed (0.001 seconds)
+Test Suite 'TemplateVerificationTests' passed at 2025-01-09 07:32:06.148
+	 Executed 1 test, with 0 failures (0 unexpected) in 0.001 (0.001) seconds
+Test Suite 'debug.xctest' failed at 2025-01-09 07:32:06.148
+	 Executed 23 tests, with 4 failures (4 unexpected) in 0.015 (0.015) seconds
+Test Suite 'All tests' failed at 2025-01-09 07:32:06.148
+	 Executed 23 tests, with 4 failures (4 unexpected) in 0.015 (0.015) seconds
+◇ Test run started.
+↳ Testing Library Version: 6.0.3 (18c42c19cac3faf)
+✔ Test run with 0 tests passed after 0.001 seconds.
