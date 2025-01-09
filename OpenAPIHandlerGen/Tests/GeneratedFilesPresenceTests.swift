@@ -3,22 +3,21 @@
 import XCTest
 
 final class GeneratedFilesPresenceTests: XCTestCase {
-
     func testGeneratedFilesExist() throws {
-        // Define the root directory and the Generated folder
-        let repoRoot = FileManager.default.currentDirectoryPath
-        let generatedFolder = "\(repoRoot)/Generated"
+        // Step 1: Find the repository root
+        let currentPath = FileManager.default.currentDirectoryPath
+        let repoRoot = URL(fileURLWithPath: currentPath)
+            .deletingLastPathComponent() // Move from 'OpenAPIHandlerGen' to repo root
 
-        // Define paths to the expected files
-        let typesFilePath = "\(generatedFolder)/Types.swift" // Capitalized
-        let serverFilePath = "\(generatedFolder)/Server.swift" // Capitalized
+        // Step 2: Construct paths to the 'Generated' files
+        let generatedFolder = repoRoot.appendingPathComponent("Generated")
+        let typesPath = generatedFolder.appendingPathComponent("Types.swift").path
+        let serverPath = generatedFolder.appendingPathComponent("Server.swift").path
 
-        // Check if these files exist in the Generated folder
-        let typesFileExists = FileManager.default.fileExists(atPath: typesFilePath)
-        let serverFileExists = FileManager.default.fileExists(atPath: serverFilePath)
-
-        // Assert both files are present
-        XCTAssertTrue(typesFileExists, "The file 'Types.swift' is missing in the 'Generated' folder at the repository root. Please ensure it is generated.")
-        XCTAssertTrue(serverFileExists, "The file 'Server.swift' is missing in the 'Generated' folder at the repository root. Please ensure it is generated.")
+        // Step 3: Assert file existence
+        XCTAssertTrue(FileManager.default.fileExists(atPath: typesPath),
+                      "The file 'Types.swift' is missing in the 'Generated' folder at the repository root.")
+        XCTAssertTrue(FileManager.default.fileExists(atPath: serverPath),
+                      "The file 'Server.swift' is missing in the 'Generated' folder at the repository root.")
     }
 }
