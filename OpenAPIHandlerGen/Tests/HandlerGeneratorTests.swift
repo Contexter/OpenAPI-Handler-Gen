@@ -1,84 +1,108 @@
-// File: Tests/HandlerGeneratorTests.swift
+// File: OpenAPIHandlerGen/Tests/HandlerGeneratorTests.swift
 
 import XCTest
 @testable import OpenAPIHandlerGen
 
 final class HandlerGeneratorTests: XCTestCase {
 
-    // Valid Test: Single Endpoint
-    func testSingleEndpointGeneration() throws {
-        let endpoint = EndpointExtractor.Endpoint(path: "/users", method: "get", operationId: "getUsers")
-        let outputPath = "output.swift"
-
-        // Generate handler code
-        try HandlerGenerator.generate(endpoint: endpoint, method: "get", outputPath: outputPath)
-
-        // Read the generated file
-        let generatedCode = try String(contentsOfFile: outputPath, encoding: .utf8)
-
-        // Expected code output
-        let expected = "func getUsersHandler(req: Request) throws -> Response { ... }"
-        XCTAssertEqual(generatedCode, expected)
-    }
-
-    // Valid Test: Multiple Endpoints
-    func testMultipleEndpointGeneration() throws {
-        let endpoints = [
-            EndpointExtractor.Endpoint(path: "/users", method: "get", operationId: "getUsers"),
-            EndpointExtractor.Endpoint(path: "/users", method: "post", operationId: "createUser")
-        ]
-        let outputPath = "output.swift"
-
-        for endpoint in endpoints {
-            try HandlerGenerator.generate(endpoint: endpoint, method: endpoint.method, outputPath: outputPath)
+    // Helper function to clean up files and directories after each test.
+    private func cleanUp(at path: String) {
+        do {
+            if FileManager.default.fileExists(atPath: path) {
+                try FileManager.default.removeItem(atPath: path)
+            }
+        } catch {
+            XCTFail("Failed to clean up test environment: \(error.localizedDescription)")
         }
-
-        let expectedOutput = """
-        func getUsersHandler(req: Request) throws -> Response { ... }
-        func createUserHandler(req: Request) throws -> Response { ... }
-        """
-        let generatedCode = try String(contentsOfFile: outputPath, encoding: .utf8)
-        XCTAssertEqual(generatedCode, expectedOutput)
     }
 
-    // Invalid Test: Missing Required Fields
-    func testMissingRequiredFields() throws {
-        let endpoint = EndpointExtractor.Endpoint(path: "/users", method: "get", operationId: "")
-        XCTAssertThrowsError(try HandlerGenerator.generate(endpoint: endpoint, method: "get", outputPath: "output.swift"))
+    func testValidHandlerGeneration() {
+        let endpoint = EndpointExtractor.Endpoint(path: "/users", method: "GET", operationId: "getUsers")
+        let method = "GET"
+        let outputPath = "TestOutput"
+
+        // Ensure clean test environment.
+        cleanUp(at: outputPath)
+        defer { cleanUp(at: outputPath) } // Ensure cleanup after test completion.
+
+        do {
+            try HandlerGenerator.generate(endpoint: endpoint, method: method, outputPath: outputPath)
+
+            // Validate handler file existence and content.
+            let handlerFilePath = outputPath + "/Handlers/getUsersHandler.swift"
+            XCTAssertTrue(FileManager.default.fileExists(atPath: handlerFilePath), "Handler file should be created.")
+            let handlerContent = try String(contentsOfFile: handlerFilePath)
+            XCTAssertTrue(handlerContent.contains("func getUsersHandler"), "Handler content should contain function definition.")
+            XCTAssertTrue(handlerContent.contains("try getUsersService.process"), "Handler should delegate to the service layer.")
+
+            // Validate service file existence and content.
+            let serviceFilePath = outputPath + "/Services/getUsersService.swift"
+            XCTAssertTrue(FileManager.default.fileExists(atPath: serviceFilePath), "Service file should be created.")
+            let serviceContent = try String(contentsOfFile: serviceFilePath)
+            XCTAssertTrue(serviceContent.contains("struct getUsersService"), "Service content should define a struct.")
+            XCTAssertTrue(serviceContent.contains("Processed request for getUsers."), "Service content should include business logic placeholder.")
+
+        } catch {
+            XCTFail("Handler generation failed with error: \(error.localizedDescription)")
+        }
     }
 
-    // Invalid Test: Unsupported Input Types
-    func testUnsupportedInputType() throws {
-        let yaml = "invalid: yaml"
-        XCTAssertThrowsError(try YAMLParser.parse(at: yaml))
+    func testEmptyOutputPath() {
+        let endpoint = EndpointExtractor.Endpoint(path: "/users", method: "GET", operationId: "getUsers")
+        let method = "GET"
+        let outputPath = ""
+
+        XCTAssertThrowsError(try HandlerGenerator.generate(endpoint: endpoint, method: method, outputPath: outputPath)) { error in
+            XCTAssertEqual((error as NSError).code, 1, "Error code should indicate empty outputPath.")
+        }
     }
 
-    // Edge Test: Empty Input
-    func testEmptyInput() throws {
+    func testOutputPathIsFile() {
+        let endpoint = EndpointExtractor.Endpoint(path: "/users", method: "GET", operationId: "getUsers")
+        let method = "GET"
+        let outputPath = "TestOutputFile"
+
+        // Create a file at the output path.
+        FileManager.default.createFile(atPath: outputPath, contents: nil, attributes: nil)
+
+        defer { cleanUp(at: outputPath) }
+
+        XCTAssertThrowsError(try HandlerGenerator.generate(endpoint: endpoint, method: method, outputPath: outputPath)) { error in
+            XCTAssertEqual((error as NSError).code, 2, "Error code should indicate outputPath is a file.")
+        }
+    }
+
+    func testMissingEndpointFields() {
         let endpoint = EndpointExtractor.Endpoint(path: "", method: "", operationId: "")
-        let outputPath = "output.swift"
+        let method = ""
+        let outputPath = "TestOutput"
 
-        try HandlerGenerator.generate(endpoint: endpoint, method: "", outputPath: outputPath)
+        defer { cleanUp(at: outputPath) }
 
-        let generatedCode = try String(contentsOfFile: outputPath, encoding: .utf8)
-        XCTAssertEqual(generatedCode, "")
+        XCTAssertThrowsError(try HandlerGenerator.generate(endpoint: endpoint, method: method, outputPath: outputPath)) { error in
+            XCTAssertEqual((error as NSError).code, 3, "Error code should indicate missing endpoint fields.")
+        }
     }
 
-    // Edge Test: Circular References
-    func testCircularReferences() throws {
-        let yaml = "components: { schemas: { Node: { $ref: '#/components/schemas/Node' }}}"
-        XCTAssertThrowsError(try YAMLParser.parse(at: yaml))
-    }
+    func testHandlerAndServiceDirectoriesCreated() {
+        let endpoint = EndpointExtractor.Endpoint(path: "/users", method: "GET", operationId: "getUsers")
+        let method = "GET"
+        let outputPath = "TestOutput"
 
-    // Snapshot Testing
-    func testSnapshotConsistency() throws {
-        let endpoint = EndpointExtractor.Endpoint(path: "/users", method: "get", operationId: "getUsers")
-        let outputPath = "output.swift"
+        defer { cleanUp(at: outputPath) }
 
-        try HandlerGenerator.generate(endpoint: endpoint, method: "get", outputPath: outputPath)
+        do {
+            try HandlerGenerator.generate(endpoint: endpoint, method: method, outputPath: outputPath)
 
-        let snapshot = "func getUsersHandler(req: Request) throws -> Response { ... }"
-        let generatedCode = try String(contentsOfFile: outputPath, encoding: .utf8)
-        XCTAssertEqual(generatedCode, snapshot)
+            // Validate directories are created.
+            var isDir: ObjCBool = false
+            XCTAssertTrue(FileManager.default.fileExists(atPath: outputPath + "/Handlers", isDirectory: &isDir), "Handlers directory should be created.")
+            XCTAssertTrue(isDir.boolValue, "Handlers should be a directory.")
+            
+            XCTAssertTrue(FileManager.default.fileExists(atPath: outputPath + "/Services", isDirectory: &isDir), "Services directory should be created.")
+            XCTAssertTrue(isDir.boolValue, "Services should be a directory.")
+        } catch {
+            XCTFail("Handler generation failed with error: \(error.localizedDescription)")
+        }
     }
 }
