@@ -1,4 +1,4 @@
-// File: OpenAPIHandlerGen/Sources/Core/OpenAPIHandlerGen.swift
+// File: Sources/Core/OpenAPIHandlerGen.swift
 
 import Foundation
 
@@ -20,15 +20,15 @@ struct OpenAPIHandlerGen {
         // Step 1: Parse the OpenAPI YAML file into a dictionary
         let parsedYAML = try YAMLParser.parse(at: openAPIPath)
 
-        // Step 2: Extract endpoints using EndpointExtractor
-        let endpoints = EndpointExtractor.extractEndpoints(from: parsedYAML)
+        // Step 2: Extract endpoints using OpenAPIFileEndpointExtractor
+        let endpoints = OpenAPIFileEndpointExtractor.extractEndpoints(fromOpenAPIFile: parsedYAML)
 
         // Step 3: Generate handlers and services
         try OpenAPIHandlerGen.generateHandlers(from: endpoints, outputPath: outputPath)
     }
 
     // Generates handlers and services for extracted endpoints
-    static func generateHandlers(from endpoints: [EndpointExtractor.Endpoint], outputPath: String) throws {
+    static func generateHandlers(from endpoints: [OpenAPIFileEndpointExtractor.Endpoint], outputPath: String) throws {
         for endpoint in endpoints {
             // `HandlerGenerator.generate` requires `try`
             try HandlerGenerator.generate(endpoint: endpoint, method: endpoint.operationId, outputPath: outputPath)
