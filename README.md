@@ -8,7 +8,7 @@ The **OpenAPI Handler Generator** is a Swift-based tool designed to streamline t
 - **Service Layer Creation**: Build corresponding service logic for each route handler.
 - **Model Generation**: Generate models to represent request and response structures.
 - **Migration Scaffolding**: Automatically scaffold database migrations for models.
-- **Hybrid Approach**: Combines the use of OpenAPI files and server/Type extractors for flexibility.
+- **Hybrid Approach**: Combines the use of OpenAPI files and Server / Type extractors for flexibility.
 
 ## How It Works
 
