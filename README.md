@@ -1,169 +1,81 @@
-# OpenAPIHandlerGen - CLI Tool for OpenAPI Handler and Service Generation
+# OpenAPI Handler Generator
 
-## Overview
-**OpenAPIHandlerGen** is a Swift command-line tool (CLI) designed to parse an **OpenAPI YAML** file, a Swift **server-protocol** file, and a Swift **types** file to generate **Handler** and **Service** Swift files. 
+The **OpenAPI Handler Generator** is a Swift-based tool designed to streamline the process of generating server-side code, including **handlers**, **services**, **models**, and **migrations**, based on OpenAPI specifications.
 
-- **Handler Files**: Provide route handling logic.
-- **Service Files**: Provide business logic implementation.
+## Key Features
 
-This tool enables faster development of **Vapor-based APIs** by generating reusable code structures for endpoint handling.
+- **Handler Generation**: Create route handlers automatically from OpenAPI endpoint definitions.
+- **Service Layer Creation**: Build corresponding service logic for each route handler.
+- **Model Generation**: Generate models to represent request and response structures.
+- **Migration Scaffolding**: Automatically scaffold database migrations for models.
+- **Hybrid Approach**: Combines the use of OpenAPI files and server/Type extractors for flexibility.
 
----
+## How It Works
 
-## 1. Project Structure
+This tool uses a combination of:
+- **Apple's OpenAPI Generator Output**: Uses the generated output, including request/response models and server stubs, as the basis for further code generation.
+- **Custom Extractors**: These include:
+  - `OpenAPIFileEndpointExtractor` - Parses OpenAPI files to extract endpoint definitions.
+  - `ServerFileExtractor` - Analyzes existing server-side code to integrate new handlers seamlessly.
+  - `TypesFileExtractor` - Extracts complex type definitions for models.
 
-### Current Project Layout:
-```
-OpenAPIHandlerGen/
-├── Package.swift
-├── README.md
-├── Sources/
-│   ├── Core/
-│   │   ├── OpenAPIHandlerGen.swift
-│   ├── Parsers/
-│   │   ├── YAMLParser.swift
-│   ├── Extractors/
-│   │   ├── EndpointExtractor.swift
-│   ├── Generators/
-│   │   ├── HandlerGenerator.swift
-│   │   ├── ServiceGenerator.swift
-│   ├── main.swift
-├── Tests/
-│   ├── EndpointExtractionTests.swift
-│   ├── InlineCodeTests.swift
-├── Docs/
-│   ├── Prompt 6 - Modularization Strategy for OpenAPIHandlerGen.md
-├── TestLogs/
-│   ├── test-results.log
-├── Scripts/
-│   ├── build_and_test.sh
-```
+The tool harmonizes the output of Apple's generator with its extractors to ensure consistency and accuracy.
 
----
+## Requirements
 
-## 2. Dependencies and Setup
+- macOS
+- Xcode and Swift (latest stable version)
 
-### Dependencies
-- **Yams**: YAML parsing.
-- **Vapor**: HTTP server framework.
+## Installation
 
-### `Package.swift` Configuration:
-```swift
-// swift-tools-version: 6.0.3
-import PackageDescription
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/Contexter/OpenAPI-Handler-Gen.git
+   cd OpenAPI-Handler-Gen
+   ```
+2. Build the project:
+   ```bash
+   swift build
+   ```
 
-let package = Package(
-    name: "OpenAPIHandlerGen",
-    platforms: [
-        .macOS(.v12)
-    ],
-    dependencies: [
-        .package(url: "https://github.com/jpsim/Yams.git", from: "4.0.6"),
-        .package(url: "https://github.com/vapor/vapor.git", from: "4.0.0")
-    ],
-    targets: [
-        .executableTarget(
-            name: "OpenAPIHandlerGen",
-            dependencies: [
-                "Yams",
-                .product(name: "Vapor", package: "vapor")
-            ]
-        ),
-        .testTarget(
-            name: "OpenAPIHandlerGenTests",
-            dependencies: ["OpenAPIHandlerGen"]
-        )
-    ]
-)
-```
+## Usage
 
-### Install Dependencies:
+### Generating Handlers and Services
+
+To generate handlers and services:
 ```bash
-swift package update
-swift package resolve
+swift run OpenAPIHandlerGen <path_to_openapi_file> <path_to_server_code> <path_to_types_code> <output_path>
 ```
 
----
-
-## 3. Building and Testing
-
-### Build:
+Example:
 ```bash
-swift build
+swift run OpenAPIHandlerGen ./openapi.yaml ./Server ./Types ./Output
 ```
 
-### Test:
+### Running Tests
+
+Run the test suite to validate functionality:
 ```bash
 swift test
 ```
 
----
+### Directory Structure
 
-## 4. Running the Tool
+- **Sources**: The main implementation files for the generator.
+  - `Core/`: Core logic and orchestration.
+  - `Extractors/`: Logic for extracting endpoints, routes, and types.
+  - `Generators/`: Logic for generating handlers, services, and migrations.
+- **Tests**: Unit and integration tests.
 
-### Example Command:
-```bash
-.build/debug/OpenAPIHandlerGen \
-    /path/to/openapi.yaml \
-    /path/to/Server.swift \
-    /path/to/Types.swift \
-    GeneratedOutput
-```
-- **Arguments**:
-  1. `<openapi.yaml>`: Path to the OpenAPI YAML file.
-  2. `<Server.swift>`: Path to the Swift file defining protocol methods.
-  3. `<Types.swift>`: Path to Swift file with type definitions.
-  4. `<outputPath>`: Output directory for generated files.
+### Integration with Apple's OpenAPI Generator
 
-- **Output Structure**:
-```
-GeneratedOutput/
-├── Handlers/
-│   ├── GetUsersHandler.swift
-├── Services/
-│   ├── GetUsersService.swift
-```
+This tool does not directly run the Apple OpenAPI Generator but instead utilizes its output as a foundation for additional processing and customization. Users must run the generator separately and provide its output to the **OpenAPI Handler Generator** for further processing.
 
----
+## Contributing
 
-## 5. Generated Code Examples
+Contributions are welcome! Please fork the repository, make changes, and submit a pull request. Ensure all tests pass before submitting your PR.
 
-### Handler Example:
-```swift
-// File: Sources/Generators/Handlers/GetUsersHandler.swift
-import Vapor
+## License
 
-struct GetUsersHandler: APIProtocol {
-    let service = GetUsersService()
-
-    func getUsers(_ input: Operations.GetUsers.Input) async throws -> Operations.GetUsers.Output {
-        let result = try await service.execute(input: input)
-        return .ok(result)
-    }
-}
-```
-
-### Service Example:
-```swift
-// File: Sources/Generators/Services/GetUsersService.swift
-import Vapor
-
-struct GetUsersService {
-    func execute(input: Operations.GetUsers.Input) async throws -> Operations.GetUsers.Output {
-        // TODO: Implement business logic.
-        return .init()
-    }
-}
-```
-
----
-
-## 6. CI/CD Pipeline
-- Tests automatically execute via GitHub Actions.
-- Ensure CI/CD checks pass before merging changes.
-
----
-
-## Conclusion
-The **OpenAPIHandlerGen** CLI simplifies the process of generating code templates for Vapor endpoints based on OpenAPI specifications. Use this tool to bootstrap projects quickly and enforce consistent coding standards across your codebase.
+This project is licensed under the MIT License.
 
