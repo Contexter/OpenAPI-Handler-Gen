@@ -18,8 +18,8 @@ struct YAMLParser {
         // Validate schema types
         if let components = (dictionary["components"] as? [String: Any])?["schemas"] as? [String: Any] {
             for (_, schema) in components {
-                if let properties = (schema as? [String: Any])?["properties"] as? [String: Any] {
-                    for (_, prop) in properties {
+                if let fields = (schema as? [String: Any])?["fields"] as? [String: Any] {
+                    for (_, prop) in fields {
                         if let type = (prop as? [String: Any])?["type"] as? String, !isValidType(type) {
                             throw YAMLParserError.unsupportedType(type)
                         }

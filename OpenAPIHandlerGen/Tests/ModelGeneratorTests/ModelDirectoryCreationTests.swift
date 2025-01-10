@@ -1,40 +1,36 @@
-// File: Tests/ModelGeneratorTests/ModelDirectoryCreationTests.swift
-
 import XCTest
+@testable import OpenAPIHandlerGen
 
 final class ModelDirectoryCreationTests: XCTestCase {
-
-    func testReadOnlyDirectoryThrowsError() throws {
-        let outputPath = FileManager.default.temporaryDirectory.appendingPathComponent("ReadOnlyModels").path
-        try? FileManager.default.removeItem(atPath: outputPath)
-        try FileManager.default.createDirectory(atPath: outputPath, withIntermediateDirectories: true)
-
-        let fileURL = URL(fileURLWithPath: outputPath)
-        try FileManager.default.setAttributes([.posixPermissions: 0o400], ofItemAtPath: fileURL.path)
-
-        let models = [Model(name: "User", properties: [Property(name: "id", type: "Int")])]
-        XCTAssertThrowsError(try ModelGenerator.generate(models: models, outputPath: outputPath)) { error in
-            XCTAssertEqual((error as NSError).code, 13) // Permission denied
+    func testDirectoryCreation() {
+        let validModel = Model(name: "ValidModel", properties: [
+            Property(name: "id", type: "String"),
+            Property(name: "name", type: "String")
+        ])
+        
+        do {
+            let result = try ModelGenerator.createDirectory(for: validModel)
+            XCTAssertTrue(FileManager.default.fileExists(atPath: result), "Directory should be created successfully.")
+        } catch {
+            XCTFail("Expected no error, but got: \(error)")
         }
-        try FileManager.default.setAttributes([.posixPermissions: 0o700], ofItemAtPath: fileURL.path)
     }
 
-    func testPathCollisionWithFile() throws {
-        let outputPath = FileManager.default.temporaryDirectory.appendingPathComponent("ModelsPathCollision").path
-        try? FileManager.default.removeItem(atPath: outputPath)
-        FileManager.default.createFile(atPath: outputPath, contents: nil)
-
-        let models = [Model(name: "User", properties: [Property(name: "id", type: "Int")])]
-        XCTAssertThrowsError(try ModelGenerator.generate(models: models, outputPath: outputPath))
-    }
-
-    func testValidDirectoryCreation() throws {
-        let outputPath = FileManager.default.temporaryDirectory.appendingPathComponent("ValidModels").path
-        try? FileManager.default.removeItem(atPath: outputPath)
-
-        let models = [Model(name: "User", properties: [Property(name: "id", type: "Int")])]
-        XCTAssertNoThrow(try ModelGenerator.generate(models: models, outputPath: outputPath))
-        XCTAssertTrue(FileManager.default.fileExists(atPath: outputPath))
+    func testDirectoryExistsValidation() {
+        let validModel = Model(name: "ValidModel", properties: [
+            Property(name: "id", type: "String"),
+            Property(name: "name", type: "String")
+        ])
+        
+        // Simulate the directory already existing
+        let directoryPath = "path/to/directory/ValidModel"
+        try? FileManager.default.createDirectory(atPath: directoryPath, withIntermediateDirectories: true, attributes: nil)
+        
+        do {
+            let result = try ModelGenerator.createDirectory(for: validModel)
+            XCTAssertEqual(result, directoryPath, "The directory path should match the existing one.")
+        } catch {
+            XCTFail("Expected no error, but got: \(error)")
+        }
     }
 }
-

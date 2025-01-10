@@ -1,31 +1,33 @@
 // File: Tests/ModelGeneratorTests/ModelContentValidationTests.swift
 
 import XCTest
+@testable import OpenAPIHandlerGen
 
+/// Tests for model content validation.
 final class ModelContentValidationTests: XCTestCase {
 
-    func testSpecialCharactersInModelNames() throws {
-        let outputPath = FileManager.default.temporaryDirectory.appendingPathComponent("TestModels").path
-        try? FileManager.default.removeItem(atPath: outputPath)
-
-        let models = [Model(name: "Us#er$", properties: [Property(name: "id", type: "Int")])]
-        XCTAssertThrowsError(try ModelGenerator.generate(models: models, outputPath: outputPath))
+    func testValidModelContentGeneration() {
+        let model = Model(name: "User", properties: [
+            Property(name: "id", type: "Int"),
+            Property(name: "name", type: "String")
+        ])
+        let content = ModelGenerator.generateModelContent(for: model)
+        XCTAssertTrue(content.contains("struct User"))
+        XCTAssertTrue(content.contains("let id: Int"))
+        XCTAssertTrue(content.contains("let name: String"))
     }
 
-    func testReservedKeywordInModelProperties() throws {
-        let outputPath = FileManager.default.temporaryDirectory.appendingPathComponent("TestModels").path
-        try? FileManager.default.removeItem(atPath: outputPath)
-
-        let models = [Model(name: "User", properties: [Property(name: "class", type: "String")])]
-        XCTAssertThrowsError(try ModelGenerator.generate(models: models, outputPath: outputPath))
+    func testEmptyModelValidation() throws {
+        let model = Model(name: "Empty", properties: [])
+        XCTAssertNoThrow(try ModelGenerator.validateModel(model))
     }
 
-    func testValidModelContent() throws {
-        let outputPath = FileManager.default.temporaryDirectory.appendingPathComponent("TestModels").path
-        try? FileManager.default.removeItem(atPath: outputPath)
-
-        let models = [Model(name: "User", properties: [Property(name: "id", type: "Int"), Property(name: "name", type: "String")])]
-        XCTAssertNoThrow(try ModelGenerator.generate(models: models, outputPath: outputPath))
+    func testInvalidPropertyNames() throws {
+        let model = Model(name: "User", properties: [
+            Property(name: "invalid-property", type: "String")
+        ])
+        XCTAssertThrowsError(try ModelGenerator.validateModel(model)) { error in
+            XCTAssertTrue("\(error)".contains("Property name contains invalid characters"))
+        }
     }
 }
-

@@ -1,74 +1,49 @@
+// File: Sources/Extractors/TypesFileExtractor.swift
+
 import Foundation
 
-struct Model {
-    let name: String
-    let fields: [String: String]
-}
+/// A utility for extracting type definitions from a `Types.swift` file.
+struct TypesFileExtractor {
 
-class TypesFileExtractor {
-    static func parseModels(from content: String) -> [Model] {
-        let lines = content.split(separator: "\n").map { $0.trimmingCharacters(in: .whitespaces) }
+    /// Extracts models from the content of a `Types.swift` file.
+    /// - Parameter content: The string content of the `Types.swift` file.
+    /// - Returns: An array of extracted `Model` instances.
+    static func extractModels(from content: String) -> [Model] {
+        let regexPattern = #"struct (\w+) \{((?:.|\n)*?)\}"#
+        let regex = try! NSRegularExpression(pattern: regexPattern, options: [])
+        let matches = regex.matches(in: content, options: [], range: NSRange(content.startIndex..., in: content))
+
         var models: [Model] = []
-        var currentModelName: String? = nil
-        var currentFields: [String: String] = [:]
-        var braceStack: [String] = []
 
-        for line in lines {
-            let trimmedLine = line.trimmingCharacters(in: .whitespacesAndNewlines)
-            
-            if trimmedLine.starts(with: "struct ") {
-                // Only process top-level structs
-                if braceStack.isEmpty {
-                    currentModelName = extractStructName(from: trimmedLine)
-                    currentFields = [:]
-                }
-                braceStack.append("{")
-            } else if trimmedLine == "{" {
-                braceStack.append("{")
-            } else if trimmedLine == "}" {
-                if !braceStack.isEmpty {
-                    braceStack.removeLast()
-                }
-                // Only add model when all braces are closed
-                if braceStack.isEmpty, let modelName = currentModelName {
-                    models.append(Model(name: modelName, fields: sortFields(fields: currentFields)))
-                    currentModelName = nil
-                    currentFields = [:]
-                }
-            } else if braceStack.count == 1, let field = extractField(from: trimmedLine) {
-                // Only extract fields at the first level inside the struct
-                currentFields[field.0] = field.1
+        for match in matches {
+            if let nameRange = Range(match.range(at: 1), in: content),
+               let propertiesRange = Range(match.range(at: 2), in: content) {
+                let name = String(content[nameRange])
+                let propertiesString = String(content[propertiesRange])
+                let properties = parseProperties(from: propertiesString)
+                models.append(Model(name: name, properties: properties))
             }
         }
 
         return models
     }
 
-    private static func extractStructName(from line: String) -> String? {
-        let components = line.split(separator: " ")
-        return components.count > 1 ? String(components[1]) : nil
-    }
+    /// Parses properties from the body of a struct definition.
+    /// - Parameter propertiesString: The body of a struct definition as a string.
+    /// - Returns: An array of `Property` instances.
+    private static func parseProperties(from propertiesString: String) -> [Property] {
+        var properties: [Property] = []
 
-    private static func extractField(from line: String) -> (String, String)? {
-        // Handle potential cases where ":" might be within types (e.g., dictionaries)
-        guard let colonIndex = line.firstIndex(of: ":") else { return nil }
-        
-        let fieldNamePart = line[..<colonIndex]
-        let fieldTypePart = line[line.index(after: colonIndex)...]
-        
-        let fieldName = stripModifiers(from: String(fieldNamePart).trimmingCharacters(in: .whitespaces))
-        let fieldType = String(fieldTypePart).trimmingCharacters(in: .whitespaces)
-        
-        return (fieldName, fieldType)
-    }
+        let lines = propertiesString.split(separator: "\n")
+        for line in lines {
+            let components = line.split(separator: ":", maxSplits: 1)
+            if components.count == 2 {
+                let name = components[0].trimmingCharacters(in: .whitespacesAndNewlines)
+                let type = components[1].trimmingCharacters(in: .whitespacesAndNewlines)
+                properties.append(Property(name: name, type: type))
+            }
+        }
 
-    private static func stripModifiers(from field: String) -> String {
-        let modifiers = ["var", "let", "static", "private", "public"]
-        let words = field.split(separator: " ")
-        return words.filter { !modifiers.contains(String($0)) }.joined(separator: " ")
-    }
-
-    private static func sortFields(fields: [String: String]) -> [String: String] {
-        return fields.sorted { $0.key < $1.key }.reduce(into: [String: String]()) { $0[$1.key] = $1.value }
+        return properties
     }
 }

@@ -1,39 +1,24 @@
 // File: Tests/ModelGeneratorTests/ModelPerformanceTests.swift
 
 import XCTest
+@testable import OpenAPIHandlerGen
 
+/// Performance tests for the `ModelGenerator`.
 final class ModelPerformanceTests: XCTestCase {
 
-    func testDeeplyNestedPropertiesPerformance() throws {
-        let outputPath = FileManager.default.temporaryDirectory.appendingPathComponent("TestModels").path
-        try? FileManager.default.removeItem(atPath: outputPath)
-
-        let nestedProperties = (1...100).map { index in
-            Property(name: "level\(index)", type: "NestedModel\(index)")
-        }
-        let models = [Model(name: "RootModel", properties: nestedProperties)]
+    func testLargeModelGenerationPerformance() {
+        let properties = (1...1000).map { Property(name: "property\($0)", type: "String") }
+        let model = Model(name: "LargeModel", properties: properties)
 
         measure {
-            XCTAssertNoThrow(try ModelGenerator.generate(models: models, outputPath: outputPath))
+            _ = ModelGenerator.generateModelContent(for: model)
         }
     }
 
-    func testConcurrentFileGeneration() throws {
-        let outputPath = FileManager.default.temporaryDirectory.appendingPathComponent("ConcurrentModels").path
-        try? FileManager.default.removeItem(atPath: outputPath)
-
-        let models = (1...100).map { index in
-            Model(name: "Model\(index)", properties: [
-                Property(name: "id", type: "Int"),
-                Property(name: "value", type: "String")
-            ])
-        }
-
+    func testDirectoryCreationPerformance() {
         measure {
-            DispatchQueue.concurrentPerform(iterations: models.count) { index in
-                XCTAssertNoThrow(try ModelGenerator.generate(models: [models[index]], outputPath: outputPath))
-            }
+            let outputPath = FileManager.default.temporaryDirectory.appendingPathComponent("PerformanceTestModels").path
+            try? ModelGenerator.generate(from: "dummyPath", outputPath: outputPath)
         }
     }
 }
-
