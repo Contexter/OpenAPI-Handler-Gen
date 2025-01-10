@@ -1,0 +1,20 @@
+warning: 'openapihandlergen': found 1 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Sources/openapi.yaml
+warning: 'swift-algorithms': found 1 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/.build/checkouts/swift-algorithms/Sources/Algorithms/Documentation.docc
+[0/1] Planning build
+Building for debugging...
+[0/13] Write sources
+[1/65] Write swift-version--1BFCD5C06E9F820A.txt
+[3/17] Compiling OpenAPIHandlerGen ServiceGenerator.swift
+[4/17] Emitting module OpenAPIHandlerGen
+[5/17] Compiling OpenAPIHandlerGen ModelGenerator.swift
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Sources/Generators/ModelGenerator.swift:78:32: error: value of type 'Model' has no member 'properties'
+76 | 
+77 |     private static func generateModelContent(for model: Model) -> String {
+78 |         let properties = model.properties.map { property in
+   |                                `- error: value of type 'Model' has no member 'properties'
+79 |             "    let \(property.name): \(property.type)"
+80 |         }.joined(separator: "\n")
+[6/18] Compiling OpenAPIHandlerGen OpenAPIHandlerGen.swift
+error: fatalError
