@@ -1,0 +1,213 @@
+warning: 'openapihandlergen': found 1 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Sources/openapi.yaml
+warning: 'swift-algorithms': found 1 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/.build/checkouts/swift-algorithms/Sources/Algorithms/Documentation.docc
+[0/1] Planning build
+Building for debugging...
+[0/11] Write sources
+[1/64] Write swift-version--1BFCD5C06E9F820A.txt
+[3/20] Compiling OpenAPIHandlerGenTests HandlerGeneratorTests.swift
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/HandlerGeneratorTests.swift:34:38: warning: 'init(contentsOfFile:)' is deprecated: Use `init(contentsOfFile:encoding:)` instead
+ 32 |             let handlerFilePath = outputPath + "/Handlers/getUsersHandler.swift"
+ 33 |             XCTAssertTrue(FileManager.default.fileExists(atPath: handlerFilePath), "Handler file should be created.")
+ 34 |             let handlerContent = try String(contentsOfFile: handlerFilePath)
+    |                                      `- warning: 'init(contentsOfFile:)' is deprecated: Use `init(contentsOfFile:encoding:)` instead
+ 35 |             XCTAssertTrue(handlerContent.contains("func getUsersHandler"), "Handler content should contain function definition.")
+ 36 |             XCTAssertTrue(handlerContent.contains("try getUsersService.process"), "Handler should delegate to the service layer.")
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/HandlerGeneratorTests.swift:41:38: warning: 'init(contentsOfFile:)' is deprecated: Use `init(contentsOfFile:encoding:)` instead
+ 39 |             let serviceFilePath = outputPath + "/Services/getUsersService.swift"
+ 40 |             XCTAssertTrue(FileManager.default.fileExists(atPath: serviceFilePath), "Service file should be created.")
+ 41 |             let serviceContent = try String(contentsOfFile: serviceFilePath)
+    |                                      `- warning: 'init(contentsOfFile:)' is deprecated: Use `init(contentsOfFile:encoding:)` instead
+ 42 |             XCTAssertTrue(serviceContent.contains("struct getUsersService"), "Service content should define a struct.")
+ 43 |             XCTAssertTrue(serviceContent.contains("Processed request for getUsers."), "Service content should include business logic placeholder.")
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/HandlerGeneratorTests.swift:66:29: warning: result of call to 'createFile(atPath:contents:attributes:)' is unused
+ 64 | 
+ 65 |         // Create a file at the output path.
+ 66 |         FileManager.default.createFile(atPath: outputPath, contents: nil, attributes: nil)
+    |                             `- warning: result of call to 'createFile(atPath:contents:attributes:)' is unused
+ 67 | 
+ 68 |         defer { cleanUp(at: outputPath) }
+[4/20] Compiling OpenAPIHandlerGenTests InlineCodeTests.swift
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/HandlerGeneratorTests.swift:34:38: warning: 'init(contentsOfFile:)' is deprecated: Use `init(contentsOfFile:encoding:)` instead
+ 32 |             let handlerFilePath = outputPath + "/Handlers/getUsersHandler.swift"
+ 33 |             XCTAssertTrue(FileManager.default.fileExists(atPath: handlerFilePath), "Handler file should be created.")
+ 34 |             let handlerContent = try String(contentsOfFile: handlerFilePath)
+    |                                      `- warning: 'init(contentsOfFile:)' is deprecated: Use `init(contentsOfFile:encoding:)` instead
+ 35 |             XCTAssertTrue(handlerContent.contains("func getUsersHandler"), "Handler content should contain function definition.")
+ 36 |             XCTAssertTrue(handlerContent.contains("try getUsersService.process"), "Handler should delegate to the service layer.")
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/HandlerGeneratorTests.swift:41:38: warning: 'init(contentsOfFile:)' is deprecated: Use `init(contentsOfFile:encoding:)` instead
+ 39 |             let serviceFilePath = outputPath + "/Services/getUsersService.swift"
+ 40 |             XCTAssertTrue(FileManager.default.fileExists(atPath: serviceFilePath), "Service file should be created.")
+ 41 |             let serviceContent = try String(contentsOfFile: serviceFilePath)
+    |                                      `- warning: 'init(contentsOfFile:)' is deprecated: Use `init(contentsOfFile:encoding:)` instead
+ 42 |             XCTAssertTrue(serviceContent.contains("struct getUsersService"), "Service content should define a struct.")
+ 43 |             XCTAssertTrue(serviceContent.contains("Processed request for getUsers."), "Service content should include business logic placeholder.")
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/HandlerGeneratorTests.swift:66:29: warning: result of call to 'createFile(atPath:contents:attributes:)' is unused
+ 64 | 
+ 65 |         // Create a file at the output path.
+ 66 |         FileManager.default.createFile(atPath: outputPath, contents: nil, attributes: nil)
+    |                             `- warning: result of call to 'createFile(atPath:contents:attributes:)' is unused
+ 67 | 
+ 68 |         defer { cleanUp(at: outputPath) }
+[5/20] Compiling OpenAPIHandlerGenTests OpenAPIPresenceTests.swift
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/HandlerGeneratorTests.swift:34:38: warning: 'init(contentsOfFile:)' is deprecated: Use `init(contentsOfFile:encoding:)` instead
+ 32 |             let handlerFilePath = outputPath + "/Handlers/getUsersHandler.swift"
+ 33 |             XCTAssertTrue(FileManager.default.fileExists(atPath: handlerFilePath), "Handler file should be created.")
+ 34 |             let handlerContent = try String(contentsOfFile: handlerFilePath)
+    |                                      `- warning: 'init(contentsOfFile:)' is deprecated: Use `init(contentsOfFile:encoding:)` instead
+ 35 |             XCTAssertTrue(handlerContent.contains("func getUsersHandler"), "Handler content should contain function definition.")
+ 36 |             XCTAssertTrue(handlerContent.contains("try getUsersService.process"), "Handler should delegate to the service layer.")
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/HandlerGeneratorTests.swift:41:38: warning: 'init(contentsOfFile:)' is deprecated: Use `init(contentsOfFile:encoding:)` instead
+ 39 |             let serviceFilePath = outputPath + "/Services/getUsersService.swift"
+ 40 |             XCTAssertTrue(FileManager.default.fileExists(atPath: serviceFilePath), "Service file should be created.")
+ 41 |             let serviceContent = try String(contentsOfFile: serviceFilePath)
+    |                                      `- warning: 'init(contentsOfFile:)' is deprecated: Use `init(contentsOfFile:encoding:)` instead
+ 42 |             XCTAssertTrue(serviceContent.contains("struct getUsersService"), "Service content should define a struct.")
+ 43 |             XCTAssertTrue(serviceContent.contains("Processed request for getUsers."), "Service content should include business logic placeholder.")
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/HandlerGeneratorTests.swift:66:29: warning: result of call to 'createFile(atPath:contents:attributes:)' is unused
+ 64 | 
+ 65 |         // Create a file at the output path.
+ 66 |         FileManager.default.createFile(atPath: outputPath, contents: nil, attributes: nil)
+    |                             `- warning: result of call to 'createFile(atPath:contents:attributes:)' is unused
+ 67 | 
+ 68 |         defer { cleanUp(at: outputPath) }
+[6/20] Compiling OpenAPIHandlerGenTests SchemaValidationTests.swift
+[7/20] Compiling OpenAPIHandlerGenTests ServerFileExtractorTests.swift
+[8/20] Emitting module OpenAPIHandlerGenTests
+[9/22] Compiling OpenAPIHandlerGenTests EndpointExtractionTests.swift
+[10/22] Compiling OpenAPIHandlerGenTests ErrorHandlingTests.swift
+[11/22] Compiling OpenAPIHandlerGenTests GeneratedFilesPresenceTests.swift
+[12/22] Compiling OpenAPIHandlerGenTests TemplateVerificationTests.swift
+[13/22] Compiling OpenAPIHandlerGenTests TypesFileExtractorTests.swift
+[14/23] Wrapping AST for OpenAPIHandlerGenTests for debugging
+[15/23] /home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/.build/x86_64-unknown-linux-gnu/debug/OpenAPIHandlerGenPackageDiscoveredTests.derived/all-discovered-tests.swift
+[16/23] Write sources
+[18/26] Compiling OpenAPIHandlerGenPackageDiscoveredTests all-discovered-tests.swift
+[19/26] Emitting module OpenAPIHandlerGenPackageDiscoveredTests
+[20/26] Compiling OpenAPIHandlerGenPackageDiscoveredTests OpenAPIHandlerGenTests.swift
+[21/27] /home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/.build/x86_64-unknown-linux-gnu/debug/OpenAPIHandlerGenPackageTests.derived/runner.swift
+[22/27] Write sources
+[23/27] Wrapping AST for OpenAPIHandlerGenPackageDiscoveredTests for debugging
+[25/29] Emitting module OpenAPIHandlerGenPackageTests
+[26/29] Compiling OpenAPIHandlerGenPackageTests runner.swift
+[27/30] Wrapping AST for OpenAPIHandlerGenPackageTests for debugging
+[28/30] Write Objects.LinkFileList
+[29/30] Linking OpenAPIHandlerGenPackageTests.xctest
+Build complete! (7.84s)
+Test Suite 'All tests' started at 2025-01-10 06:20:50.989
+Test Suite 'debug.xctest' started at 2025-01-10 06:20:51.385
+Test Suite 'EndpointExtractionTests' started at 2025-01-10 06:20:51.385
+Test Case 'EndpointExtractionTests.testCircularReferences' started at 2025-01-10 06:20:51.385
+Test Case 'EndpointExtractionTests.testCircularReferences' passed (0.001 seconds)
+Test Case 'EndpointExtractionTests.testConflictingMethods' started at 2025-01-10 06:20:51.386
+Test Case 'EndpointExtractionTests.testConflictingMethods' passed (0.0 seconds)
+Test Case 'EndpointExtractionTests.testInvalidHTTPMethod' started at 2025-01-10 06:20:51.386
+Test Case 'EndpointExtractionTests.testInvalidHTTPMethod' passed (0.0 seconds)
+Test Case 'EndpointExtractionTests.testMissingOperationId' started at 2025-01-10 06:20:51.387
+Test Case 'EndpointExtractionTests.testMissingOperationId' passed (0.0 seconds)
+Test Case 'EndpointExtractionTests.testParameterizedPaths' started at 2025-01-10 06:20:51.387
+Test Case 'EndpointExtractionTests.testParameterizedPaths' passed (0.0 seconds)
+Test Case 'EndpointExtractionTests.testSnapshotConsistency' started at 2025-01-10 06:20:51.387
+Test Case 'EndpointExtractionTests.testSnapshotConsistency' passed (0.0 seconds)
+Test Case 'EndpointExtractionTests.testValidMultipleEndpoints' started at 2025-01-10 06:20:51.387
+Test Case 'EndpointExtractionTests.testValidMultipleEndpoints' passed (0.0 seconds)
+Test Suite 'EndpointExtractionTests' passed at 2025-01-10 06:20:51.387
+	 Executed 7 tests, with 0 failures (0 unexpected) in 0.002 (0.002) seconds
+Test Suite 'ErrorHandlingTests' started at 2025-01-10 06:20:51.387
+Test Case 'ErrorHandlingTests.testMalformedYAML' started at 2025-01-10 06:20:51.387
+Test Case 'ErrorHandlingTests.testMalformedYAML' passed (0.003 seconds)
+Test Case 'ErrorHandlingTests.testMissingRequiredFields' started at 2025-01-10 06:20:51.390
+Test Case 'ErrorHandlingTests.testMissingRequiredFields' passed (0.001 seconds)
+Test Suite 'ErrorHandlingTests' passed at 2025-01-10 06:20:51.391
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.004 (0.004) seconds
+Test Suite 'GeneratedFilesPresenceTests' started at 2025-01-10 06:20:51.391
+Test Case 'GeneratedFilesPresenceTests.testGeneratedFilesExist' started at 2025-01-10 06:20:51.391
+Test Case 'GeneratedFilesPresenceTests.testGeneratedFilesExist' passed (0.0 seconds)
+Test Suite 'GeneratedFilesPresenceTests' passed at 2025-01-10 06:20:51.391
+	 Executed 1 test, with 0 failures (0 unexpected) in 0.0 (0.0) seconds
+Test Suite 'HandlerGeneratorTests' started at 2025-01-10 06:20:51.391
+Test Case 'HandlerGeneratorTests.testEmptyOutputPath' started at 2025-01-10 06:20:51.391
+Test Case 'HandlerGeneratorTests.testEmptyOutputPath' passed (0.0 seconds)
+Test Case 'HandlerGeneratorTests.testHandlerAndServiceDirectoriesCreated' started at 2025-01-10 06:20:51.391
+Test Case 'HandlerGeneratorTests.testHandlerAndServiceDirectoriesCreated' passed (0.001 seconds)
+Test Case 'HandlerGeneratorTests.testMissingEndpointFields' started at 2025-01-10 06:20:51.393
+Test Case 'HandlerGeneratorTests.testMissingEndpointFields' passed (0.0 seconds)
+Test Case 'HandlerGeneratorTests.testOutputPathIsFile' started at 2025-01-10 06:20:51.393
+Test Case 'HandlerGeneratorTests.testOutputPathIsFile' passed (0.0 seconds)
+Test Case 'HandlerGeneratorTests.testValidHandlerGeneration' started at 2025-01-10 06:20:51.393
+Test Case 'HandlerGeneratorTests.testValidHandlerGeneration' passed (0.001 seconds)
+Test Suite 'HandlerGeneratorTests' passed at 2025-01-10 06:20:51.395
+	 Executed 5 tests, with 0 failures (0 unexpected) in 0.003 (0.003) seconds
+Test Suite 'InlineCodeTests' started at 2025-01-10 06:20:51.395
+Test Case 'InlineCodeTests.testDownloadWorkflowLogs' started at 2025-01-10 06:20:51.395
+Test Case 'InlineCodeTests.testDownloadWorkflowLogs' passed (0.0 seconds)
+Test Case 'InlineCodeTests.testGetWorkflow' started at 2025-01-10 06:20:51.395
+Test Case 'InlineCodeTests.testGetWorkflow' passed (0.0 seconds)
+Test Case 'InlineCodeTests.testListWorkflowRuns' started at 2025-01-10 06:20:51.395
+Test Case 'InlineCodeTests.testListWorkflowRuns' passed (0.0 seconds)
+Test Case 'InlineCodeTests.testListWorkflows' started at 2025-01-10 06:20:51.395
+Test Case 'InlineCodeTests.testListWorkflows' passed (0.0 seconds)
+Test Suite 'InlineCodeTests' passed at 2025-01-10 06:20:51.395
+	 Executed 4 tests, with 0 failures (0 unexpected) in 0.0 (0.0) seconds
+Test Suite 'OpenAPIPresenceTests' started at 2025-01-10 06:20:51.395
+Test Case 'OpenAPIPresenceTests.testOpenAPIFileExists' started at 2025-01-10 06:20:51.395
+Test Case 'OpenAPIPresenceTests.testOpenAPIFileExists' passed (0.0 seconds)
+Test Suite 'OpenAPIPresenceTests' passed at 2025-01-10 06:20:51.395
+	 Executed 1 test, with 0 failures (0 unexpected) in 0.0 (0.0) seconds
+Test Suite 'SchemaValidationTests' started at 2025-01-10 06:20:51.395
+Test Case 'SchemaValidationTests.testInvalidSchemaParsing' started at 2025-01-10 06:20:51.395
+Test Case 'SchemaValidationTests.testInvalidSchemaParsing' passed (0.001 seconds)
+Test Case 'SchemaValidationTests.testValidSchemaParsing' started at 2025-01-10 06:20:51.396
+Test Case 'SchemaValidationTests.testValidSchemaParsing' passed (0.001 seconds)
+Test Suite 'SchemaValidationTests' passed at 2025-01-10 06:20:51.397
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.002 (0.002) seconds
+Test Suite 'ServerFileExtractorTests' started at 2025-01-10 06:20:51.397
+Test Case 'ServerFileExtractorTests.testExtractRoutesFromEmptyContent' started at 2025-01-10 06:20:51.397
+Test Case 'ServerFileExtractorTests.testExtractRoutesFromEmptyContent' passed (0.0 seconds)
+Test Case 'ServerFileExtractorTests.testExtractRoutesFromInvalidContent' started at 2025-01-10 06:20:51.398
+Test Case 'ServerFileExtractorTests.testExtractRoutesFromInvalidContent' passed (0.0 seconds)
+Test Case 'ServerFileExtractorTests.testExtractRoutesFromMixedContent' started at 2025-01-10 06:20:51.398
+Test Case 'ServerFileExtractorTests.testExtractRoutesFromMixedContent' passed (0.0 seconds)
+Test Case 'ServerFileExtractorTests.testExtractRoutesFromValidContent' started at 2025-01-10 06:20:51.398
+Test Case 'ServerFileExtractorTests.testExtractRoutesFromValidContent' passed (0.0 seconds)
+Test Suite 'ServerFileExtractorTests' passed at 2025-01-10 06:20:51.398
+	 Executed 4 tests, with 0 failures (0 unexpected) in 0.001 (0.001) seconds
+Test Suite 'TemplateVerificationTests' started at 2025-01-10 06:20:51.398
+Test Case 'TemplateVerificationTests.testHandlerTemplateOutput' started at 2025-01-10 06:20:51.398
+Test Case 'TemplateVerificationTests.testHandlerTemplateOutput' passed (0.001 seconds)
+Test Suite 'TemplateVerificationTests' passed at 2025-01-10 06:20:51.399
+	 Executed 1 test, with 0 failures (0 unexpected) in 0.001 (0.001) seconds
+Test Suite 'TypesFileExtractorTests' started at 2025-01-10 06:20:51.399
+Test Case 'TypesFileExtractorTests.testEmptyContent' started at 2025-01-10 06:20:51.399
+Test Case 'TypesFileExtractorTests.testEmptyContent' passed (0.0 seconds)
+Test Case 'TypesFileExtractorTests.testExtractComplexFields' started at 2025-01-10 06:20:51.399
+Test Case 'TypesFileExtractorTests.testExtractComplexFields' passed (0.0 seconds)
+Test Case 'TypesFileExtractorTests.testExtractNestedStructs' started at 2025-01-10 06:20:51.400
+Test Case 'TypesFileExtractorTests.testExtractNestedStructs' passed (0.0 seconds)
+Test Case 'TypesFileExtractorTests.testExtractSimpleStruct' started at 2025-01-10 06:20:51.400
+Test Case 'TypesFileExtractorTests.testExtractSimpleStruct' passed (0.0 seconds)
+Test Case 'TypesFileExtractorTests.testExtractWithModifiers' started at 2025-01-10 06:20:51.400
+Test Case 'TypesFileExtractorTests.testExtractWithModifiers' passed (0.0 seconds)
+Test Case 'TypesFileExtractorTests.testLargeFilePerformance' started at 2025-01-10 06:20:51.400
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/TypesFileExtractorTests.swift:98: Test Case 'TypesFileExtractorTests.testLargeFilePerformance' measured [Time, seconds] average: 0.034, relative standard deviation: 0.225%, values: [0.034321, 0.034408, 0.034220, 0.034370, 0.034359, 0.034204, 0.034304, 0.034209, 0.034207, 0.034242], performanceMetricID:org.swift.XCTPerformanceMetric_WallClockTime, maxPercentRelativeStandardDeviation: 10.000%, maxStandardDeviation: 0.100
+Test Case 'TypesFileExtractorTests.testLargeFilePerformance' passed (0.344 seconds)
+Test Case 'TypesFileExtractorTests.testMalformedStruct' started at 2025-01-10 06:20:51.744
+Test Case 'TypesFileExtractorTests.testMalformedStruct' passed (0.0 seconds)
+Test Case 'TypesFileExtractorTests.testRealWorldExample' started at 2025-01-10 06:20:51.744
+Test Case 'TypesFileExtractorTests.testRealWorldExample' passed (0.0 seconds)
+Test Suite 'TypesFileExtractorTests' passed at 2025-01-10 06:20:51.745
+	 Executed 8 tests, with 0 failures (0 unexpected) in 0.345 (0.345) seconds
+Test Suite 'debug.xctest' passed at 2025-01-10 06:20:51.745
+	 Executed 35 tests, with 0 failures (0 unexpected) in 0.359 (0.359) seconds
+Test Suite 'All tests' passed at 2025-01-10 06:20:51.745
+	 Executed 35 tests, with 0 failures (0 unexpected) in 0.359 (0.359) seconds
+◇ Test run started.
+↳ Testing Library Version: 6.0.3 (18c42c19cac3faf)
+✔ Test run with 0 tests passed after 0.001 seconds.
