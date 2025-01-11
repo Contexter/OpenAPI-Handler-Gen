@@ -1,0 +1,69 @@
+warning: 'openapihandlergen': found 1 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Sources/openapi.yaml
+warning: 'swift-algorithms': found 1 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/.build/checkouts/swift-algorithms/Sources/Algorithms/Documentation.docc
+[0/1] Planning build
+Building for debugging...
+[0/13] Write sources
+[1/65] Write swift-version--1BFCD5C06E9F820A.txt
+[3/18] Emitting module OpenAPIHandlerGen
+[4/18] Compiling OpenAPIHandlerGen ServiceGenerator.swift
+[5/18] Compiling OpenAPIHandlerGen ModelGenerator.swift
+[6/18] Compiling OpenAPIHandlerGen MigrationsGenerator.swift
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Sources/Generators/MigrationsGenerator.swift:46:41: error: error is not handled because the enclosing function is not declared 'throws'
+ 44 |     
+ 45 |     func up() -> String {
+ 46 |         guard !tableName.isEmpty else { throw MigrationError.missingTableName }
+    |                                         `- error: error is not handled because the enclosing function is not declared 'throws'
+ 47 |         guard !columns.isEmpty else { throw MigrationError.emptyColumns }
+ 48 |         
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Sources/Generators/MigrationsGenerator.swift:47:39: error: error is not handled because the enclosing function is not declared 'throws'
+ 45 |     func up() -> String {
+ 46 |         guard !tableName.isEmpty else { throw MigrationError.missingTableName }
+ 47 |         guard !columns.isEmpty else { throw MigrationError.emptyColumns }
+    |                                       `- error: error is not handled because the enclosing function is not declared 'throws'
+ 48 |         
+ 49 |         let formattedColumns = columns.map { "\($0.name) \($0.type.rawValue)" }.joined(separator: ", ")
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Sources/Generators/MigrationsGenerator.swift:54:41: error: error is not handled because the enclosing function is not declared 'throws'
+ 52 |     
+ 53 |     func down() -> String {
+ 54 |         guard !tableName.isEmpty else { throw MigrationError.missingTableName }
+    |                                         `- error: error is not handled because the enclosing function is not declared 'throws'
+ 55 |         return "DROP TABLE \(tableName);"
+ 56 |     }
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Sources/Generators/MigrationsGenerator.swift:65:41: error: error is not handled because the enclosing function is not declared 'throws'
+ 63 |     
+ 64 |     func up() -> String {
+ 65 |         guard !tableName.isEmpty else { throw MigrationError.missingTableName }
+    |                                         `- error: error is not handled because the enclosing function is not declared 'throws'
+ 66 |         guard !column.name.isEmpty else { throw MigrationError.emptyColumnName }
+ 67 |         return "ALTER TABLE \(tableName) ADD COLUMN \(column.name) \(column.type.rawValue);"
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Sources/Generators/MigrationsGenerator.swift:66:43: error: error is not handled because the enclosing function is not declared 'throws'
+ 64 |     func up() -> String {
+ 65 |         guard !tableName.isEmpty else { throw MigrationError.missingTableName }
+ 66 |         guard !column.name.isEmpty else { throw MigrationError.emptyColumnName }
+    |                                           `- error: error is not handled because the enclosing function is not declared 'throws'
+ 67 |         return "ALTER TABLE \(tableName) ADD COLUMN \(column.name) \(column.type.rawValue);"
+ 68 |     }
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Sources/Generators/MigrationsGenerator.swift:71:41: error: error is not handled because the enclosing function is not declared 'throws'
+ 69 |     
+ 70 |     func down() -> String {
+ 71 |         guard !tableName.isEmpty else { throw MigrationError.missingTableName }
+    |                                         `- error: error is not handled because the enclosing function is not declared 'throws'
+ 72 |         guard !column.name.isEmpty else { throw MigrationError.emptyColumnName }
+ 73 |         return "ALTER TABLE \(tableName) DROP COLUMN \(column.name);"
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Sources/Generators/MigrationsGenerator.swift:72:43: error: error is not handled because the enclosing function is not declared 'throws'
+ 70 |     func down() -> String {
+ 71 |         guard !tableName.isEmpty else { throw MigrationError.missingTableName }
+ 72 |         guard !column.name.isEmpty else { throw MigrationError.emptyColumnName }
+    |                                           `- error: error is not handled because the enclosing function is not declared 'throws'
+ 73 |         return "ALTER TABLE \(tableName) DROP COLUMN \(column.name);"
+ 74 |     }
+[7/19] Compiling OpenAPIHandlerGen OpenAPIHandlerGen.swift
+error: fatalError
