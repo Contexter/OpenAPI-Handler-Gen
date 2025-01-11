@@ -1,0 +1,148 @@
+warning: 'openapihandlergen': found 1 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Sources/openapi.yaml
+warning: 'swift-algorithms': found 1 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/.build/checkouts/swift-algorithms/Sources/Algorithms/Documentation.docc
+[0/1] Planning build
+Building for debugging...
+[0/12] Write sources
+[1/64] Write swift-version--1BFCD5C06E9F820A.txt
+[3/22] Compiling OpenAPIHandlerGenTests ModelPerformanceTests.swift
+[4/22] Compiling OpenAPIHandlerGenTests OpenAPIFileEndpointExtractorTests.swift
+[5/22] Compiling OpenAPIHandlerGenTests OpenAPIPresenceTests.swift
+[6/25] Emitting module OpenAPIHandlerGenTests
+[7/25] Compiling OpenAPIHandlerGenTests ModelContentValidationTests.swift
+[8/25] Compiling OpenAPIHandlerGenTests ModelDirectoryCreationTests.swift
+[9/25] Compiling OpenAPIHandlerGenTests ModelErrorHandlingTests.swift
+[10/25] Compiling OpenAPIHandlerGenTests ErrorHandlingTests.swift
+[11/25] Compiling OpenAPIHandlerGenTests GeneratedFilesPresenceTests.swift
+[12/25] Compiling OpenAPIHandlerGenTests HandlerGeneratorTests.swift
+[13/25] Compiling OpenAPIHandlerGenTests InlineCodeTests.swift
+[14/25] Compiling OpenAPIHandlerGenTests ServerFileExtractorTests.swift
+[15/25] Compiling OpenAPIHandlerGenTests TemplateVerificationTests.swift
+[16/25] Compiling OpenAPIHandlerGenTests TypesFileExtractorTests.swift
+[17/26] Wrapping AST for OpenAPIHandlerGenTests for debugging
+[18/26] /home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/.build/x86_64-unknown-linux-gnu/debug/OpenAPIHandlerGenPackageDiscoveredTests.derived/all-discovered-tests.swift
+[19/26] Write sources
+[21/29] Compiling OpenAPIHandlerGenPackageDiscoveredTests all-discovered-tests.swift
+[22/29] Compiling OpenAPIHandlerGenPackageDiscoveredTests OpenAPIHandlerGenTests.swift
+[23/29] Emitting module OpenAPIHandlerGenPackageDiscoveredTests
+[24/30] /home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/.build/x86_64-unknown-linux-gnu/debug/OpenAPIHandlerGenPackageTests.derived/runner.swift
+[25/30] Write sources
+[26/30] Wrapping AST for OpenAPIHandlerGenPackageDiscoveredTests for debugging
+[28/32] Emitting module OpenAPIHandlerGenPackageTests
+[29/32] Compiling OpenAPIHandlerGenPackageTests runner.swift
+[30/33] Wrapping AST for OpenAPIHandlerGenPackageTests for debugging
+[31/33] Write Objects.LinkFileList
+[32/33] Linking OpenAPIHandlerGenPackageTests.xctest
+Build complete! (7.92s)
+Test Suite 'All tests' started at 2025-01-11 08:20:17.013
+Test Suite 'debug.xctest' started at 2025-01-11 08:20:17.468
+Test Suite 'ErrorHandlingTests' started at 2025-01-11 08:20:17.468
+Test Case 'ErrorHandlingTests.testMalformedYAML' started at 2025-01-11 08:20:17.468
+Test Case 'ErrorHandlingTests.testMalformedYAML' passed (0.006 seconds)
+Test Case 'ErrorHandlingTests.testMissingRequiredFields' started at 2025-01-11 08:20:17.474
+Test Case 'ErrorHandlingTests.testMissingRequiredFields' passed (0.001 seconds)
+Test Suite 'ErrorHandlingTests' passed at 2025-01-11 08:20:17.475
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.007 (0.007) seconds
+Test Suite 'GeneratedFilesPresenceTests' started at 2025-01-11 08:20:17.475
+Test Case 'GeneratedFilesPresenceTests.testGeneratedFilesExist' started at 2025-01-11 08:20:17.475
+Test Case 'GeneratedFilesPresenceTests.testGeneratedFilesExist' passed (0.0 seconds)
+Test Suite 'GeneratedFilesPresenceTests' passed at 2025-01-11 08:20:17.475
+	 Executed 1 test, with 0 failures (0 unexpected) in 0.0 (0.0) seconds
+Test Suite 'HandlerGeneratorTests' started at 2025-01-11 08:20:17.475
+Test Case 'HandlerGeneratorTests.testHandlerAndServiceDirectoriesCreated' started at 2025-01-11 08:20:17.475
+Test Case 'HandlerGeneratorTests.testHandlerAndServiceDirectoriesCreated' passed (0.001 seconds)
+Test Suite 'HandlerGeneratorTests' passed at 2025-01-11 08:20:17.476
+	 Executed 1 test, with 0 failures (0 unexpected) in 0.001 (0.001) seconds
+Test Suite 'InlineCodeTests' started at 2025-01-11 08:20:17.476
+Test Case 'InlineCodeTests.testDownloadWorkflowLogs' started at 2025-01-11 08:20:17.476
+Test Case 'InlineCodeTests.testDownloadWorkflowLogs' passed (0.0 seconds)
+Test Case 'InlineCodeTests.testGetWorkflow' started at 2025-01-11 08:20:17.476
+Test Case 'InlineCodeTests.testGetWorkflow' passed (0.0 seconds)
+Test Case 'InlineCodeTests.testListWorkflowRuns' started at 2025-01-11 08:20:17.477
+Test Case 'InlineCodeTests.testListWorkflowRuns' passed (0.0 seconds)
+Test Case 'InlineCodeTests.testListWorkflows' started at 2025-01-11 08:20:17.477
+Test Case 'InlineCodeTests.testListWorkflows' passed (0.0 seconds)
+Test Suite 'InlineCodeTests' passed at 2025-01-11 08:20:17.477
+	 Executed 4 tests, with 0 failures (0 unexpected) in 0.0 (0.0) seconds
+Test Suite 'ModelContentValidationTests' started at 2025-01-11 08:20:17.477
+Test Case 'ModelContentValidationTests.testEmptyModelValidation' started at 2025-01-11 08:20:17.477
+Test Case 'ModelContentValidationTests.testEmptyModelValidation' passed (0.005 seconds)
+Test Case 'ModelContentValidationTests.testInvalidPropertyNames' started at 2025-01-11 08:20:17.481
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelContentValidationTests.swift:30: error: ModelContentValidationTests.testInvalidPropertyNames : XCTAssertTrue failed - 
+Test Case 'ModelContentValidationTests.testInvalidPropertyNames' failed (0.0 seconds)
+Test Case 'ModelContentValidationTests.testValidModelContentGeneration' started at 2025-01-11 08:20:17.482
+Test Case 'ModelContentValidationTests.testValidModelContentGeneration' passed (0.0 seconds)
+Test Suite 'ModelContentValidationTests' failed at 2025-01-11 08:20:17.482
+	 Executed 3 tests, with 1 failure (0 unexpected) in 0.005 (0.005) seconds
+Test Suite 'ModelDirectoryCreationTests' started at 2025-01-11 08:20:17.482
+Test Case 'ModelDirectoryCreationTests.testDirectoryCreation' started at 2025-01-11 08:20:17.482
+Test Case 'ModelDirectoryCreationTests.testDirectoryCreation' passed (0.0 seconds)
+Test Case 'ModelDirectoryCreationTests.testDirectoryExistsValidation' started at 2025-01-11 08:20:17.482
+Test Case 'ModelDirectoryCreationTests.testDirectoryExistsValidation' passed (0.0 seconds)
+Test Suite 'ModelDirectoryCreationTests' passed at 2025-01-11 08:20:17.482
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.0 (0.0) seconds
+Test Suite 'ModelErrorHandlingTests' started at 2025-01-11 08:20:17.482
+Test Case 'ModelErrorHandlingTests.testInvalidModelName' started at 2025-01-11 08:20:17.482
+Test Case 'ModelErrorHandlingTests.testInvalidModelName' passed (0.0 seconds)
+Test Case 'ModelErrorHandlingTests.testInvalidPropertyName' started at 2025-01-11 08:20:17.482
+Test Case 'ModelErrorHandlingTests.testInvalidPropertyName' passed (0.0 seconds)
+Test Case 'ModelErrorHandlingTests.testReservedKeywordPropertyName' started at 2025-01-11 08:20:17.482
+Test Case 'ModelErrorHandlingTests.testReservedKeywordPropertyName' passed (0.0 seconds)
+Test Case 'ModelErrorHandlingTests.testValidModel' started at 2025-01-11 08:20:17.483
+Test Case 'ModelErrorHandlingTests.testValidModel' passed (0.0 seconds)
+Test Suite 'ModelErrorHandlingTests' passed at 2025-01-11 08:20:17.483
+	 Executed 4 tests, with 0 failures (0 unexpected) in 0.0 (0.0) seconds
+Test Suite 'ModelPerformanceTests' started at 2025-01-11 08:20:17.483
+Test Case 'ModelPerformanceTests.testDirectoryCreationPerformance' started at 2025-01-11 08:20:17.483
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelPerformanceTests.swift:19: Test Case 'ModelPerformanceTests.testDirectoryCreationPerformance' measured [Time, seconds] average: 0.000, relative standard deviation: 73.925%, values: [0.000033, 0.000012, 0.000008, 0.000008, 0.000008, 0.000008, 0.000008, 0.000008, 0.000008, 0.000008], performanceMetricID:org.swift.XCTPerformanceMetric_WallClockTime, maxPercentRelativeStandardDeviation: 10.000%, maxStandardDeviation: 0.100
+Test Case 'ModelPerformanceTests.testDirectoryCreationPerformance' passed (0.001 seconds)
+Test Case 'ModelPerformanceTests.testLargeModelGenerationPerformance' started at 2025-01-11 08:20:17.483
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelPerformanceTests.swift:13: Test Case 'ModelPerformanceTests.testLargeModelGenerationPerformance' measured [Time, seconds] average: 0.000, relative standard deviation: 8.257%, values: [0.000480, 0.000381, 0.000381, 0.000380, 0.000379, 0.000379, 0.000376, 0.000376, 0.000375, 0.000379], performanceMetricID:org.swift.XCTPerformanceMetric_WallClockTime, maxPercentRelativeStandardDeviation: 10.000%, maxStandardDeviation: 0.100
+Test Case 'ModelPerformanceTests.testLargeModelGenerationPerformance' passed (0.004 seconds)
+Test Suite 'ModelPerformanceTests' passed at 2025-01-11 08:20:17.488
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.005 (0.005) seconds
+Test Suite 'OpenAPIFileEndpointExtractorTests' started at 2025-01-11 08:20:17.488
+Test Case 'OpenAPIFileEndpointExtractorTests.testExtractEndpoints' started at 2025-01-11 08:20:17.488
+Test Case 'OpenAPIFileEndpointExtractorTests.testExtractEndpoints' passed (0.0 seconds)
+Test Case 'OpenAPIFileEndpointExtractorTests.testInvalidEndpointParsing' started at 2025-01-11 08:20:17.488
+Test Case 'OpenAPIFileEndpointExtractorTests.testInvalidEndpointParsing' passed (0.0 seconds)
+Test Case 'OpenAPIFileEndpointExtractorTests.testNoEndpoints' started at 2025-01-11 08:20:17.488
+Test Case 'OpenAPIFileEndpointExtractorTests.testNoEndpoints' passed (0.0 seconds)
+Test Suite 'OpenAPIFileEndpointExtractorTests' passed at 2025-01-11 08:20:17.488
+	 Executed 3 tests, with 0 failures (0 unexpected) in 0.0 (0.0) seconds
+Test Suite 'OpenAPIPresenceTests' started at 2025-01-11 08:20:17.488
+Test Case 'OpenAPIPresenceTests.testOpenAPIFileExists' started at 2025-01-11 08:20:17.488
+Test Case 'OpenAPIPresenceTests.testOpenAPIFileExists' passed (0.0 seconds)
+Test Suite 'OpenAPIPresenceTests' passed at 2025-01-11 08:20:17.488
+	 Executed 1 test, with 0 failures (0 unexpected) in 0.0 (0.0) seconds
+Test Suite 'ServerFileExtractorTests' started at 2025-01-11 08:20:17.488
+Test Case 'ServerFileExtractorTests.testExtractRoutesFromEmptyContent' started at 2025-01-11 08:20:17.488
+Test Case 'ServerFileExtractorTests.testExtractRoutesFromEmptyContent' passed (0.0 seconds)
+Test Case 'ServerFileExtractorTests.testExtractRoutesFromInvalidContent' started at 2025-01-11 08:20:17.488
+Test Case 'ServerFileExtractorTests.testExtractRoutesFromInvalidContent' passed (0.0 seconds)
+Test Case 'ServerFileExtractorTests.testExtractRoutesFromMixedContent' started at 2025-01-11 08:20:17.489
+Test Case 'ServerFileExtractorTests.testExtractRoutesFromMixedContent' passed (0.001 seconds)
+Test Case 'ServerFileExtractorTests.testExtractRoutesFromValidContent' started at 2025-01-11 08:20:17.489
+Test Case 'ServerFileExtractorTests.testExtractRoutesFromValidContent' passed (0.0 seconds)
+Test Suite 'ServerFileExtractorTests' passed at 2025-01-11 08:20:17.490
+	 Executed 4 tests, with 0 failures (0 unexpected) in 0.002 (0.002) seconds
+Test Suite 'TemplateVerificationTests' started at 2025-01-11 08:20:17.490
+Test Case 'TemplateVerificationTests.testHandlerTemplateOutput' started at 2025-01-11 08:20:17.490
+Test Case 'TemplateVerificationTests.testHandlerTemplateOutput' passed (0.001 seconds)
+Test Suite 'TemplateVerificationTests' passed at 2025-01-11 08:20:17.491
+	 Executed 1 test, with 0 failures (0 unexpected) in 0.001 (0.001) seconds
+Test Suite 'TypesFileExtractorTests' started at 2025-01-11 08:20:17.491
+Test Case 'TypesFileExtractorTests.testMultipleModelExtraction' started at 2025-01-11 08:20:17.491
+Test Case 'TypesFileExtractorTests.testMultipleModelExtraction' passed (0.0 seconds)
+Test Case 'TypesFileExtractorTests.testSingleModelExtraction' started at 2025-01-11 08:20:17.492
+Test Case 'TypesFileExtractorTests.testSingleModelExtraction' passed (0.0 seconds)
+Test Suite 'TypesFileExtractorTests' passed at 2025-01-11 08:20:17.492
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.001 (0.001) seconds
+Test Suite 'debug.xctest' failed at 2025-01-11 08:20:17.492
+	 Executed 30 tests, with 1 failure (0 unexpected) in 0.023 (0.023) seconds
+Test Suite 'All tests' failed at 2025-01-11 08:20:17.492
+	 Executed 30 tests, with 1 failure (0 unexpected) in 0.023 (0.023) seconds
+◇ Test run started.
+↳ Testing Library Version: 6.0.3 (18c42c19cac3faf)
+✔ Test run with 0 tests passed after 0.001 seconds.
