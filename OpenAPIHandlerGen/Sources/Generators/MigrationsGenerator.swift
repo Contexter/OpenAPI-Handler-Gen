@@ -6,8 +6,8 @@ import Foundation
 
 /// Protocol that all migrations conform to
 protocol Migration {
-    func up() -> String
-    func down() -> String
+    func up() throws -> String
+    func down() throws -> String
 }
 
 class MigrationsGenerator {
@@ -42,7 +42,7 @@ struct CreateTableMigration: Migration {
     let tableName: String
     let columns: [ColumnDefinition]
     
-    func up() -> String {
+    func up() throws -> String {
         guard !tableName.isEmpty else { throw MigrationError.missingTableName }
         guard !columns.isEmpty else { throw MigrationError.emptyColumns }
         
@@ -50,7 +50,7 @@ struct CreateTableMigration: Migration {
         return "CREATE TABLE \(tableName) (\(formattedColumns));"
     }
     
-    func down() -> String {
+    func down() throws -> String {
         guard !tableName.isEmpty else { throw MigrationError.missingTableName }
         return "DROP TABLE \(tableName);"
     }
@@ -61,13 +61,13 @@ struct AddColumnMigration: Migration {
     let tableName: String
     let column: ColumnDefinition
     
-    func up() -> String {
+    func up() throws -> String {
         guard !tableName.isEmpty else { throw MigrationError.missingTableName }
         guard !column.name.isEmpty else { throw MigrationError.emptyColumnName }
         return "ALTER TABLE \(tableName) ADD COLUMN \(column.name) \(column.type.rawValue);"
     }
     
-    func down() -> String {
+    func down() throws -> String {
         guard !tableName.isEmpty else { throw MigrationError.missingTableName }
         guard !column.name.isEmpty else { throw MigrationError.emptyColumnName }
         return "ALTER TABLE \(tableName) DROP COLUMN \(column.name);"
@@ -98,7 +98,6 @@ enum ColumnType: String {
     case uuid = "UUID"
     case text = "TEXT"
     case integer = "INTEGER"
-    case unsupported = "UNSUPPORTED"
 }
 
 /// Errors related to migration generation
@@ -106,7 +105,4 @@ enum MigrationError: Error {
     case missingTableName
     case emptyColumns
     case emptyColumnName
-    case reservedKeyword
-    case unsupportedColumnType
 }
-
