@@ -1,0 +1,823 @@
+warning: 'openapihandlergen': found 1 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Sources/openapi.yaml
+warning: 'swift-algorithms': found 1 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/.build/checkouts/swift-algorithms/Sources/Algorithms/Documentation.docc
+[0/1] Planning build
+Building for debugging...
+[0/12] Write sources
+[1/64] Write swift-version--1BFCD5C06E9F820A.txt
+[3/25] Compiling OpenAPIHandlerGenTests ServerFileExtractorTests.swift
+[4/25] Compiling OpenAPIHandlerGenTests TemplateVerificationTests.swift
+[5/25] Compiling OpenAPIHandlerGenTests EdgeCaseTests.swift
+[6/25] Compiling OpenAPIHandlerGenTests EmptyAndCommentFileTests.swift
+[7/25] Compiling OpenAPIHandlerGenTests VerifyGeneratedFilesTests.swift
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelGeneratorTests.swift:18:21: error: cannot find 'Model' in scope
+16 | final class ModelGeneratorTests: XCTestCase {
+17 |     func testGenerateValidModelCode() throws {
+18 |         let model = Model(
+   |                     `- error: cannot find 'Model' in scope
+19 |             name: "User",
+20 |             properties: [
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelGeneratorTests.swift:21:17: error: cannot find 'Property' in scope
+19 |             name: "User",
+20 |             properties: [
+21 |                 Property(name: "id", type: "Int"),
+   |                 `- error: cannot find 'Property' in scope
+22 |                 Property(name: "name", type: "String")
+23 |             ]
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelGeneratorTests.swift:22:17: error: cannot find 'Property' in scope
+20 |             properties: [
+21 |                 Property(name: "id", type: "Int"),
+22 |                 Property(name: "name", type: "String")
+   |                 `- error: cannot find 'Property' in scope
+23 |             ]
+24 |         )
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelGeneratorTests.swift:25:33: error: cannot find 'ModelGenerator' in scope
+23 |             ]
+24 |         )
+25 |         let generatedCode = try ModelGenerator.generateCode(for: model)
+   |                                 `- error: cannot find 'ModelGenerator' in scope
+26 |         let expectedCode = """
+27 |         struct User {
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelGeneratorTests.swift:32:62: error: cannot infer contextual base in reference to member 'whitespacesAndNewlines'
+30 |         }
+31 |         """
+32 |         XCTAssertEqual(generatedCode.trimmingCharacters(in: .whitespacesAndNewlines),
+   |                                                              `- error: cannot infer contextual base in reference to member 'whitespacesAndNewlines'
+33 |                        expectedCode.trimmingCharacters(in: .whitespacesAndNewlines))
+34 |     }
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelGeneratorTests.swift:37:21: error: cannot find 'Model' in scope
+35 | 
+36 |     func testInvalidModelNameThrowsError() {
+37 |         let model = Model(
+   |                     `- error: cannot find 'Model' in scope
+38 |             name: "123Invalid",
+39 |             properties: [
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelGeneratorTests.swift:40:17: error: cannot find 'Property' in scope
+38 |             name: "123Invalid",
+39 |             properties: [
+40 |                 Property(name: "id", type: "Int")
+   |                 `- error: cannot find 'Property' in scope
+41 |             ]
+42 |         )
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelGeneratorTests.swift:43:34: error: cannot find 'ModelGenerator' in scope
+41 |             ]
+42 |         )
+43 |         XCTAssertThrowsError(try ModelGenerator.validate(model: model)) { error in
+   |                                  `- error: cannot find 'ModelGenerator' in scope
+44 |             XCTAssertEqual(error as? ModelError, ModelError.invalidModelName("123Invalid"))
+45 |         }
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelGeneratorTests.swift:44:50: error: cannot find 'ModelError' in scope
+42 |         )
+43 |         XCTAssertThrowsError(try ModelGenerator.validate(model: model)) { error in
+44 |             XCTAssertEqual(error as? ModelError, ModelError.invalidModelName("123Invalid"))
+   |                                                  `- error: cannot find 'ModelError' in scope
+45 |         }
+46 |     }
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelGeneratorTests.swift:44:38: error: cannot find type 'ModelError' in scope
+42 |         )
+43 |         XCTAssertThrowsError(try ModelGenerator.validate(model: model)) { error in
+44 |             XCTAssertEqual(error as? ModelError, ModelError.invalidModelName("123Invalid"))
+   |                                      `- error: cannot find type 'ModelError' in scope
+45 |         }
+46 |     }
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelGeneratorTests.swift:49:21: error: cannot find 'Model' in scope
+47 | 
+48 |     func testInvalidPropertyNameThrowsError() {
+49 |         let model = Model(
+   |                     `- error: cannot find 'Model' in scope
+50 |             name: "ValidModel",
+51 |             properties: [
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelGeneratorTests.swift:52:17: error: cannot find 'Property' in scope
+50 |             name: "ValidModel",
+51 |             properties: [
+52 |                 Property(name: "123Invalid", type: "Int")
+   |                 `- error: cannot find 'Property' in scope
+53 |             ]
+54 |         )
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelGeneratorTests.swift:55:34: error: cannot find 'ModelGenerator' in scope
+53 |             ]
+54 |         )
+55 |         XCTAssertThrowsError(try ModelGenerator.validate(model: model)) { error in
+   |                                  `- error: cannot find 'ModelGenerator' in scope
+56 |             XCTAssertEqual(error as? ModelError, ModelError.invalidPropertyName("123Invalid"))
+57 |         }
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelGeneratorTests.swift:56:50: error: cannot find 'ModelError' in scope
+54 |         )
+55 |         XCTAssertThrowsError(try ModelGenerator.validate(model: model)) { error in
+56 |             XCTAssertEqual(error as? ModelError, ModelError.invalidPropertyName("123Invalid"))
+   |                                                  `- error: cannot find 'ModelError' in scope
+57 |         }
+58 |     }
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelGeneratorTests.swift:56:38: error: cannot find type 'ModelError' in scope
+54 |         )
+55 |         XCTAssertThrowsError(try ModelGenerator.validate(model: model)) { error in
+56 |             XCTAssertEqual(error as? ModelError, ModelError.invalidPropertyName("123Invalid"))
+   |                                      `- error: cannot find type 'ModelError' in scope
+57 |         }
+58 |     }
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelGeneratorTests.swift:61:21: error: cannot find 'Model' in scope
+59 | 
+60 |     func testInvalidPropertyTypeThrowsError() {
+61 |         let model = Model(
+   |                     `- error: cannot find 'Model' in scope
+62 |             name: "ValidModel",
+63 |             properties: [
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelGeneratorTests.swift:64:17: error: cannot find 'Property' in scope
+62 |             name: "ValidModel",
+63 |             properties: [
+64 |                 Property(name: "id", type: "123InvalidType")
+   |                 `- error: cannot find 'Property' in scope
+65 |             ]
+66 |         )
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelGeneratorTests.swift:67:34: error: cannot find 'ModelGenerator' in scope
+65 |             ]
+66 |         )
+67 |         XCTAssertThrowsError(try ModelGenerator.validate(model: model)) { error in
+   |                                  `- error: cannot find 'ModelGenerator' in scope
+68 |             XCTAssertEqual(error as? ModelError, ModelError.invalidPropertyType("123InvalidType"))
+69 |         }
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelGeneratorTests.swift:68:50: error: cannot find 'ModelError' in scope
+66 |         )
+67 |         XCTAssertThrowsError(try ModelGenerator.validate(model: model)) { error in
+68 |             XCTAssertEqual(error as? ModelError, ModelError.invalidPropertyType("123InvalidType"))
+   |                                                  `- error: cannot find 'ModelError' in scope
+69 |         }
+70 |     }
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelGeneratorTests.swift:68:38: error: cannot find type 'ModelError' in scope
+66 |         )
+67 |         XCTAssertThrowsError(try ModelGenerator.validate(model: model)) { error in
+68 |             XCTAssertEqual(error as? ModelError, ModelError.invalidPropertyType("123InvalidType"))
+   |                                      `- error: cannot find type 'ModelError' in scope
+69 |         }
+70 |     }
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelGeneratorTests.swift:73:21: error: cannot find 'Model' in scope
+71 | 
+72 |     func testValidateValidModel() throws {
+73 |         let model = Model(
+   |                     `- error: cannot find 'Model' in scope
+74 |             name: "ValidModel",
+75 |             properties: [
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelGeneratorTests.swift:76:17: error: cannot find 'Property' in scope
+74 |             name: "ValidModel",
+75 |             properties: [
+76 |                 Property(name: "id", type: "Int"),
+   |                 `- error: cannot find 'Property' in scope
+77 |                 Property(name: "name", type: "String")
+78 |             ]
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelGeneratorTests.swift:77:17: error: cannot find 'Property' in scope
+75 |             properties: [
+76 |                 Property(name: "id", type: "Int"),
+77 |                 Property(name: "name", type: "String")
+   |                 `- error: cannot find 'Property' in scope
+78 |             ]
+79 |         )
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelGeneratorTests.swift:80:30: error: cannot find 'ModelGenerator' in scope
+78 |             ]
+79 |         )
+80 |         XCTAssertNoThrow(try ModelGenerator.validate(model: model))
+   |                              `- error: cannot find 'ModelGenerator' in scope
+81 |     }
+82 | }
+[8/25] Compiling OpenAPIHandlerGenTests ModelGeneratorTests.swift
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelGeneratorTests.swift:18:21: error: cannot find 'Model' in scope
+16 | final class ModelGeneratorTests: XCTestCase {
+17 |     func testGenerateValidModelCode() throws {
+18 |         let model = Model(
+   |                     `- error: cannot find 'Model' in scope
+19 |             name: "User",
+20 |             properties: [
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelGeneratorTests.swift:21:17: error: cannot find 'Property' in scope
+19 |             name: "User",
+20 |             properties: [
+21 |                 Property(name: "id", type: "Int"),
+   |                 `- error: cannot find 'Property' in scope
+22 |                 Property(name: "name", type: "String")
+23 |             ]
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelGeneratorTests.swift:22:17: error: cannot find 'Property' in scope
+20 |             properties: [
+21 |                 Property(name: "id", type: "Int"),
+22 |                 Property(name: "name", type: "String")
+   |                 `- error: cannot find 'Property' in scope
+23 |             ]
+24 |         )
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelGeneratorTests.swift:25:33: error: cannot find 'ModelGenerator' in scope
+23 |             ]
+24 |         )
+25 |         let generatedCode = try ModelGenerator.generateCode(for: model)
+   |                                 `- error: cannot find 'ModelGenerator' in scope
+26 |         let expectedCode = """
+27 |         struct User {
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelGeneratorTests.swift:32:62: error: cannot infer contextual base in reference to member 'whitespacesAndNewlines'
+30 |         }
+31 |         """
+32 |         XCTAssertEqual(generatedCode.trimmingCharacters(in: .whitespacesAndNewlines),
+   |                                                              `- error: cannot infer contextual base in reference to member 'whitespacesAndNewlines'
+33 |                        expectedCode.trimmingCharacters(in: .whitespacesAndNewlines))
+34 |     }
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelGeneratorTests.swift:37:21: error: cannot find 'Model' in scope
+35 | 
+36 |     func testInvalidModelNameThrowsError() {
+37 |         let model = Model(
+   |                     `- error: cannot find 'Model' in scope
+38 |             name: "123Invalid",
+39 |             properties: [
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelGeneratorTests.swift:40:17: error: cannot find 'Property' in scope
+38 |             name: "123Invalid",
+39 |             properties: [
+40 |                 Property(name: "id", type: "Int")
+   |                 `- error: cannot find 'Property' in scope
+41 |             ]
+42 |         )
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelGeneratorTests.swift:43:34: error: cannot find 'ModelGenerator' in scope
+41 |             ]
+42 |         )
+43 |         XCTAssertThrowsError(try ModelGenerator.validate(model: model)) { error in
+   |                                  `- error: cannot find 'ModelGenerator' in scope
+44 |             XCTAssertEqual(error as? ModelError, ModelError.invalidModelName("123Invalid"))
+45 |         }
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelGeneratorTests.swift:44:50: error: cannot find 'ModelError' in scope
+42 |         )
+43 |         XCTAssertThrowsError(try ModelGenerator.validate(model: model)) { error in
+44 |             XCTAssertEqual(error as? ModelError, ModelError.invalidModelName("123Invalid"))
+   |                                                  `- error: cannot find 'ModelError' in scope
+45 |         }
+46 |     }
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelGeneratorTests.swift:44:38: error: cannot find type 'ModelError' in scope
+42 |         )
+43 |         XCTAssertThrowsError(try ModelGenerator.validate(model: model)) { error in
+44 |             XCTAssertEqual(error as? ModelError, ModelError.invalidModelName("123Invalid"))
+   |                                      `- error: cannot find type 'ModelError' in scope
+45 |         }
+46 |     }
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelGeneratorTests.swift:49:21: error: cannot find 'Model' in scope
+47 | 
+48 |     func testInvalidPropertyNameThrowsError() {
+49 |         let model = Model(
+   |                     `- error: cannot find 'Model' in scope
+50 |             name: "ValidModel",
+51 |             properties: [
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelGeneratorTests.swift:52:17: error: cannot find 'Property' in scope
+50 |             name: "ValidModel",
+51 |             properties: [
+52 |                 Property(name: "123Invalid", type: "Int")
+   |                 `- error: cannot find 'Property' in scope
+53 |             ]
+54 |         )
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelGeneratorTests.swift:55:34: error: cannot find 'ModelGenerator' in scope
+53 |             ]
+54 |         )
+55 |         XCTAssertThrowsError(try ModelGenerator.validate(model: model)) { error in
+   |                                  `- error: cannot find 'ModelGenerator' in scope
+56 |             XCTAssertEqual(error as? ModelError, ModelError.invalidPropertyName("123Invalid"))
+57 |         }
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelGeneratorTests.swift:56:50: error: cannot find 'ModelError' in scope
+54 |         )
+55 |         XCTAssertThrowsError(try ModelGenerator.validate(model: model)) { error in
+56 |             XCTAssertEqual(error as? ModelError, ModelError.invalidPropertyName("123Invalid"))
+   |                                                  `- error: cannot find 'ModelError' in scope
+57 |         }
+58 |     }
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelGeneratorTests.swift:56:38: error: cannot find type 'ModelError' in scope
+54 |         )
+55 |         XCTAssertThrowsError(try ModelGenerator.validate(model: model)) { error in
+56 |             XCTAssertEqual(error as? ModelError, ModelError.invalidPropertyName("123Invalid"))
+   |                                      `- error: cannot find type 'ModelError' in scope
+57 |         }
+58 |     }
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelGeneratorTests.swift:61:21: error: cannot find 'Model' in scope
+59 | 
+60 |     func testInvalidPropertyTypeThrowsError() {
+61 |         let model = Model(
+   |                     `- error: cannot find 'Model' in scope
+62 |             name: "ValidModel",
+63 |             properties: [
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelGeneratorTests.swift:64:17: error: cannot find 'Property' in scope
+62 |             name: "ValidModel",
+63 |             properties: [
+64 |                 Property(name: "id", type: "123InvalidType")
+   |                 `- error: cannot find 'Property' in scope
+65 |             ]
+66 |         )
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelGeneratorTests.swift:67:34: error: cannot find 'ModelGenerator' in scope
+65 |             ]
+66 |         )
+67 |         XCTAssertThrowsError(try ModelGenerator.validate(model: model)) { error in
+   |                                  `- error: cannot find 'ModelGenerator' in scope
+68 |             XCTAssertEqual(error as? ModelError, ModelError.invalidPropertyType("123InvalidType"))
+69 |         }
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelGeneratorTests.swift:68:50: error: cannot find 'ModelError' in scope
+66 |         )
+67 |         XCTAssertThrowsError(try ModelGenerator.validate(model: model)) { error in
+68 |             XCTAssertEqual(error as? ModelError, ModelError.invalidPropertyType("123InvalidType"))
+   |                                                  `- error: cannot find 'ModelError' in scope
+69 |         }
+70 |     }
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelGeneratorTests.swift:68:38: error: cannot find type 'ModelError' in scope
+66 |         )
+67 |         XCTAssertThrowsError(try ModelGenerator.validate(model: model)) { error in
+68 |             XCTAssertEqual(error as? ModelError, ModelError.invalidPropertyType("123InvalidType"))
+   |                                      `- error: cannot find type 'ModelError' in scope
+69 |         }
+70 |     }
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelGeneratorTests.swift:73:21: error: cannot find 'Model' in scope
+71 | 
+72 |     func testValidateValidModel() throws {
+73 |         let model = Model(
+   |                     `- error: cannot find 'Model' in scope
+74 |             name: "ValidModel",
+75 |             properties: [
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelGeneratorTests.swift:76:17: error: cannot find 'Property' in scope
+74 |             name: "ValidModel",
+75 |             properties: [
+76 |                 Property(name: "id", type: "Int"),
+   |                 `- error: cannot find 'Property' in scope
+77 |                 Property(name: "name", type: "String")
+78 |             ]
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelGeneratorTests.swift:77:17: error: cannot find 'Property' in scope
+75 |             properties: [
+76 |                 Property(name: "id", type: "Int"),
+77 |                 Property(name: "name", type: "String")
+   |                 `- error: cannot find 'Property' in scope
+78 |             ]
+79 |         )
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelGeneratorTests.swift:80:30: error: cannot find 'ModelGenerator' in scope
+78 |             ]
+79 |         )
+80 |         XCTAssertNoThrow(try ModelGenerator.validate(model: model))
+   |                              `- error: cannot find 'ModelGenerator' in scope
+81 |     }
+82 | }
+[9/25] Compiling OpenAPIHandlerGenTests OpenAPIFileEndpointExtractorTests.swift
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelGeneratorTests.swift:18:21: error: cannot find 'Model' in scope
+16 | final class ModelGeneratorTests: XCTestCase {
+17 |     func testGenerateValidModelCode() throws {
+18 |         let model = Model(
+   |                     `- error: cannot find 'Model' in scope
+19 |             name: "User",
+20 |             properties: [
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelGeneratorTests.swift:21:17: error: cannot find 'Property' in scope
+19 |             name: "User",
+20 |             properties: [
+21 |                 Property(name: "id", type: "Int"),
+   |                 `- error: cannot find 'Property' in scope
+22 |                 Property(name: "name", type: "String")
+23 |             ]
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelGeneratorTests.swift:22:17: error: cannot find 'Property' in scope
+20 |             properties: [
+21 |                 Property(name: "id", type: "Int"),
+22 |                 Property(name: "name", type: "String")
+   |                 `- error: cannot find 'Property' in scope
+23 |             ]
+24 |         )
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelGeneratorTests.swift:25:33: error: cannot find 'ModelGenerator' in scope
+23 |             ]
+24 |         )
+25 |         let generatedCode = try ModelGenerator.generateCode(for: model)
+   |                                 `- error: cannot find 'ModelGenerator' in scope
+26 |         let expectedCode = """
+27 |         struct User {
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelGeneratorTests.swift:32:62: error: cannot infer contextual base in reference to member 'whitespacesAndNewlines'
+30 |         }
+31 |         """
+32 |         XCTAssertEqual(generatedCode.trimmingCharacters(in: .whitespacesAndNewlines),
+   |                                                              `- error: cannot infer contextual base in reference to member 'whitespacesAndNewlines'
+33 |                        expectedCode.trimmingCharacters(in: .whitespacesAndNewlines))
+34 |     }
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelGeneratorTests.swift:37:21: error: cannot find 'Model' in scope
+35 | 
+36 |     func testInvalidModelNameThrowsError() {
+37 |         let model = Model(
+   |                     `- error: cannot find 'Model' in scope
+38 |             name: "123Invalid",
+39 |             properties: [
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelGeneratorTests.swift:40:17: error: cannot find 'Property' in scope
+38 |             name: "123Invalid",
+39 |             properties: [
+40 |                 Property(name: "id", type: "Int")
+   |                 `- error: cannot find 'Property' in scope
+41 |             ]
+42 |         )
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelGeneratorTests.swift:43:34: error: cannot find 'ModelGenerator' in scope
+41 |             ]
+42 |         )
+43 |         XCTAssertThrowsError(try ModelGenerator.validate(model: model)) { error in
+   |                                  `- error: cannot find 'ModelGenerator' in scope
+44 |             XCTAssertEqual(error as? ModelError, ModelError.invalidModelName("123Invalid"))
+45 |         }
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelGeneratorTests.swift:44:50: error: cannot find 'ModelError' in scope
+42 |         )
+43 |         XCTAssertThrowsError(try ModelGenerator.validate(model: model)) { error in
+44 |             XCTAssertEqual(error as? ModelError, ModelError.invalidModelName("123Invalid"))
+   |                                                  `- error: cannot find 'ModelError' in scope
+45 |         }
+46 |     }
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelGeneratorTests.swift:44:38: error: cannot find type 'ModelError' in scope
+42 |         )
+43 |         XCTAssertThrowsError(try ModelGenerator.validate(model: model)) { error in
+44 |             XCTAssertEqual(error as? ModelError, ModelError.invalidModelName("123Invalid"))
+   |                                      `- error: cannot find type 'ModelError' in scope
+45 |         }
+46 |     }
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelGeneratorTests.swift:49:21: error: cannot find 'Model' in scope
+47 | 
+48 |     func testInvalidPropertyNameThrowsError() {
+49 |         let model = Model(
+   |                     `- error: cannot find 'Model' in scope
+50 |             name: "ValidModel",
+51 |             properties: [
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelGeneratorTests.swift:52:17: error: cannot find 'Property' in scope
+50 |             name: "ValidModel",
+51 |             properties: [
+52 |                 Property(name: "123Invalid", type: "Int")
+   |                 `- error: cannot find 'Property' in scope
+53 |             ]
+54 |         )
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelGeneratorTests.swift:55:34: error: cannot find 'ModelGenerator' in scope
+53 |             ]
+54 |         )
+55 |         XCTAssertThrowsError(try ModelGenerator.validate(model: model)) { error in
+   |                                  `- error: cannot find 'ModelGenerator' in scope
+56 |             XCTAssertEqual(error as? ModelError, ModelError.invalidPropertyName("123Invalid"))
+57 |         }
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelGeneratorTests.swift:56:50: error: cannot find 'ModelError' in scope
+54 |         )
+55 |         XCTAssertThrowsError(try ModelGenerator.validate(model: model)) { error in
+56 |             XCTAssertEqual(error as? ModelError, ModelError.invalidPropertyName("123Invalid"))
+   |                                                  `- error: cannot find 'ModelError' in scope
+57 |         }
+58 |     }
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelGeneratorTests.swift:56:38: error: cannot find type 'ModelError' in scope
+54 |         )
+55 |         XCTAssertThrowsError(try ModelGenerator.validate(model: model)) { error in
+56 |             XCTAssertEqual(error as? ModelError, ModelError.invalidPropertyName("123Invalid"))
+   |                                      `- error: cannot find type 'ModelError' in scope
+57 |         }
+58 |     }
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelGeneratorTests.swift:61:21: error: cannot find 'Model' in scope
+59 | 
+60 |     func testInvalidPropertyTypeThrowsError() {
+61 |         let model = Model(
+   |                     `- error: cannot find 'Model' in scope
+62 |             name: "ValidModel",
+63 |             properties: [
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelGeneratorTests.swift:64:17: error: cannot find 'Property' in scope
+62 |             name: "ValidModel",
+63 |             properties: [
+64 |                 Property(name: "id", type: "123InvalidType")
+   |                 `- error: cannot find 'Property' in scope
+65 |             ]
+66 |         )
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelGeneratorTests.swift:67:34: error: cannot find 'ModelGenerator' in scope
+65 |             ]
+66 |         )
+67 |         XCTAssertThrowsError(try ModelGenerator.validate(model: model)) { error in
+   |                                  `- error: cannot find 'ModelGenerator' in scope
+68 |             XCTAssertEqual(error as? ModelError, ModelError.invalidPropertyType("123InvalidType"))
+69 |         }
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelGeneratorTests.swift:68:50: error: cannot find 'ModelError' in scope
+66 |         )
+67 |         XCTAssertThrowsError(try ModelGenerator.validate(model: model)) { error in
+68 |             XCTAssertEqual(error as? ModelError, ModelError.invalidPropertyType("123InvalidType"))
+   |                                                  `- error: cannot find 'ModelError' in scope
+69 |         }
+70 |     }
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelGeneratorTests.swift:68:38: error: cannot find type 'ModelError' in scope
+66 |         )
+67 |         XCTAssertThrowsError(try ModelGenerator.validate(model: model)) { error in
+68 |             XCTAssertEqual(error as? ModelError, ModelError.invalidPropertyType("123InvalidType"))
+   |                                      `- error: cannot find type 'ModelError' in scope
+69 |         }
+70 |     }
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelGeneratorTests.swift:73:21: error: cannot find 'Model' in scope
+71 | 
+72 |     func testValidateValidModel() throws {
+73 |         let model = Model(
+   |                     `- error: cannot find 'Model' in scope
+74 |             name: "ValidModel",
+75 |             properties: [
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelGeneratorTests.swift:76:17: error: cannot find 'Property' in scope
+74 |             name: "ValidModel",
+75 |             properties: [
+76 |                 Property(name: "id", type: "Int"),
+   |                 `- error: cannot find 'Property' in scope
+77 |                 Property(name: "name", type: "String")
+78 |             ]
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelGeneratorTests.swift:77:17: error: cannot find 'Property' in scope
+75 |             properties: [
+76 |                 Property(name: "id", type: "Int"),
+77 |                 Property(name: "name", type: "String")
+   |                 `- error: cannot find 'Property' in scope
+78 |             ]
+79 |         )
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelGeneratorTests.swift:80:30: error: cannot find 'ModelGenerator' in scope
+78 |             ]
+79 |         )
+80 |         XCTAssertNoThrow(try ModelGenerator.validate(model: model))
+   |                              `- error: cannot find 'ModelGenerator' in scope
+81 |     }
+82 | }
+[10/25] Compiling OpenAPIHandlerGenTests OpenAPIPresenceTests.swift
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelGeneratorTests.swift:18:21: error: cannot find 'Model' in scope
+16 | final class ModelGeneratorTests: XCTestCase {
+17 |     func testGenerateValidModelCode() throws {
+18 |         let model = Model(
+   |                     `- error: cannot find 'Model' in scope
+19 |             name: "User",
+20 |             properties: [
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelGeneratorTests.swift:21:17: error: cannot find 'Property' in scope
+19 |             name: "User",
+20 |             properties: [
+21 |                 Property(name: "id", type: "Int"),
+   |                 `- error: cannot find 'Property' in scope
+22 |                 Property(name: "name", type: "String")
+23 |             ]
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelGeneratorTests.swift:22:17: error: cannot find 'Property' in scope
+20 |             properties: [
+21 |                 Property(name: "id", type: "Int"),
+22 |                 Property(name: "name", type: "String")
+   |                 `- error: cannot find 'Property' in scope
+23 |             ]
+24 |         )
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelGeneratorTests.swift:25:33: error: cannot find 'ModelGenerator' in scope
+23 |             ]
+24 |         )
+25 |         let generatedCode = try ModelGenerator.generateCode(for: model)
+   |                                 `- error: cannot find 'ModelGenerator' in scope
+26 |         let expectedCode = """
+27 |         struct User {
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelGeneratorTests.swift:32:62: error: cannot infer contextual base in reference to member 'whitespacesAndNewlines'
+30 |         }
+31 |         """
+32 |         XCTAssertEqual(generatedCode.trimmingCharacters(in: .whitespacesAndNewlines),
+   |                                                              `- error: cannot infer contextual base in reference to member 'whitespacesAndNewlines'
+33 |                        expectedCode.trimmingCharacters(in: .whitespacesAndNewlines))
+34 |     }
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelGeneratorTests.swift:37:21: error: cannot find 'Model' in scope
+35 | 
+36 |     func testInvalidModelNameThrowsError() {
+37 |         let model = Model(
+   |                     `- error: cannot find 'Model' in scope
+38 |             name: "123Invalid",
+39 |             properties: [
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelGeneratorTests.swift:40:17: error: cannot find 'Property' in scope
+38 |             name: "123Invalid",
+39 |             properties: [
+40 |                 Property(name: "id", type: "Int")
+   |                 `- error: cannot find 'Property' in scope
+41 |             ]
+42 |         )
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelGeneratorTests.swift:43:34: error: cannot find 'ModelGenerator' in scope
+41 |             ]
+42 |         )
+43 |         XCTAssertThrowsError(try ModelGenerator.validate(model: model)) { error in
+   |                                  `- error: cannot find 'ModelGenerator' in scope
+44 |             XCTAssertEqual(error as? ModelError, ModelError.invalidModelName("123Invalid"))
+45 |         }
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelGeneratorTests.swift:44:50: error: cannot find 'ModelError' in scope
+42 |         )
+43 |         XCTAssertThrowsError(try ModelGenerator.validate(model: model)) { error in
+44 |             XCTAssertEqual(error as? ModelError, ModelError.invalidModelName("123Invalid"))
+   |                                                  `- error: cannot find 'ModelError' in scope
+45 |         }
+46 |     }
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelGeneratorTests.swift:44:38: error: cannot find type 'ModelError' in scope
+42 |         )
+43 |         XCTAssertThrowsError(try ModelGenerator.validate(model: model)) { error in
+44 |             XCTAssertEqual(error as? ModelError, ModelError.invalidModelName("123Invalid"))
+   |                                      `- error: cannot find type 'ModelError' in scope
+45 |         }
+46 |     }
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelGeneratorTests.swift:49:21: error: cannot find 'Model' in scope
+47 | 
+48 |     func testInvalidPropertyNameThrowsError() {
+49 |         let model = Model(
+   |                     `- error: cannot find 'Model' in scope
+50 |             name: "ValidModel",
+51 |             properties: [
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelGeneratorTests.swift:52:17: error: cannot find 'Property' in scope
+50 |             name: "ValidModel",
+51 |             properties: [
+52 |                 Property(name: "123Invalid", type: "Int")
+   |                 `- error: cannot find 'Property' in scope
+53 |             ]
+54 |         )
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelGeneratorTests.swift:55:34: error: cannot find 'ModelGenerator' in scope
+53 |             ]
+54 |         )
+55 |         XCTAssertThrowsError(try ModelGenerator.validate(model: model)) { error in
+   |                                  `- error: cannot find 'ModelGenerator' in scope
+56 |             XCTAssertEqual(error as? ModelError, ModelError.invalidPropertyName("123Invalid"))
+57 |         }
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelGeneratorTests.swift:56:50: error: cannot find 'ModelError' in scope
+54 |         )
+55 |         XCTAssertThrowsError(try ModelGenerator.validate(model: model)) { error in
+56 |             XCTAssertEqual(error as? ModelError, ModelError.invalidPropertyName("123Invalid"))
+   |                                                  `- error: cannot find 'ModelError' in scope
+57 |         }
+58 |     }
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelGeneratorTests.swift:56:38: error: cannot find type 'ModelError' in scope
+54 |         )
+55 |         XCTAssertThrowsError(try ModelGenerator.validate(model: model)) { error in
+56 |             XCTAssertEqual(error as? ModelError, ModelError.invalidPropertyName("123Invalid"))
+   |                                      `- error: cannot find type 'ModelError' in scope
+57 |         }
+58 |     }
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelGeneratorTests.swift:61:21: error: cannot find 'Model' in scope
+59 | 
+60 |     func testInvalidPropertyTypeThrowsError() {
+61 |         let model = Model(
+   |                     `- error: cannot find 'Model' in scope
+62 |             name: "ValidModel",
+63 |             properties: [
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelGeneratorTests.swift:64:17: error: cannot find 'Property' in scope
+62 |             name: "ValidModel",
+63 |             properties: [
+64 |                 Property(name: "id", type: "123InvalidType")
+   |                 `- error: cannot find 'Property' in scope
+65 |             ]
+66 |         )
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelGeneratorTests.swift:67:34: error: cannot find 'ModelGenerator' in scope
+65 |             ]
+66 |         )
+67 |         XCTAssertThrowsError(try ModelGenerator.validate(model: model)) { error in
+   |                                  `- error: cannot find 'ModelGenerator' in scope
+68 |             XCTAssertEqual(error as? ModelError, ModelError.invalidPropertyType("123InvalidType"))
+69 |         }
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelGeneratorTests.swift:68:50: error: cannot find 'ModelError' in scope
+66 |         )
+67 |         XCTAssertThrowsError(try ModelGenerator.validate(model: model)) { error in
+68 |             XCTAssertEqual(error as? ModelError, ModelError.invalidPropertyType("123InvalidType"))
+   |                                                  `- error: cannot find 'ModelError' in scope
+69 |         }
+70 |     }
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelGeneratorTests.swift:68:38: error: cannot find type 'ModelError' in scope
+66 |         )
+67 |         XCTAssertThrowsError(try ModelGenerator.validate(model: model)) { error in
+68 |             XCTAssertEqual(error as? ModelError, ModelError.invalidPropertyType("123InvalidType"))
+   |                                      `- error: cannot find type 'ModelError' in scope
+69 |         }
+70 |     }
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelGeneratorTests.swift:73:21: error: cannot find 'Model' in scope
+71 | 
+72 |     func testValidateValidModel() throws {
+73 |         let model = Model(
+   |                     `- error: cannot find 'Model' in scope
+74 |             name: "ValidModel",
+75 |             properties: [
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelGeneratorTests.swift:76:17: error: cannot find 'Property' in scope
+74 |             name: "ValidModel",
+75 |             properties: [
+76 |                 Property(name: "id", type: "Int"),
+   |                 `- error: cannot find 'Property' in scope
+77 |                 Property(name: "name", type: "String")
+78 |             ]
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelGeneratorTests.swift:77:17: error: cannot find 'Property' in scope
+75 |             properties: [
+76 |                 Property(name: "id", type: "Int"),
+77 |                 Property(name: "name", type: "String")
+   |                 `- error: cannot find 'Property' in scope
+78 |             ]
+79 |         )
+
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/ModelGeneratorTests/ModelGeneratorTests.swift:80:30: error: cannot find 'ModelGenerator' in scope
+78 |             ]
+79 |         )
+80 |         XCTAssertNoThrow(try ModelGenerator.validate(model: model))
+   |                              `- error: cannot find 'ModelGenerator' in scope
+81 |     }
+82 | }
+[11/29] Emitting module OpenAPIHandlerGenTests
+[12/29] Compiling OpenAPIHandlerGenTests ErrorHandlingTests.swift
+[13/29] Compiling OpenAPIHandlerGenTests GeneratedFilesPresenceTests.swift
+[14/29] Compiling OpenAPIHandlerGenTests HandlerGeneratorTests.swift
+[15/29] Compiling OpenAPIHandlerGenTests InlineCodeTests.swift
+[16/29] Compiling OpenAPIHandlerGenTests MigrationsOutputPlacementTests.swift
+[17/29] Compiling OpenAPIHandlerGenTests InvalidContentExtractionTests.swift
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/TypesFileExtractorTests/NestedStructureExtractionTests.swift:19:16: error: cannot assign value of type '[OpenAPIHandlerGen.ExtractedModel]' to type '[OpenAPIHandlerGenTests.ExtractedModel]'
+17 |         let models: [ExtractedModel]
+18 |         // Test with the existing `extractModels` method
+19 |         models = TypesFileExtractor.extractModels(from: content)
+   |                |- error: cannot assign value of type '[OpenAPIHandlerGen.ExtractedModel]' to type '[OpenAPIHandlerGenTests.ExtractedModel]'
+   |                `- note: arguments to generic parameter 'Element' ('OpenAPIHandlerGen.ExtractedModel' and 'OpenAPIHandlerGenTests.ExtractedModel') are expected to be equal
+20 | 
+21 |         XCTAssertEqual(models.count, 1, "Expected only the outermost struct to be extracted.")
+[18/29] Compiling OpenAPIHandlerGenTests MultipleModelExtractionTests.swift
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/TypesFileExtractorTests/NestedStructureExtractionTests.swift:19:16: error: cannot assign value of type '[OpenAPIHandlerGen.ExtractedModel]' to type '[OpenAPIHandlerGenTests.ExtractedModel]'
+17 |         let models: [ExtractedModel]
+18 |         // Test with the existing `extractModels` method
+19 |         models = TypesFileExtractor.extractModels(from: content)
+   |                |- error: cannot assign value of type '[OpenAPIHandlerGen.ExtractedModel]' to type '[OpenAPIHandlerGenTests.ExtractedModel]'
+   |                `- note: arguments to generic parameter 'Element' ('OpenAPIHandlerGen.ExtractedModel' and 'OpenAPIHandlerGenTests.ExtractedModel') are expected to be equal
+20 | 
+21 |         XCTAssertEqual(models.count, 1, "Expected only the outermost struct to be extracted.")
+[19/29] Compiling OpenAPIHandlerGenTests NestedStructureExtractionTests.swift
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/TypesFileExtractorTests/NestedStructureExtractionTests.swift:19:16: error: cannot assign value of type '[OpenAPIHandlerGen.ExtractedModel]' to type '[OpenAPIHandlerGenTests.ExtractedModel]'
+17 |         let models: [ExtractedModel]
+18 |         // Test with the existing `extractModels` method
+19 |         models = TypesFileExtractor.extractModels(from: content)
+   |                |- error: cannot assign value of type '[OpenAPIHandlerGen.ExtractedModel]' to type '[OpenAPIHandlerGenTests.ExtractedModel]'
+   |                `- note: arguments to generic parameter 'Element' ('OpenAPIHandlerGen.ExtractedModel' and 'OpenAPIHandlerGenTests.ExtractedModel') are expected to be equal
+20 | 
+21 |         XCTAssertEqual(models.count, 1, "Expected only the outermost struct to be extracted.")
+[20/29] Compiling OpenAPIHandlerGenTests SingleModelExtractionTests.swift
+/home/runner/work/OpenAPI-Handler-Gen/OpenAPI-Handler-Gen/OpenAPIHandlerGen/Tests/TypesFileExtractorTests/NestedStructureExtractionTests.swift:19:16: error: cannot assign value of type '[OpenAPIHandlerGen.ExtractedModel]' to type '[OpenAPIHandlerGenTests.ExtractedModel]'
+17 |         let models: [ExtractedModel]
+18 |         // Test with the existing `extractModels` method
+19 |         models = TypesFileExtractor.extractModels(from: content)
+   |                |- error: cannot assign value of type '[OpenAPIHandlerGen.ExtractedModel]' to type '[OpenAPIHandlerGenTests.ExtractedModel]'
+   |                `- note: arguments to generic parameter 'Element' ('OpenAPIHandlerGen.ExtractedModel' and 'OpenAPIHandlerGenTests.ExtractedModel') are expected to be equal
+20 | 
+21 |         XCTAssertEqual(models.count, 1, "Expected only the outermost struct to be extracted.")
+error: fatalError
