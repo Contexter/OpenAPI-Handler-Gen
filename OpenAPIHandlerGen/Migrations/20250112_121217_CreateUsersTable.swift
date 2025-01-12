@@ -1,0 +1,1 @@
+struct CreateUsersTable: Migration {}
